@@ -960,7 +960,7 @@ public:
 							j = j + (j & ~UsedMask) - 1;
 						else
 						{
-							char *EndLine = strrchr(pLevelData->sPostFix, '\n');
+							const char *EndLine = strrchr(pLevelData->sPostFix, '\n');
 							if(!i && !j || EndLine != NULL)
 								Output << pLevelData->sPreFix;
 							if(EndLine != NULL)
@@ -977,7 +977,7 @@ public:
 			for(unsigned int i = 0; i < pLevelData->Size; i++)
 				if( !((ValueType &)pData[i] == Default) || pLevelData->fPrintAll)
 				{
-					char *EndLine = strrchr(pLevelData->sPostFix, '\n');
+					const char *EndLine = strrchr(pLevelData->sPostFix, '\n');
 					if(!i || EndLine != NULL)
 						Output << pLevelData->sPreFix;
 					if(EndLine != NULL)
