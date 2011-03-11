@@ -58,11 +58,11 @@ LC3CONV_H = ${LC3CONV_BUILD}/AsmConvertLC3.h
 LC2CONV_H = 
 JMTLIB_H = ${JMTLIB_BUILD}/JMTLib.h ${JMTLIB_BUILD}/Lexer.h ${JMTLIB_BUILD}/Token.h ${JMTLIB_BUILD}/HighlightLexer.h ${JMTLIB_BUILD}/JMTSys.h ${JMTLIB_BUILD}/SynchLib.h ${JMTLIB_BUILD}/SparseArray.h
 
-#RedHat Linux x86 GCC Options
+#CentOS x86_64 GCC Options
 CFLAGS = -O3 -w -fpermissive -DUNIX_BUILD -DGPLUSPLUS
-FLTKCFLAGS = -Ifltk-1.1.7
-FLTKLDFLAGS = -Lfltk-1.1.7/lib/Redhat_x86 -lfltk_images -lfltk -L/usr/X11R6/lib -lX11
-RELEASE_DIR = Release/Redhat_x86
+FLTKCFLAGS = -Ifltk-1.1.10
+FLTKLDFLAGS = -Lfltk-1.1.10/lib/CentOS_x86_64 -lfltk_images -lfltk -lfltk_png -lfltk_jpeg -lfltk_zlib -L/usr/X11R6/lib -lX11
+RELEASE_DIR = Release/CentOS_x86_64
 
 #Solaris Unix Sparc GCC Options
 #CFLAGS = -O3 -w -fpermissive -DUNIX_BUILD -DBIG_ENDIAN_BUILD -DGPLUSPLUS

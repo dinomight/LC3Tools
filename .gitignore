@@ -2,5 +2,7 @@
 *.opensdf
 *.user
 *.suo
+*.set
 Debug
 Release
+Obj
