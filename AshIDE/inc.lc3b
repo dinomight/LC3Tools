@@ -1,0 +1,9 @@
+jsr blah1
+blah1: jsr blah2
+blah2: jsr blah3
+blah3: jsr blah4
+blah4: jsr blah5
+blah5: jsr blah6
+blah6: jsr blah7
+blah7: jsr blah8
+blah8: add r0, r0, 0

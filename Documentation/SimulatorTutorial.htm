@@ -1,0 +1,1106 @@
+<html>
+<head>
+<title>Simulator Tutorial</title>
+</head>
+<body>
+<center><h1>LC-3 and LC-3b Simulator - Ashley Wise</h1></center>
+<center><i>Return to <a href="LC3Tools.htm">Main Page</a>, <a href="LC3ToolsHelp.htm">Help Contents</a></i></center>
+<p>
+<ul>
+	<li>The LC-3/LC-3b toolset is open to enhancements.
+	<ul>
+		<li>Please send any bug reports, suggestions, or comments to Ashley.
+		<li>Put "LC-3/LC-3b Simulator" in the subject so it doesn't get filtered as spam.
+		<li>Nit-picking is good.
+	</ul>
+	<li>This tutorial is for Simulator version 1. Simulator version 1 uses Assembler versions 3.
+</ul>
+
+<a name="index">
+<center><h3>LC-3/LC-3b Simulator Version 1 Index</h3></center>
+
+<ul>
+	<li><a href="#index_running">Running The Simulator</a>
+	<li><a href="#index_command">Command Line Options</a>
+	<li><a href="#index_translator">LC-3 Translator</a>
+	<li><a href="#index_basics">Simulator Basics</a>
+	<ul>
+		<li><a href="#logical">Logical Data</a>
+		<li><a href="#physical">Physical Memory</a>
+		<li><a href="#start">When It Starts</a>
+		<li><a href="#command">Command Mode</a>
+	</ul>
+	<li><a href="#index_general">General Commands</a>
+	<ul>
+		<li><a href="#ctrl_c">Break Simulation (CTRL-C)</a>
+		<li><a href="#reset">Reset The Simulator (RESET)</a>
+		<li><a href="#console">Change Console Display Width (CONSOLE)</a>
+		<li><a href="#printi">Change Instruction Print Length (PRINTI)</a>
+		<li><a href="#help">Help (HELP)</a>
+		<li><a href="#exit">Exit Simulation (EXIT, QUIT)</a>
+	</ul>
+	<li><a href="#index_stepping">Stepping Through Instructions/Cycles/Subroutines</a>
+	<ul>
+		<li><a href="#go">Run Simulator (GO)</a>
+		<li><a href="#goi">Simulate # Instructions (GOI)</a>
+		<li><a href="#goin">Step Into Subroutine (GOIN)</a>
+		<li><a href="#goover">Step Over Subroutine (GOOVER)</a>
+		<li><a href="#goout">Step Out Of Subroutine (GOOUT)</a>
+		<li><a href="#gotol">Goto Code Line Number (GOTOL)</a>
+		<li><a href="#gotoi">Goto Instruction (GOTOI)</a>
+	</ul>
+	<li><a href="#index_viewing">Viewing Instructions, Data, Memory, Byte Arrays, and Registers</a>
+	<ul>
+		<li><a href="#di">Display Instructions (DIL, DI)</a>
+		<li><a href="#dd">Display Data (DL, DD)</a>
+		<li><a href="#dm">Display Memory (DM)</a>
+		<li><a href="#dda">Display Byte Arrays (DLA, DDA, DMA)</a>
+		<li><a href="#drs">Display Registers (DRS, DR)</a>
+	</ul>
+	<li><a href="#index_displaying">Displaying Simulation Information</a>
+	<ul>
+		<li><a href="#dpl">Display Pipelines (DPL)</a>
+		<li><a href="#dci">Display Cycle & Instruction Counts (DCI)</a>
+		<li><a href="#dcs">Display Call Stack (DCS)</a>
+	</ul>
+	<li><a href="#index_breakpoints">Setting Instruction, Data, Memory, and Register Breakpoints</a>
+	<ul>
+		<li><a href="#dbp">Display Breakpoints (DBP)</a>
+		<li><a href="#bpi">Instruction Breakpoints (BPL, BPI, BPIC)</a>
+		<li><a href="#bpd">Data Breakpoints (BPD, BPDC)</a>
+		<li><a href="#bpm">Memory Breakpoints (BPM, BPMC)</a>
+		<li><a href="#bpr">Register Breakpoints (BPR, BPRC)</a>
+		<li><a href="#eventlist">Breakpoint EventList (READEVENT, WRITEEVENT, CHANGEEVENT, VALUEEVENT, NOEVENT)</a>
+	</ul>
+	<li><a href="#index_editing">Editing Instructions, Data, Registers, and Memory During Simulation</a>
+	<ul>
+		<li><a href="#wd">Editing Instructions & Data (WL, WD)</a>
+		<li><a href="#wm">Editing Memory (WM)</a>
+		<li><a href="#wr">Editing Registers (WR)</a>
+	</ul>
+	<li><a href="#index_tracing">Tracing Instruction Execution and Registers</a>
+	<ul>
+		<li><a href="#traceon">TRACEON, TRACEOFF</a>
+	</ul>
+	<li><a href="#index_checking">Runtime Error Checking, Exceptions, and Interrupts</a>
+	<ul>
+		<li><a href="#checkon">CHECKON, CHECKOFF</a>
+		<li><a href="#exception">Exceptions</a>
+		<li><a href="#interrupt">Interrupts</a>
+	</ul>
+	<li><a href="#index_state">Simulation State - Saving/Loading</a>
+	<ul>
+		<li><a href="#saves">SAVES, LOADS</a>
+	</ul>
+	<li><a href="#index_images">Memory Images - Saving/Loading</a>
+	<ul>
+		<li><a href="#saved">SAVED, LOADD</a>
+	</ul>
+	<li><a href="#index_obj">Program Objects - Saving/Loading</a>
+	<ul>
+		<li><a href="#saveo">SAVEO, LOADO</a>
+	</ul>
+	<li><a href="#index_multiple">Multiple Program Simulating</a>
+	<ul>
+		<li><a href="#dp">Program Numbers (DP)</a>
+	</ul>
+	<li><a href="#index_console">Console and Memory-Mapped I/O</a>
+	<ul>
+		<li><a href="#mmio">Memory Mapped I/O (KBSR, KBDR, DSR, DDR, MCR)</a>
+		<li><a href="#console_io">Console I/O</a>
+	</ul>
+	<li><a href="#index_ashos">Ash Operating System</a>
+	<ul>
+		<!--li><a href="#main">Program Entry Point (_MAIN)</a-->
+		<li><a href="#getc">OS Functions (GETC, OUT, IN, HALT, PUTS, PUTSP)</a>
+	</ul>
+	<li><a href="#index_modifying">Modifying the Architecture</a>
+</ul>
+
+<a name="index_running">
+<a name="gzip">
+<a name="gunzip">
+<a name="chmod">
+<table cellpadding=10><tr><td><h3>Running The Simulator</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Download the archive
+	<ul>
+		<li>LC3[b]Simulator.zip
+	</ul>
+	<li>Extract the archive
+	<ul>
+		<li>Use WinZip, etc., on Windows
+		<li>And on Unix:
+<ul><pre>
+> unzip LC3[b]Simulator.zip
+</pre></ul>
+	</ul>
+	<li>Set execute permissions for Unix
+<ul><pre>
+> chmod u+x LC3[b]Simulator
+</pre></ul>
+	<li>Execute at the command line by entering the name of the extracted Simulator followed by a list of assembly file names and command line parameters.
+<ul><pre>
+> LC3[b]Simulator Sample.asm OS.asm -s
+</pre></ul>
+	<li>If you want to type a smaller name, or automatically use certain options (such as -s), create a shell script (a sample script, "sim", is provided):
+<ul><pre>
+LC3[b]Simulator -s $*
+</pre></ul>
+	<ul>
+		<li>Then just enter:
+	</ul>
+<ul><pre>
+> sim Sample.asm OS.asm
+</pre></ul>
+</ul>
+
+<a name="index_command">
+<table cellpadding=10><tr><td><h3>Command Line Options</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The simulator takes any number of assembly file names as parameters. Each file represents one program. All of the programs will be assembled together and then simulated.
+	<li>Options (case insensitive)
+	<ul>
+		<li>The assembler is run on the files before they are passed to the simulator. All necessary assembler options should be specified as options to the simulator.
+		<li>-sim
+		<ul>
+			<li>Runs the Simulator on the input program(s). It is not necessary to specify this option.
+		</ul>
+		<li>-os
+		<ul>
+			<li>Links the Ash Operating System with the program. See the <a href="#index_ashos">Ash Operating System</a> section.
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_translator">
+<table cellpadding=10><tr><td><h3>LC-3 Translator</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>In order to support older LC-3 assembler syntax, a translator is run on the input assembly files before compilation in the LC3Simulator.
+	<li>The translation is <b><i>completely transparent</i></b> to the user. The user can use older LC-3 syntax files in the simulator without knowledge of the internal translation.
+	<li>The translation does not apply to the LC3bSimulator.
+	<li>The LC-3 translator is also applied to simulator command strings. This allows the use of the "x", "b", "#" syntax for numbers, as well as the use of .FILL, .BLKW, and .STRINGZ in write data commands.
+	<li>See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_translator">LC-3 translator</a> section for more information.
+</ul>
+
+<a name="index_basics">
+<table cellpadding=10><tr><td><h3>Simulator Basics</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Simulator 1 has Assembler 3 built into the executable. The simulator uses the symbolic program created by the assembler to provide a wider range of more powerful debugging and simulation features.
+	<ul>
+		<li>See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a> and related documentation.
+	</ul>
+	<li>The simulator only runs upon successful compilation and linking of the input assembly (or disassembled image) programs.
+	<li>On a P4 2.4GHz, the simulator executes >45,000 instructions per second (>50,000 with checks off, >20,000 with instruction and register tracing).
+	<li>The simulator is both an architectural and software simulator
+	<ul>
+		<li>It provides file-, line number-, and code-level simulation of input assembly files using step-through- and breakpoint-based debugging methodologies. All the main features of MSVC and GDB are present, as well as many new ones.
+		<li>It provides cycle-level microarchitecture simulation and full access to all registers and memory arrays. New architectures can be easily programmed in.
+		<li>Only the default architecture is exampled in the tutorial. This includes the RegFile, Control, and MMIO register sets and the DRAM memory array. All instructions are executed in exactly one cycle.
+	</ul>
+<a name="logical">
+	<li>Logical Data
+	<ul>
+		<li>Logical data is data from the point of view of the assembly program. Everything is in one flat address space.
+		<li>Logical data can be accessed during simulation using addresses, symbols, structure member and array index access and attributes using Assembler 3 syntax.
+		<li>Logical data is interpreted as the datatype it was defined as in the assembly program.
+	</ul>
+<a name="physical">
+	<li>Physical Memory
+	<ul>
+		<li>Logical data may be located in any number of physical memory arrays (i.e. in a cache hierarchy).
+		<li>Memory data is interpreted as byte data unless otherwise specified.
+		<li>For the default architecture, the DRAM physical memory is equivalent to the logical memory space.
+	</ul>
+<a name="start">
+	<li>When the simulator first begins or is reset:
+	<ul>
+		<li>If the OS is included (using the -os option), the PC is initialized to 4x3000. Otherwise, to the first address used in the program.
+		<ul>
+			<li>To begin execution at a different address, use the following "write-register" command:
+<pre>
+WR control.pc (<i>ADDRESS</i>|<i>Symbol</i>)
+</pre>
+		</ul>
+		<li>Control and memory mapped registers are initialized to a clean architectural state. General registers are initialized to zero.
+		<li>The User Stack Pointer is loaded into R6.
+		<li>All logical data not initialized via the assembled program image is initialized to 4xF4.
+		<li>Memory arrays other than those which hold logical data are initialized to a clean architectural state.
+		<li>The simulator enters simulator command mode.
+	</ul>
+<a name="command">
+	<li>When the simulator breaks into the simulator command mode, it will first display the file, line number (if applicable), and assembly (or disassembly) of the next instruction.
+	<ul>
+<pre>
+-> Sample.asm(4): 4x0000: Main: ADD R1, R1, R2
+</pre>
+		<li>It displays the instruction/data as it was declared in the program. Use di or dd commands to display instructions or data as they currently exist.
+	</ul>
+	<li>Then it will display the command prompt:
+	<ul>
+<pre>
+sim>
+</pre>
+	</ul>
+	<li>You can continue executing simulator commands at the prompt until a GO* command is entered.
+	<li>All of the GO* commands will exit the simulator command mode and resume simulator execution mode. The simulator will break back into the simulator command mode when a breakpoint or other break condition is reached.
+	<li>All simulator commands are case-insensitive.
+	<li>All simulator tokens (numbers, symbols, etc) follow Assembler 3 syntax.
+	<ul>
+		<li>Numbers can be of any integral, real, or character syntax.
+		<li>Symbols can use struct member and array index access and attributes.
+	</ul>
+</ul>
+
+<a name="index_general">
+<table cellpadding=10><tr><td><h3>General Commands</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="ctrl_c">
+<pre>
+CTRL-C
+</pre>
+	<ul>
+		<li>Pauses execution and breaks into simulator command mode.
+	</ul>
+<a name="reset">
+<pre>
+RESET
+</pre>
+	<ul>
+		<li>Reinitialize the simulator architecture (registers and memories) and reload the original program image into the logical memory.
+	</ul>
+<a name="console">
+<pre>
+CONSOLE <i>Number</i>
+</pre>
+	<ul>
+		<li>Sets the console width to the specified number. Assembler and simulator messages are smart-wrapped at the console width. The default is 80 characters.
+	</ul>
+<a name="printi">
+<pre>
+PRINTI <i>Number Number</i>
+</pre>
+	<ul>
+		<li>Sets the pre- and post-instruction counts. When the current instruction is displayed, the specified number of adjacent instructions are printed before and after it. The default is 5 and 10.
+	</ul>
+<a name="help">
+<pre>
+HELP
+</pre>
+	<ul>
+		<li>View a list of all the simulator commands.
+	</ul>
+<pre>
+HELP <i>Command</i>
+</pre>
+	<ul>
+		<li>Get detailed information about the syntax and functionality of the specified simulator command.
+	</ul>
+<a name="exit">
+<a name="quit">
+<pre>
+EXIT
+QUIT
+</pre>
+	<ul>
+		<li>Both quit simulation and exit the simulator.
+	</ul>
+</ul>
+
+<a name="index_stepping">
+<table cellpadding=10><tr><td><h3>Stepping Through</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>All stepping through commands begin with "go".
+<a name="go">
+<pre>
+GO
+</pre>
+	<ul>
+		<li>Simulates until a breakpoint or exception is encountered.
+	</ul>
+<pre>
+GO <i>Number</i>
+</pre>
+	<ul>
+		<li>Simulates the specified Number of cycles, unless another breakpoint intervenes.
+	</ul>
+<a name="goi">
+<pre>
+GOI <i>Number</i>
+</pre>
+	<ul>
+		<li>Simulates the specified Number of instructions, unless another breakpoint intervenes.
+	</ul>
+<a name="goin">
+<pre>
+GOIN
+</pre>
+	<ul>
+		<li>Simulates until the next subroutine call, unless another breakpoint intervenes. It breaks at the start of the subroutine. It will not break if the current subroutine returns before the next subroutine call.
+	</ul>
+<a name="goover">
+<pre>
+GOOVER
+</pre>
+	<ul>
+		<li>Simulates the next subroutine call (which may or may not be the next instruction), and then breaks after the subroutine returns, unless another breakpoint intervenes. It will not break if the current subroutine returns before the next subroutine call. The "over" subroutine may include nested or recursive subroutine calls.
+	</ul>
+<a name="goout">
+<pre>
+GOOUT
+</pre>
+	<ul>
+		<li>Simulates until the currently executing subroutine returns, unless another breakpoint intervenes. The current subroutine may include nested or recursive subroutine calls.
+	</ul>
+<a name="gotol">
+<pre>
+GOTOL <i>LineNumber</i>
+</pre>
+	<ul>
+		<li>Simulates until the instruction at or after the specified code line number is reached. The line number refers to the assembly file this program was generated from. The simulator will still break at this instruction, even if another breakpoint intervened, unless the breakpoint is disabled using the BPL or BPI command.
+	</ul>
+<a name="gotoi">
+<pre>
+GOTOI <i>Instruction</i>
+</pre>
+	<ul>
+		<li>Simulates until the instruction at the specified symbolic label or numerical address is reached. The simulator will still break at this instruction, even if another breakpoint intervened, unless the breakpoint is disabled using the BPL or BPI command.
+	</ul>
+</ul>
+
+<a name="index_viewing">
+<table cellpadding=10><tr><td><h3>Viewing Data, Memory, Registers, and Arrays</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>All display commands begin with "d".
+<a name="dil">
+<a name="di">
+	<li>Viewing Instructions
+<pre>
+DIL <i>LineNumber</i> [<i>Length</i>]
+DI <i>Data</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the specified number of instructions at the specified code line number or logical data location (symbolic label or numerical address). The address, file location, and any label pointing to this instruction is also displayed. Even if the data was not declared as an instruction, it will be disassembled and displayed as an instruction. If length is not specified, only one instruction is displayed. ('[*]' means optional, and is not part of the syntax).
+	</ul>
+<a name="dl">
+<a name="dd">
+	<li>Viewing Data
+<pre>
+DL <i>LineNumber</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the specified number of data elements at the specified code line number. The simulator will use the program to determine the datatype for display. The address of the data is also displayed. Data is displayed in both hex and decimal. If Data points to an instruction, then the disassembled instruction is displayed. If length is not specified, only one data element is displayed. 
+	</ul>
+<pre>
+DL <i>LineNumber</i> [-]<i>DataType</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the data as the specified datatype (the assembler keywords DATA1-8 and REAL1-8). Integral data is interpreted as unsigned unless the '-' operator is specified. ('[*]' means optional, and is not part of the syntax).
+	</ul>
+<pre>
+DD <i>Data</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the specified number of data elements at the specified logical data location (symbolic label or numerical address). The simulator will use the program to determine the datatype for display. The address of the data is also displayed. Data is displayed in both hex and decimal. If Data points to an instruction, then the disassembled instruction is displayed. If length is not specified, only one data element is displayed. 
+	</ul>
+<pre>
+DD <i>Data</i> [-]<i>DataType</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the data as the specified datatype (the assembler keywords DATA1-8 and REAL1-8). Integral data is interpreted as unsigned unless the '-' operator is specified. ('[*]' means optional, and is not part of the syntax).
+	</ul>
+<a name="dm">
+	<li>Viewing Memory
+<pre>
+DM
+</pre>
+	<ul>
+		<li>Displays the names of all the architectural memories. "dram" is the only memory in the default architecture.
+	</ul>
+<pre>
+DM <i>MemoryName</i> <i>ByteAddress</i> [[-]<i>DataType</i>] [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays the specified number of data elements at the specified memory location (symbolic label or numerical address). The address is also displayed. Data is displayed in both hex and decimal. The data is interpreted as the specified datatype (the assembler keywords DATA1-8 and REAL1-8), or word data (LC-3) or byte data (LC-3b) if datatype is not provided. Integral data is interpreted as unsigned unless the '-' operator is specified. ('[*]' means optional, and is not part of the syntax).
+		<ul>
+			<li>The resulting address obtained from a label used for a memory array may not correspond to the desired logical data location.
+			<li>In the case of "dram" though, the logical and physical addresses are equivalent, so symbolic addresses can be safely used.
+		</ul>
+	</ul>
+<a name="dla">
+<a name="dda">
+<a name="dma">
+	<li>Viewing Byte Arrays
+<pre>
+DLA <i>LineNumber</i> [<i>Length</i>]
+DDA <i>Address</i> [<i>Length</i>]
+DMA <i>MemoryName</i> <i>ByteAddress</i> [<i>Length</i>]
+</pre>
+	<ul>
+		<li>Displays an array of byte data and corresponding characters at the specified code line number, logical data location, or memory address (symbolic label or numerical address). Length is the number of bytes to display. If Length is not provided, the default is 128 bytes. The format of the display is similar to the memory window in MSVC.
+		<ul>
+			<li>Use the CONSOLE command to adjust the width of the display.
+		</ul>
+<pre>
+4x0220: 73 69 6E 67 6C 65 20 63: single c
+4x0228: 68 61 72 61 63 74 65 72: haracter
+4x0230: 3A 20 00 F4 10 EC 81 33: : .....3
+4x0238: 82 35 83 37 87 3F 13 E0: .5.7.?..
+</pre>
+	</ul>
+<a name="drs">
+<a name="dr">
+	<li>Viewing Registers
+<pre>
+DRS
+</pre>
+	<ul>
+		<li>Displays the names of all the register sets and the names of all the registers within each set. "regfile", "control", and "mmio" are the only register sets in the default architecture.
+	</ul>
+<pre>
+DRS <i>RegisterSetName</i>
+</pre>
+	<ul>
+		<li>Displays the contents of all the registers in the specified register set.
+		<ul>
+			<li>Registers are displayed as the datatype the architecture specified.
+			<li>Registers are displayed in both hex and decimal.
+		</ul>
+	</ul>
+<pre>
+
+DR <i>RegisterSetName</i> . <i>RegisterName</i>
+</pre>
+	<ul>
+		<li>Displays the contents of the specified register.
+		<ul>
+			<li>Note the period: DR RegFile.R0
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_displaying">
+<table cellpadding=10><tr><td><h3>Displaying Simulator Information</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="dpl">
+<pre>
+DPL
+</pre>
+	<ul>
+		<li>Displays the names of all the pipelines and the names of all the pipeline stages within each pipeline.
+	</ul>
+<a name="dci">
+<pre>
+DCI
+</pre>
+	<ul>
+		<li>Displays the current cycle and instruction counts.
+	</ul>
+<a name="dcs">
+<pre>
+DCS
+</pre>
+	<ul>
+		<li>Displays the contents of the call stack. Whenever possible, the originating file and line number of the subroutine call is listed.
+		<ul>
+			<li>JSR, JSRR (LC-3) and TRAP instructions constitute a subroutine.
+			<li>Any (LC-3) "JMP R7" or (LC-3b) "JMP R7, 0" instructions which were not meant to be subroutine returns will affect the call stack.
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_breakpoints">
+<a name="breakpoint">
+<table cellpadding=10><tr><td><h3>Setting Instruction, Data, Memory, and Register Breakpoints</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>There are two different kinds of breakpoints:
+	<ul>
+		<li>Instruction Breakpoints
+		<ul>
+			<li>Breaks before the specified instruction is executed.
+		</ul>
+		<li>Data Breakpoints
+		<ul>
+			<li>Breaks after the specified data (logical data, memory data, or register data) incurs the desired event (read, write, change, value).
+			<li>Data breakpoints use the <a href="#eventlist">EventList</a> syntax to describe the desired event. This syntax is explained at the end of this section.
+		</ul>
+	</ul>
+<a name="dbp">
+<pre>
+DBP
+</pre>
+	<ul>
+		<li>Display all breakpoints.
+	</ul>
+	<li>All breakpoint commands begin with "bp".
+<a name="bpl">
+<a name="bpi">
+<a name="bpic">
+	<li>Instruction Breakpoints
+<pre>
+BPL <i>LineNumber</i>
+</pre>
+	<ul>
+		<li>Sets a breakpoint for the instruction at or after the given code line number. The line number refers to the assembly file this program was generated from. 
+	</ul>
+<pre>
+BPI <i>Instruction</i>
+</pre>
+	<ul>
+		<li>Sets a breakpoint for the instruction at the specified symbolic label or numerical address.
+	</ul>
+<pre>
+BPL <i>LineNumber</i> NoEvent
+BLI <i>Instruction</i> NoEvent
+</pre>
+	<ul>
+		<li>Removes the specified breakpoint
+	</ul>
+<pre>
+BPIC
+</pre>
+	<ul>
+		<li>Clears all instruction, line, and goto breakpoints.
+	</ul>
+<pre>
+GOTOL/GOTOI
+</pre>
+	<ul>
+		<li>These were already discussed in the <a href="#index_stepping">Stepping Through</a> section. These are similar to regular instruction breakpoints except that they resume simulation when entered, and they are temporary breakpoints. After they break once, they are removed, unless an explicit BPL or BPI to the same instruction is used to override the goto.
+	</ul>
+<a name="bpd">
+<a name="bpdc">
+	<li>Data Breakpoints
+<pre>
+BPD <i>Data</i> <i>EventList</i>
+</pre>
+	<ul>
+		<li>Sets a breakpoint for the specified logical data location (symbolic label or numerical address). See the <a href="#eventlist">EventList</a> section for info on the other parameters.
+	</ul>
+<pre>
+BPDC
+</pre>
+	<ul>
+		<li>Clears all data breakpoints.
+	</ul>
+<a name="bpm">
+<a name="bpmc">
+	<li>Memory Breakpoints
+<pre>
+BPM <i>MemoryName</i> <i>ByteAddress</i> <i>EventList</i>
+</pre>
+	<ul>
+		<li>Sets a breakpoint for the specified memory address (symbolic label or numerical address). See the <a href="#eventlist">EventList</a> section for info on the other parameters. See the <a href="#dm">DM command</a> to get the memory names.
+		<ul>
+			<li>The resulting address obtained from a label used for a memory array may not correspond to the desired logical data location.
+			<li>In the case of "dram" though, the logical and physical addresses are equivalent, so symbolic addresses can be safely used
+		</ul>
+	</ul>
+<pre>
+BPMC
+</pre>
+	<ul>
+		<li>Clears all memory breakpoints.
+	</ul>
+<a name="bpr">
+<a name="bprc">
+	<li>Register Breakpoints
+<pre>
+BPR <i>RegisterSetName</i> . <i>RegisterName</i> <i>EventList</i>
+</pre>
+	<ul>
+		<li>Sets a breakpoint for the specified register. See the <a href="#eventlist">EventList</a> section for info on the other parameters. See the <a href="#drs">DRS command</a> to get the register names.
+		<ul>
+			<li>Note the period: BPR RegFile.R0 CHANGEEVENT
+		</ul>
+	</ul>
+<pre>
+BPRC
+</pre>
+	<ul>
+		<li>Clears all register breakpoints.
+	</ul>
+<a name="eventlist">
+<a name="readevent">
+<a name="writeevent">
+<a name="changeevent">
+<a name="valueevent">
+<a name="noevent">
+	<li>Breakpoint EventList
+<pre>
+[<i>DataType</i>] <i>ListOfEvents</i>
+</pre>
+	<ul>
+		<li>All data, memory, and register breakpoints use the EventList as the final parameter:
+		<li>ListOfEvents can be any number of the following:
+<pre>
+READEVENT
+</pre>
+		<ul>
+			<li>The specified data or memory address or register is read from.
+		</ul>
+<pre>
+WRITEEVENT
+</pre>
+		<ul>
+			<li>The specified data or memory address or register is written to.
+		</ul>
+<pre>
+CHANGEEVENT
+</pre>
+		<ul>
+			<li>The value of the specified data or memory location or register changes.
+		</ul>
+<pre>
+VALUEEVENT <i>Value</i>
+</pre>
+		<ul>
+			<li>The specified data or memory location or register has any of the specified values.
+			<li>For data breakpoints, the simulator will use the program to determine the datatype of the breakpoint location, or the datatype can be specified (the assembler keywords DATA1-8 and REAL1-8. '[*]' means optional, and is not part of the syntax). If the datatype cannot be determined, it will be interpreted as word data (LC-3) or byte data (LC-3b).
+			<li>For memory breakpoints, the breakpoint location is assumed to be word data (LC-3) or byte data (LC-3b) unless otherwise specified.
+			<li>For register breakpoints, data is interpreted as the datatype the architecture specified, so the datatype cannot be specified.
+			<li>Value can be symbolic or numeric, and it will be converted to the appropriate datatype.
+			<li>VALUEEVENT can be specified multiple times for a given breakpoint.
+		</ul>
+		<li>If a breakpoint is specified for the same data or memory location or register more than once, the events are accumulated, not overridden.
+		<li>Change and Value events are only checked on a Write.
+		<li>The "edit" simulator commands will not trigger breakpoints.
+<pre>
+NOEVENT
+</pre>
+		<ul>
+			<li>Use NOEVENT to remove the specified breakpoint, including all its events.
+			<li>Use one of the clear commands to remove all breakpoints of a given type.
+		</ul>
+		<li>Multiple events in an EventList are separated by whitespace only.
+	</ul>
+</ul>
+
+<a name="index_editing">
+<table cellpadding=10><tr><td><h3>Editing Instructions, Data, Registers, and Memory During Simulation</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>All editing (write) commands begin with "w".
+	<li>Editing data allows for limited "edit and continue" functionality.
+	<ul>
+		<li>Limited because you can only overwrite, and not insert.
+	</ul>
+	<li>To save and restore edits, see the section on <a href="#index_images">saving and loading memory images</a>.
+<a name="wl">
+<a name="wd">
+	<li>Editing Instructions & Data
+<pre>
+WL <i>LineNumber</i> <i>ElementList</i>
+</pre>
+	<ul>
+		<li>Write the elements into the logical data location at or after the specified code line number. Data already at that location will be overwritten. Changes due to this write are lost on reset and do not affect the original program.
+		<li>The element list can consist of any number of data, struct, and instruction elements as defined in the Assembler documentation. Symbols can be used within the elements.
+		<li>Example: Edit an instruction and subsequent data at line 15:
+<pre>
+WL 15	BRnz Loop	DATA2 5
+</pre>
+		<ul>
+			<li>The above is assembled into a 4-byte memory image.
+		</ul>
+	</ul>
+<pre>
+WD <i>Data</i> <i>ElementList</i>
+</pre>
+	<ul>
+		<li>Write the elements into the specified logical data location (symbolic label or numerical address).
+		<li>Otherwise identical to WL.
+	</ul>
+<a name="wm">
+	<li>Editing Memory
+<pre>
+WM <i>MemoryName</i> <i>ByteAddress</i> <i>ElementList</i>
+</pre>
+	<ul>
+		<li>Write the elements into the specified memory address (symbolic label or numerical address). See the <a href="#dm">DM command</a> to get the memory names.
+		<li>The element list is the same as described for the WL command.
+	</ul>
+<a name="wr">
+	<li>Editing Registers
+<pre>
+WR <i>RegisterSetName</i> . <i>RegisterName</i> <i>Value</i>
+</pre>
+	<ul>
+		<li>Write the value into the specified register. See the <a href="#drs">DRS command</a> to get the register names.
+		<li>Value can be symbolic or numeric.
+	</ul>
+</ul>
+
+<a name="index_tracing">
+<a name="traceon">
+<a name="traceoff">
+<table cellpadding=10><tr><td><h3>Tracing Instruction Execution and Registers</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<pre>
+TRACEON "<i>FileName</i>" [<i>ListOfRegisterSets</i>]
+</pre>
+	<ul>
+		<li>Turns on a trace of the dynamically executing instructions.
+		<li>The filename must be enclosed in quotes.
+		<li>If a list of register set names is provided (each name separated by whitespace only. '[*]' means optional, and is not part of the syntax), then the contents of those register sets will also be traced.
+		<li>The format of the trace file is (one line per instruction executed):
+		<ul>
+			<li>Cycle;\tInstruction;\tLocation,\tOpcode,\tOperands;\tFirstRegisterSet\tFirstRegister: 4xHex (Dec),\tSecondRegister...etc;\tSecondRegisterSet...etc\n
+			<li>The file can be opened in Excel (tab-delimited spreadsheet).
+			<li>Whenever possible, the file(linenumber) is included in "Location", along with the address and a possible label.
+			<li>The instruction in the trace file is the next instruction to be executed, and the register values are the values before this instruction is executed.
+		</ul>
+	</ul>
+<pre>
+TRACEOFF
+</pre>
+	<ul>
+		<li>Turns off the trace and closes the file.
+		<li>When tracing is on, the performance of the simulator is reduced by approximately 60%.
+	</ul>
+</ul>
+
+<a name="index_checking">
+<a name="checkon">
+<a name="checkoff">
+<table cellpadding=10><tr><td><h3>Runtime Error Checking, Exceptions, and Interrupts</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<pre>
+CHECKON
+</pre>
+	<ul>
+		<li>Enables certain runtime checking of the program execution which may detect possible program or architectural errors. Check violations will create warning messages and will break into simulator command mode. Typing GO will resume simulation.
+		<li>Example violations:
+		<ul>
+			<li>PC addresses which do not correspond to programmed instruction elements
+			<li>Infinite subroutine recursion
+			<li>Unmatched subroutine returns
+		</ul>
+		<li>Runtime checking is disabled by default.
+	</ul>
+<pre>
+CHECKOFF
+</pre>
+	<ul>
+		<li>Disables runtime checking.
+		<li>When checking is off, the performance of the simulator increases by 20%.
+	</ul>
+<a name="exception">
+	<li>Exceptions will create warning messages and will break into simulator command mode. Typing GO will resume simulation.
+	<li>Exceptions are raised by the processor architecture.
+	<li>Example exceptions:
+	<ul>
+		<li>Invalid instruction/opcode.
+		<li>Privilege mode violation.
+		<li>Misaligned memory access.
+		<li>Program clock stopped (via the MCR memory-mapped IO register).
+	</ul>
+<a name="interrupt">
+<pre>
+INT <i>Value</i>
+</pre>
+	<ul>
+		<li>Sends an external interrupt to the processor. You can use a label into the interrupt vector table or an interrupt number.
+		<li>LC-3 (LC-3b) defines interrupt vectors 4x80 (4x40) through 4xFF (4x7F), which reside at word (byte) addresses 4x180 through 4x1FF.
+		<li>The only interrupt defined is the keyboard interrupt, vector 4x80 (4x40). The Interrupt Enable (IE) bit is KBSR bit 0 (see the <a href="#mmio">Memory-Mapped I/O</a> section), which defaults to enabled.
+		<li>Interrupts are queued until they are processed.
+	</ul>
+</ul>
+
+<a name="index_state">
+<a name="saves">
+<a name="loads">
+<table cellpadding=10><tr><td><h3>Simulation State - Saving/Loading</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<pre>
+SAVES "<i>FileName</i>"
+</pre>
+	<ul>
+		<li>Saves the state of the simulation.
+		<li>The filename must be enclosed in quotes, and does not need an extension.
+		<li>All of the memories will be saved to FileName.Mem.Name.bin.
+		<li>All of the register sets will be saved to FileName.RegSet.Name.bin.
+		<li>Any architecture state which is not in registers is saved to FileName.Arch.bin.
+		<li>Any required simulator data is saved to FileName.Sim.bin.
+		<li>Breakpoints are not saved.
+	</ul>
+<pre>
+LOADS "<i>FileName</i>"
+</pre>
+	<ul>
+		<li>Loads the state of the simulation from a previous save.
+	</ul>
+</ul>
+
+<a name="index_images">
+<a name="saved">
+<a name="loadd">
+<table cellpadding=10><tr><td><h3>Memory Images - Saving/Loading</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<pre>
+SAVED "<i>FileName</i>" <i>Address</i> <i>Length</i> [[-] <i>DataType</i>]
+</pre>
+	<ul>
+		<li>Saves a logical data image beginning at Address for Length number of data elements (symbolic or numeric) to the specified binary file. 
+		<li>The filename must be enclosed in quotes.
+		<li>If a datatype is specified (the assembler keywords DATA1-8 and REAL1-8), it interprets the data as elements of that datatype, otherwise word data (LC-3) or byte data (LC-3b). ('[*]' means optional, and is not part of the syntax).
+		<li>If the minus sign is provided, it indicates to save the data in the opposite endian-ness as the ISA, otherwise the same endian-ness as the ISA.
+		<li>The resulting file can be opened in an image editor as a raw type, or a text editor.
+	</ul>
+<pre>
+LOADD "<i>FileName</i>" <i>Address</i> <i>Length</i> [[-] <i>DataType</i>]
+</pre>
+	<ul>
+		<li>Loads a logical data image beginning at Address for Length number of data elements (symbolic or numeric) from the specified binary file.
+		<li>The filename must be enclosed in quotes.
+		<li>If a datatype is specified (the assembler keywords DATA1-8 and REAL1-8), it interprets the data as elements of that datatype, otherwise word data (LC-3) or byte data (LC-3b). ('[*]' means optional, and is not part of the syntax).
+		<li>If the minus sign is provided, it indicates to load the data in the opposite endian-ness as the ISA, otherwise the same endian-ness as the ISA.
+		<li>A raw image (no header) from a paint program, or a text file, can be loaded.
+	</ul>
+</ul>
+
+<a name="index_obj">
+<a name="saveo">
+<a name="loado">
+<table cellpadding=10><tr><td><h3>Program Objects - Saving/Loading</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<pre>
+SAVEO "<i>FileName</i>" <i>Address</i> <i>Length</i>
+</pre>
+	<ul>
+		<li>Saves a program object beginning at Address for Length number of data elements (symbolic or numeric) to the specified binary file. 
+		<li>The filename must be enclosed in quotes.
+		<li>The resulting file can be disassembled by the assembler into a program, or loaded into another simulation.
+	</ul>
+<pre>
+LOADO "<i>FileName</i>"
+</pre>
+	<ul>
+		<li>Loads a program object from the specified binary file.
+		<li>The filename must be enclosed in quotes.
+		<li>An object file output from the assembler can be loaded into a simulation.
+	</ul>
+</ul>
+
+<a name="index_multiple">
+<a name="dp">
+<table cellpadding=10><tr><td><h3>Multiple Program Simulating</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>If multiple programs (assembly or disassembled files) were linked together to create the simulated memory image, then line numbers and symbols used in simulator commands may be ambiguous.
+	<li>The simulator will guess which program to use for line numbers and symbols. (For instance, the first program which defines the symbol will be used to resolve it.)
+	<li>A program number can be specified in the simulator command to explicitly tell the simulator which program to use for the command's line numbers and symbols.
+<pre>
+DP
+</pre>
+	<ul>
+		<li>Displays all of the input program filenames and their corresponding program numbers.
+	</ul>
+<pre>
+{<i>ProgramNumber</i>}
+</pre>
+	<ul>
+		<li>Syntax for specifying a program number before a line number or symbol. The braces are necessary.
+		<li>Example:
+		<ul>
+<pre>
+GOTOL {1} 15
+BPI {2} Halt
+</pre>
+		</ul>
+	</ul>
+	<li>For a Breakpoint's VALUEEVENT, the program number (if desired) should be specified prior to each value:
+	<ul>
+<pre>
+BPD {3} Reg7Save VALUEEVENT {1} Foo1 VALUEEVENT {2} Foo2
+</pre>
+	</ul>
+	<li>For write data/memory commands (WL, WD, WM), the program used for the line number or address to write the data is also used to resolve symbols in the element list.
+	<ul>
+		<li>Do not specify program numbers within the element list.
+		<li>A program number can still be specified even if the address is numeric.
+	</ul>
+</ul>
+
+<a name="index_console">
+<table cellpadding=10><tr><td><h3>Console and Memory-Mapped IO</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The LC-3 and IC-3b ISAs defines several addresses for memory-mapped IO.
+	<li>Any read or write to these addresses (even indirectly as part of the secondary memory access in an LDI, RTI, etc) will access the register.
+	<li>In the default architecture, all memory-mapped registers are available in the "mmio" register set.
+<a name="mmio">
+<a name="kbsr">
+<a name="kbdr">
+<a name="dsr">
+<a name="ddr">
+<a name="mcr">
+	<li>Memory Mapped I/O
+	<ul>
+		<li>KBSR (4xFE00)
+		<ul>
+			<li>The bit 15 indicates that a character has been input to the console and is ready to be read. Bit 0 is the interrupt enable (IE) bit for the keyboard. Writing to this register only affects Bit 0.
+		</ul>
+		<li>KBDR (4xFE02)
+		<ul>
+			<li>When KBSR indicates ready, the input character can be read from the lower 8-bits. This register can only be read, not written.
+		</ul>
+		<li>DSR (4xFE04)
+		<ul>
+			<li>The bit 15 indicates if the console is ready to accept another character to print to the screen. This register can only be read, not written.
+		</ul>
+		<li>DDR (4xFE06)
+		<ul>
+			<li>Writing a character to the lower 8-bits of this register when DSR indicates ready will cause this character to be printed to the screen.
+		</ul>
+		<li>MCR (4xFFFE)
+		<ul>
+			<li>Writing a '1' to bit 15 stops the processor clock, resulting in an exception and breaking into the simulator command mode. Resuming simulation automatically re-enables the clock.
+		</ul>
+	</ul>
+<a name="console_io">
+	<li>Console I/O
+	<ul>
+		<li>The simulator console is always ready to accept a character. When a character is given to DDR, the simulator gives the following prompt:
+		<ul>
+<pre>
+&lt;Simulating program outputting characters>
+</pre>
+			<li>This is followed by all the characters output by the program. The prompt is only displayed again if another simulator message intervenes.
+		</ul>
+		<li>When KBSR is read, the simulator gives the following prompt:
+		<ul>
+<pre>
+&lt;Simulating program requests # characters>
+</pre>
+			<li>If characters are entered, then they are placed in KBDR and KBSR bit 15 is set.
+			<li>If no characters are entered, then KBSR bit 15 is not set.
+			<li>If more characters are given than are requested, the characters are stored for subsequent requests.
+			<ul>
+				<li>The MMIO register only knows to request one character at a time, so the prompt is displayed for each requested character.
+				<li>Whole lines can be input at once by typing everything at the first prompt. Subsequent requests will then take from the extra input.
+				<li>The extra input is discarded if the simulator breaks into command mode.
+			</ul>
+			<li>CTRL-D, not ENTER, is used to indicate the end of input. All characters after CTRL-D are ignored.
+			<ul>
+				<li>This allows a newline to be a valid input character.
+				<li>CTRL-D as the first or only input signals no input ready.
+				<li>Windows requires an ENTER after CTRL-D to submit console input; some Unix and Linux consoles do not.
+			</ul>
+			<li>CTRL-C is used to indicate error.
+			<ul>
+				<li>All input after the last enter is ignored, -1 is stored in KBDR.
+				<li>An ENTER is not required.
+			</ul>
+			<li>CTRL-Z is used to indicate EOF (end-of-file).
+			<ul>
+				<li>On windows, all characters after CTRL-Z are ignored, and -1 is stored in KBDR.
+				<li>On Unix and Linux, CTRL-Z suspends the process and should not be used.
+			</ul>
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_ashos">
+<table cellpadding=10><tr><td><h3>Ash Operating System</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The AshOS operating system is included with the simulator in both LC-3 and LC-3b incarnations. An operating system is not required in order to simulate a program, and any OS can be created and used in place of AshOS.
+	<ul>
+		<li>AshOS_LC3[b].asm is automatically linked with the user program when the -os option is used.
+		<li>AshOS_LC3[b].ah can be included in the user program's assembly file. (See the Assembler <a href="#include">INCLUDE directive</a>). This allows you to use the OS's function labels (i.e., you can do "trap GETC" instead of "trap 4x20").
+		<li>The OS files are assumed to be in the current directory. If not, you'll be prompted to enter the location.
+	</ul>
+<!--a name="main">
+	<li>The user program must define a label named _MAIN.
+	<ul>
+		<li>This will be the program's entry point; it is executed as the first subroutine call.
+	</ul>
+	<li>For backwards compatibility with older code, _MAIN is not required for LC-3 programs.
+	<ul>
+		<li>To use an _MAIN label in the program supply "-d USEMAIN 1" as a global define in the command-line arguments.
+		<li>To specify a starting address without having an _MAIN in the program, supply "-d _MAIN x3000"as a global define in the command-line arguments.
+		<li>If none of the above are done, _MAIN defaults to 4x3000.
+	</ul-->
+	<li>The AshOS.ah header includes DEFINE statements for the addresses of the MMIO registers.
+	<li>The AshOS.ah header also includes EXTERN declarations for the OS functions.
+	<li>OS functions must be called using TRAP.
+	<ul>
+		<li>R0 is used to transfer data between the user code and OS functions.
+		<li>(LC-3b only) R6 is not preserved (a limitation in the ISA).
+		<li>R7 is overwritten by the TRAP instruction.
+		<li>All other registers are preserved.
+	</ul>
+	<li>If the OS is included, execution of user code begins at address 4x3000.
+<a name="getc">
+<a name="out">
+<a name="in">
+<a name="halt">
+<a name="puts">
+<a name="putsp">
+	<li>The following OS functions are implemented:
+	<ul>
+		<li>GETC
+		<ul>
+			<li>Reads a single character from the keyboard. The character is not echoed onto the console. The character is returned in R0.
+		</ul>
+		<li>OUT
+		<ul>
+			<li>Write the character in R0[7:0] to the console
+		</ul>
+		<li>IN
+		<ul>
+			<li>Print a prompt to the screen and read a single character from the keyboard. The character is echoed onto the console along with a newline. The character is returned in R0.
+		</ul>
+		<li>HALT
+		<ul>
+			<li>Halt execution and print a message to the console.
+		</ul>
+		<li>PUTS
+		<ul>
+			<li>Write the string pointed to by R0 to the console. Make sure the string is NULL-terminated ("...\0" or "...",0 must be specified for strings in Assembler 3 syntax). For LC-3b, this string has one character per byte. For LC-3, this string has one character per word.
+		</ul>
+		<li>PUTSP (LC-3 only)
+		<ul>
+			<li>Write the string pointed to by R0 to the console. The string has two characters per word, with the lower byte being the first character. If the string has an odd number of characters, the final upper byte must be 0 as well as the entire next word. Putting three NULLs at the end of a DATA1 string guarantees this ("...\0\0\0" or "...",0,0,0).
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_modifying">
+<table cellpadding=10><tr><td><h3>Modifying the Architecture</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The microarchitecture can be modified, or a new architecture can be added in.
+	<ul>
+		<li>An architecture framework is built into the simulator.
+		<ul>
+			<li>An architecture can have any number of pipelines with any number of pipeline stages.
+			<li>Any number of memory arrays and hierarchies.
+			<li>Any number of register sets with any number of registers.
+			<li>Any number of interrupts and exceptions.
+		</ul>
+		<li>All of these components are automatically accessible by the simulator and are available for execution, breakpoints, displaying, editing, etc.
+	</ul>
+	<li>A cache hierarchy or processor pipeline or new interrupt can be easily implemented and simulated.
+	<li>Contact Ashley for the source code and developer-level documentation.
+</ul>
+
+<i>
+&copy; <a href="mailto:%61%77%69%73%65%40%63%72%68%63%2e%75%69%75%63%2e%65%64%75">Ashley Wise</a> 2003<br>
+</i>
+</body>
+</html>

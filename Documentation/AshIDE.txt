@@ -1,0 +1,17 @@
+Future Features:
+1. Vertical text selection
+2. Multi-level undo
+3. Drag and drop files
+4. Application init file, allow user to specify own syntax highlighting, etc.
+5. Include File directories.
+
+TODO:
+auto-add symbol files to project
+
+Dead Code:
+ConsoleWindow::fWaitForInput
+FindDlg:: End Alerts
+Simulate:: Note about help
+Simulator::ParseValue old TempProg code
+
+bugs:

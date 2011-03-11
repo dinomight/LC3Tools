@@ -1,0 +1,1104 @@
+<html>
+<head>
+<title>Assembler Tutorial</title>
+</head>
+<body>
+<center><h1>LC-3 and LC-3b Assembler - Ashley Wise</h1></center>
+<center><i>Return to <a href="LC3Tools.htm">Main Page</a>, <a href="LC3ToolsHelp.htm">Help Contents</a></i></center>
+<p>
+<ul>
+	<li>The LC-3/LC-3b toolset is open to enhancements.
+	<ul>
+		<li>Please send any bug reports, suggestions, or comments to Ashley.
+		<li>Put "LC-3/LC-3b Assembler" in the subject so it doesn't get filtered as spam.
+		<li>Nit-picking is good.
+	</ul>
+	<li>This tutorial is for Assembler version 3.
+</ul>
+
+<a name="index">
+<center><h3>Index</h3></center>
+
+<ul>
+	<li><a href="#index_running">Running the Assembler</a>
+	<li><a href="#index_command">Command Line Options</a>
+	<li><a href="#index_translator">LC-3 Translator</a>
+	<ul>
+		<li><a href="#orig">.ORIG</a>
+		, <a href="#fill">.FILL</a>
+		, <a href="#blkw">.BLKW</a>
+		, <a href="#stringz">.STRINGZ</a>
+	</ul>
+	<li><a href="#index_basics">Assembler Basics</a>
+	<ul>
+		<li><a href="#origin">Program Origin (ORIGIN)</a>
+		<li><a href="#segment">Program Segments (SEGMENT)</a>
+		<li><a href="#element">Elements (Instructions, Data, Labels)</a>
+		<li><a href="#comment">Comments</a>
+	</ul>
+	<li><a href="#index_labels">Labels</a>
+	<li><a href="#index_registers">Registers</a>
+	<li><a href="LC3Instructions.htm#index_lc3instructions">LC-3 Instructions</a>
+	<ul>
+		<li><a href="LC3Instructions.htm#add">ADD</a>
+		, <a href="LC3Instructions.htm#and">AND</a>
+		, <a href="LC3Instructions.htm#not">NOT</a>
+		, <a href="LC3Instructions.htm#lea">LEA</a>
+		, <a href="LC3Instructions.htm#jsr">JSR</a>
+		, <a href="LC3Instructions.htm#jsrr">JSRR</a>
+		, <a href="LC3Instructions.htm#br">BR</a>
+		, <a href="LC3Instructions.htm#jmp">JMP</a>
+		, <a href="LC3Instructions.htm#ret">RET</a>
+		, <a href="LC3Instructions.htm#rti">RTI</a>
+		, <a href="LC3Instructions.htm#nop">NOP</a>
+		, <a href="LC3Instructions.htm#trap">TRAP</a>
+		, <a href="LC3Instructions.htm#ld">LD</a>
+		, <a href="LC3Instructions.htm#st">ST</a>
+		, <a href="LC3Instructions.htm#ldi">LDI</a>
+		, <a href="LC3Instructions.htm#sti">STI</a>
+		, <a href="LC3Instructions.htm#LDR">LDR</a>
+		, <a href="LC3Instructions.htm#STR">STR</a>
+		, <a href="LC3Instructions.htm#sti">STI</a>
+		, <a href="LC3Instructions.htm#sti">STI</a>
+	</ul>
+	<li><a href="LC3bInstructions.htm#index_lc3binstructions">LC-3b Instructions</a>
+	<ul>
+		<li><a href="LC3bInstructions.htm#add">ADD</a>
+		, <a href="LC3bInstructions.htm#and">AND</a>
+		, <a href="LC3bInstructions.htm#not">NOT</a>
+		, <a href="LC3bInstructions.htm#lshf">LSHF</a>
+		, <a href="LC3bInstructions.htm#rshfl">RSHFL</a>
+		, <a href="LC3bInstructions.htm#rshfa">RSHFA</a>
+		, <a href="LC3bInstructions.htm#lea">LEA</a>
+		, <a href="LC3bInstructions.htm#jsr">JSR</a>
+		, <a href="LC3bInstructions.htm#jsrr">JSRR</a>
+		, <a href="LC3bInstructions.htm#br">BR</a>
+		, <a href="LC3bInstructions.htm#jmp">JMP</a>
+		, <a href="LC3bInstructions.htm#ret">RET</a>
+		, <a href="LC3bInstructions.htm#rti">RTI</a>
+		, <a href="LC3bInstructions.htm#nop">NOP</a>
+		, <a href="LC3bInstructions.htm#trap">TRAP</a>
+		, <a href="LC3bInstructions.htm#ldr">LDR</a>
+		, <a href="LC3bInstructions.htm#str">STR</a>
+		, <a href="LC3bInstructions.htm#ldb">LDB</a>
+		, <a href="LC3bInstructions.htm#stb">STB</a>
+		, <a href="LC3bInstructions.htm#ldi">LDI</a>
+		, <a href="LC3bInstructions.htm#sti">STI</a>
+	</ul>
+	<li><a href="#index_datatypes">DataTypes</a>
+	<ul>
+		<li><a href="#data1">DATA1</a>
+		, <a href="#data2">DATA2</a>
+		, <a href="#data4">DATA4</a>
+		, <a href="#data8">DATA8</a>
+		, <a href="#real1">REAL1</a>
+		, <a href="#real2">REAL2</a>
+		, <a href="#real4">REAL4</a>
+		, <a href="#real8">REAL8</a>
+		<li><a href="#array">Data Arrays</a>
+	</ul>
+	<li><a href="#index_numbers">Numbers</a>
+	<ul>
+		<li><a href="#binary">Binary</a>
+		, <a href="#octal">Octal</a>
+		, <a href="#decimal">Decimal</a>
+		, <a href="#hexadecimal">Hexadecimal</a>
+		<li><a href="#character">Charater</a>
+		, <a href="#string">String</a>
+		<li><a href="#float">Floating-Point</a>
+		, <a href="#inf">Infinity (INF)</a>
+		, <a href="#nan">Non-A-Number (NAN)</a>
+	</ul>
+	<li><a href="#index_symbols">Symbols</a>
+	<li><a href="#index_alignment">Address Alignment (LC-3b Only)</a>
+	<ul>
+		<li><a href="#word">Word-Aligned</a>
+		<li><a href="#byte">Byte-Aligned</a>
+	</ul>
+	<li><a href="#index_align">Data Alignment</a>
+	<ul>
+		<li><a href="#align">ALIGN Directive</a>
+	</ul>
+	<li><a href="#index_relative">Relative Addresses</a>
+	<ul>
+		<li><a href="#absolute">Absolute Address</a>
+		<li><a href="#baseregister">Base-Register Address</a>
+		<li><a href="#pcrelative">PC-Relative Address</a>
+	</ul>
+	<li><a href="#index_structures">Structures</a>
+	<ul>
+		<li><a href="#structdef">Structure Definition (STRUCTDEF, END)</a>
+		<li><a href="#struct">Structure Instance (STRUCT)</a>
+		<li><a href="#structarray">Structure Arrays</a>
+		<li><a href="#structexample">Struct Example Code</a>
+	</ul>
+	<li><a href="#index_access">Structure and Array Access (Using Symbols)</a>
+	<li><a href="#index_multi">Multi-Dimensional Arrays</a>
+	<li><a href="#index_attributes">Symbol Attributes</a>
+	<ul>
+		<li><a href="#abs">Absolute Address ($ABS)</a>
+		<li><a href="#segrel">Segment-Relative Address ($SEGREL)</a>
+		<li><a href="#baserel">Base-Relative Address ($BASEREL)</a>
+		<li><a href="#seg">Segment Address ($SEG)</a>
+		<li><a href="#len">Length ($LEN)</a>
+		<li><a href="#size">Size ($SIZE)</a>
+	</ul>
+	<li><a href="#index_precompiler">Pre-Compiler Directives</a>
+	<ul>
+		<li><a href="#include">Include Files (INCLUDE)</a>
+		<li><a href="#deifne">Define Macros (DEFINE)</a>
+		<li><a href="#comditional">Conditional Compilation (IFDEF, IFNDEF, ELSE, END)</a>
+		<li><a href="#macro">Function Macros (MACRO, END)</a>
+		<li><a href="#macroexample">Macro Example Code</a>
+	</ul>
+	<li><a href="#index_disassembling">Disassembling</a>
+	<li><a href="#index_external">Multiple File and External Linking</a>
+	<ul>
+		<li><a href="#extern">EXTERN Directive</a>
+	</ul>
+	<li><a href="#index_optimizations">Optimizations and New Instructions</a>
+</ul>
+
+<a name="index_running">
+<a name="gzip">
+<a name="gunzip">
+<a name="chmod">
+<table cellpadding=10><tr><td><h3>Running The Assembler</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Download the archive
+	<ul>
+		<li>LC3[b]Assembler.zip
+	</ul>
+	<li>Extract the archive
+	<ul>
+		<li>Use WinZip, etc., on Windows
+		<li>And on Unix:
+<ul><pre>
+> unzip LC3[b]Assembler.zip
+</pre></ul>
+	</ul>
+	<li>Set execute permissions for Unix
+<ul><pre>
+> chmod u+x LC3[b]Assembler
+</pre></ul>
+	<li>Execute at the command line by entering the name of the extracted assembler followed by a list of assembly file names and command line parameters.
+<ul><pre>
+> LC3[b]Assembler Sample.asm OS.asm -s -v
+</pre></ul>
+	<li>If you want to type a smaller name, or automatically use certain options (such as -v or -s), create a shell script (a sample script, "asm", is provided):
+<ul><pre>
+LC3[b]Assembler -v -s $*
+</pre></ul>
+	<ul>
+		<li>Then just enter:
+	</ul>
+<ul><pre>
+> asm Sample.asm OS.asm
+</pre></ul>
+</ul>
+
+<a name="index_command">
+<table cellpadding=10><tr><td><h3>Command Line Options</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The assembler takes any number of assembly file names as parameters. Each file represents one program. All of the programs will be linked into a single memory image.
+	<li>Options (case insensitive)
+	<ul>
+		<li>-v <i>FileName.vhd</i>
+		<ul>
+			<li>Enable VHDL output, and specify filename for VHDL ram vectors.
+			<li>If the filename is not specified, the first input assembly file name is used (with ".vhd" as the extension).
+		</ul>
+		<li>-s
+		<ul>
+			<li>Prints symbol table to Filename.Symbols.csv for each input file.
+			<li>Format is: Symbol Name, Symbol Type, Absolute Word (LC-3)/Byte (LC-3b) Memory Address, Segment-Relative Word (LC-3)/Byte (LC-3b) Memory Address.
+			<li>This is useful for seeing the addresses of branch targets and data.
+			<li>The file can be opened and sorted in Excel.
+		</ul>
+		<li>-t
+		<ul>
+			<li>Prints all the tokens to Filename.Tokens.txt for each input file.
+		</ul>
+		<li>-a
+		<ul>
+			<li>Prints the abstract syntax tree to Filename.AST.asm for each input file.
+			<li>This is what the assembler "thinks" your program is. This file can in turn be assembled and should produce output identical to the original.
+			<li>Useful for seeing how your macros and include files got expanded.
+		</ul>
+		<li>-c
+		<ul>
+			<li>Prints generated VHDL ram vectors to stdout.
+		</ul>
+		<li>-w <i>Width</i>
+		<ul>
+			<li>Specifies the width of the console in characters for printing messages (defaults to 80).
+		</ul>
+		<li>-h or -?
+		<ul>
+			<li>Prints help screen.
+		</ul>
+		<li>-b
+		<ul>
+			<li>Dumps memory image to Filename.obj for each input file.
+			<li>The format of this binary object file is described in the <a href="#index_disassembling">Disassembling</a> section.
+			<li>This file can in turn be disassembled and should produce output identical to the original.
+			<li>Uninitialized data is output as 4xF4, which is an invalid instruction.
+		</ul>
+		<li>-d <i>Symbol Token</i>
+		<ul>
+			<li>Define a global symbol for all input files. Token can be any lexicon (number, string, operator, keyword, symbol, etc.).
+			<li>Errors in the define will show up as file line 0 in the messages.
+		</ul>
+		<li>-o
+		<ul>
+			<li>Turns on optimizations (see the <a href="#index_optimizations">Optimizations</a> section).
+		</ul>
+		<li>-3
+		<ul>
+			<li>Disable LC-3 translator (LC3Assembler only).
+		</ul>
+	</ul>
+	<li>By convention, ".asm" for assembly source files, ".ah" for assembly header files.
+	<li>To distinguish between LC-3 and LC-3b files, use ".lc3", ".lc3b", or for assembly source files and ".lc3h" or ".lc3bh" for assembly header files.
+</ul>
+
+<a name="index_translator">
+<a name="orig">
+<a name="fill">
+<a name="blkw">
+<a name="stringz">
+<table cellpadding=10><tr><td><h3>LC-3 Translator</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>In order to support older LC-3 assembler syntax, a translator is run on the input assembly files before compilation in the LC3Assembler.
+	<li>The translation is <b><i>completely transparent</i></b> to the user. The user can use older LC-3 syntax files in the assembler without knowledge of the internal translation.
+	<li>The translation does not apply to the LC3bAssembler.
+	<li>If you are using the new Assembler 3 syntax (as described in this tutorial), the translator can be disabled in LC3Assembler by using the "-3" option.
+	<li>About 99% of Assembler 3 syntax code should be able to pass through the translator unscathed.
+	<li>The translator can be run as an independent program (AsmConvertLC3).
+	<li>The translator makes the following changes:
+	<ul>
+		<li>.ORIG Number is changed to ORIGIN Number SEGMENT
+		<li>.FILL is changed to DATA2
+		<li>.BLKW Number is changed to Data2[Number]
+		<li>.STRINGZ "String" is changed to DATA2[] "String",0
+		<li>.EXTERNAL is changed to EXTERN
+		<li>.END is removed
+		<li>x[-]HEX is changed to [-]4xHEX
+		<li>b[-]BIN is changed to [-]1xBIN
+		<li>#[-]DEC is changed to [-]DEC
+		<li>GETC/OUT/PUTS/IN/PUTSP/HALT is changed to TRAP 4x20-25
+		<li>All the code is placed into one SEGMENT
+		<li>An identifier at the beginning of a line is assumed to be a label unless it is followed by an operator. The ":" label postfix is added.
+	</ul>
+	<li>It is recommended that code be upgraded to Assembler 3 syntax.
+</ul>
+
+<a name="index_basics">
+<table cellpadding=10><tr><td><h3>Assembler Basics</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="origin">
+	<li>Each program begins at an origin.
+	<ul>
+		<li>Syntax for origin directive:
+<ul><pre>
+ORIGIN <i>Number</i>
+</pre></ul>
+		<li>Specifies an absolute address (word address for LC-3, byte address for LC-3b) of where to place your program in memory.
+		<li>If the the origin directive or the Number is not provided, your program is automatically placed at the lowest available memory location (I.e., zero, unless another linked program specified a lower origin).
+	</ul>
+<a name="segment">
+	<li>Each program consists of a collection of segments.
+	<ul>
+		<li>Syntax for segment directive:
+<ul><pre>
+SEGMENT <i>Number</i>
+</pre></ul>
+		<li>Starts a new segment in memory. This segment will begin Number address locations (words for LC-3, bytes for LC-3b) after the <b>beginning</b> of the previous segment (or the origin if this is the first segment).
+		<li>This allows you to specify a distance between the <b>start</b> of one segment and the <b>start</b> of another.
+		<li>If the Number is not provided, the segment is automatically placed at the lowest available memory location (I.e., directly after the previous segment, or at the start of the origin).
+	</ul>
+<a name="element">
+	<li>Each segment consists of a sequence of elements.
+	<li>Elements include the following:
+	<ul>
+		<li>Labels
+		<li>Instructions
+		<li>Data
+		<li>Structure instances
+	</ul>
+	<li>For a simple small program, you can omit the origin and segment directives, and your program will automatically be placed at address zero.
+	<li>In general, you should omit specifying addresses for the origin and segments.
+	<ul>
+		<li>Easier to make changes to the program.
+	</ul>
+<a name="comment">
+	<li>Comments
+	<ul>
+		<li>The ';' and everything after it on a single line is ignored.
+	</ul>
+	<li>Case-Insensitive
+	<ul>
+		<li>All keywords and symbols are case-insensitive.
+	</ul>
+	<li>Newlines are treated as plain whitespace
+	<li>Whitespace can be included in-between all Tokens (keywords, numbers, symbols, operators, etc.)
+	<li>Messages
+	<ul>
+		<li>The assembler uses an intelligent error and warning system to provide detailed messages about nearly all possible problems.
+	</ul>
+</ul>
+
+<a name="index_labels">
+<a name="label">
+<table cellpadding=10><tr><td><h3>Labels</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Label syntax:
+<ul><pre>
+<i>Symbol</i>:
+</pre></ul>
+	<li>The label references the next (non-label) element or segment.
+<ul><pre>
+DataSegment:
+SEGMENT TheSegment:
+MyData: DATA2 ?
+</pre></ul>
+	<ul>
+		<li>DataSegment references the SEGMENT.
+		<li>TheSegment and MyData reference the DATA2 element.
+		<li>All three labels resolve to the same absolute address.
+		<li>TheSegment and MyData have the same attributes.
+		<li>DataSegment has different attributes (see the <a href="#index_attributes">Symbol Attributes</a> section)
+		<ul>
+			<li>E.g., segment relative address is from start of previous segment.
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_registers">
+<a name="r0">
+<a name="r1">
+<a name="r2">
+<a name="r3">
+<a name="r4">
+<a name="r5">
+<a name="r6">
+<a name="r7">
+<table cellpadding=10><tr><td><h3>Registers</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>There are eight general purpose registers that assembly programs can use, R0 through R7
+	<li>There are several memory-mapped registers that can be used by reading/writing to special addresses.
+	<ul>
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_console">Memory-Mapped I/O</a> section for more information.
+	</ul>
+</ul>
+
+<a name="index_lc3instructions">
+<table cellpadding=10><tr><td><h3>LC-3 Instructions</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li><a href="LC3Instructions.htm#index_lc3instructions">Click here for the LC-3 Instruction programming tutorial.</a>
+</ul>
+
+<a name="index_lc3binstructions">
+<table cellpadding=10><tr><td><h3>LC-3b Instructions</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li><a href="LC3bInstructions.htm#index_lc3binstructions">Click here for the LC-3b Instruction programming tutorial.</a>
+</ul>
+
+<a name="index_datatypes">
+<table cellpadding=10><tr><td><h3>DataTypes</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="data1">
+<a name="data2">
+<a name="data4">
+<a name="data8">
+	<li>Integral data:
+	<ul>
+		<li>DATA1, DATA2, DATA4, DATA8
+		<li>Data is 8-, 16-, 32-, or 64-bit integers.
+		<li>Signed/unsigned depends on how you operate on the data, not on how the data is stored.
+	</ul>
+<a name="real1">
+<a name="real2">
+<a name="real4">
+<a name="real8">
+	<li>Floating-point data:
+	<ul>
+		<li>Bit format: [sign][exponent][mantissa]
+		<ul>
+			<li>REAL1: [1][3][4]
+			<li>REAL2: [1][5][10]
+			<li>REAL4: [1][8][23]
+			<li>REAL8: [1][11][52]
+		</ul>
+		<li>Uses gradual underflow, infinity, and not-a-number.
+	</ul>
+	<li>Data is stored little-endian.
+	<li>Data Syntax:
+<ul><pre>
+DATA2 <i>Number</i>
+REAL4 <i>Number</i>
+</pre></ul>
+	<li>Use the '?' operator in place of Number to specify uninitialized data.
+<ul><pre>
+DATA1 ?
+</pre></ul>
+<a name="array">
+	<li>Data array syntax:
+<ul><pre>
+DATA2[<i>Number</i>] <i>Number</i>, <i>Number</i>, etc.
+REAL4[<i>Number</i>] <i>Number</i>, <i>Number</i>, etc.
+</pre></ul>
+	<ul>
+		<li>Data initialization separated by commas.
+		<li>Do not have to provide initialization for entire array, but initialization list much include at least one Number or '?' operator.
+		<li>If the array length is not specified, the length is automatically determined from the initialization list.
+	</ul>
+	<li>Use the ALIGN 2 directive after byte data (DATA1) to ensure any following instructions are word aligned (see the <a href="#index_align">Data Alignment</a> section).
+</ul>
+
+<a name="index_numbers">
+<table cellpadding=10><tr><td><h3>Numbers</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="binary">
+	<li>Binary syntax:
+<ul><pre>
+1x1, 1x11, -1x10, +1x10
+</pre></ul>
+<a name="octal">
+	<li>Octal syntax:
+<ul><pre>
+3x7, 3x16, -3x2, +3x2
+</pre></ul>
+<a name="decimal">
+	<li>Decimal syntax:
+<ul><pre>
+0, 1, -2, +2
+</pre></ul>
+<a name="hexadecimal">
+	<li>Hexadecimal syntax:
+<ul><pre>
+4xA, 4x12, -4xF0, +4xf0
+</pre></ul>
+	<ul>
+		<li>Hex digits are case-insensitive
+	</ul>
+	<li>Assembler internally supports up to 64-bit numbers (64-bit magnitude plus sign). Large numbers may be truncated when built into an instruction field or data location.
+<a name="character">
+	<li>Character syntax:
+<ul><pre>
+'a', 'Z', '1', '\n', '\0', '\x1F'
+</pre></ul>
+	<ul>
+		<li>Supports all C/C++ character escape sequences.
+	</ul>
+<a name="string">
+	<li>String syntax
+<ul><pre>
+"Hello World"
+</pre></ul>
+	<ul>
+		<li>End of string (null terminator) must be explicitly provided.
+<ul><pre>
+"Hello World\n\0"
+</pre></ul>
+		<ul>
+			<li>The EOS is automatically added for .stringz's in older LC-3 syntax by the translator.
+		</ul>
+		<li>Strings can only be used for data array initialization:
+<ul><pre>
+DATA1[] "Hello World",'\n',0
+</pre></ul>
+		<li>Strings are treated as if they were a list of characters.
+	</ul>
+	<li>Case is preserved in characters and strings.
+<a name="float">
+	<li>Binary floating point syntax:
+<ul><pre>
+1x1., 1x.1, -1x1.10e-101,
++1x.0011e100, 1x11e+10, 1x11g+10
+</pre></ul>
+	<li>Octal floating point syntax:
+<ul><pre>
+3x1., 3x.7, -3x7.2e-57,
++3x.003e4, 3x3e+7, 3x3g+7
+</pre></ul>
+	<li>Decimal floating point syntax:
+<ul><pre>
+1., .1, -1.2e-15, +.003e4,
+3e+9, 3g+9, 1gNAN, 1gINF
+</pre></ul>
+	<li>Hexadecimal floating point syntax:
+<ul><pre>
+4x1., 4x.F, -4x7.2g-1A,
++4x.003g4, 4x3g+E, 4x3g+e
+</pre></ul>
+	<li>Both 'e' and 'g' (case-insensitive) can be used for the exponent marker, except for hex which can only use 'g', since 'e' is a valid hex number.
+	<li>The exponent radix is the same as the base.
+	<ul>
+		<li>1x11e10 equals 3*<b>2</b>^2, not 3*<b>10</b>^2.
+		<li>4x1AgF equals 26*<b>16</b>^15, not 26*<b>10</b>^15.
+	</ul>
+<a name="inf">
+<a name="nan">
+<a name="einf">
+<a name="enan">
+	<li>Using "INF" or "NAN" (case-insensitive) as the exponent creates a +/- infinity or not-a-number value.
+<ul><pre>
+1.eINF
+1.eNAN
+</pre></ul>
+</ul>
+
+<a name="index_symbols">
+<table cellpadding=10><tr><td><h3>Symbols</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>A symbol is any alpha-numeric-underscore identifier (same as C/C++ identifiers).
+	<li>Symbols are names of labels.
+	<li>Symbols can be used before they are defined in a file.
+	<li>A Symbol can be used anywhere a Number is accepted except:
+	<ul>
+		<li>Origin directive address.
+		<li>Segment directive offset.
+		<li>Array length declaration.
+		<li>Align directive amount.
+	</ul>
+	<li>The default value a symbol takes on is the address of the element or segment that the label references.
+	<li>Use a symbol anytime you need an address, offset, index, or attribute. You should never hardcode these things.
+	<ul>
+		<li>You can move instructions, labels, or data around without having to recalculate addresses, offsets, sizes, etc.
+		<li>The Assembler automatically turns symbols into the correct absolute, segment-relative, or PC-relative value (see the <a href="#index_relative">Relative Addresses</a> section).
+		<li>The Assembler automatically makes symbols the correct word or byte address (see the <a href="#index_alignment">Address Alignment</a> section).
+		<li>See the <a href="#index_attributes">Symbol Attributes</a> section for more useful values you can obtain from a symbol (sizes, lengths, relative addreses, etc.)
+	</ul>
+</ul>
+
+<a name="index_alignment">
+<table cellpadding=10><tr><td><h3>Address Alignment (LC-3b Only)</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="word">
+	<li>Word-aligned means it has an even address (0, 2, 4, etc).
+	<li>Instructions must be at word-aligned addresses.
+	<li>Symbols used as parameters to word-aligned instructions must resolve to word-aligned addresses.
+	<ul>
+		<li>BRx, JSR, TRAP, LD, LDI, ST, STI, LEA 
+	</ul>
+	<li>If a Number (instead of a symbol) is used in a word-aligned instruction, it is assumed to be a word address or offset.
+<ul><pre>
+BRnzp 3		
+</pre></ul>
+	<ul>
+		<ul>
+			<li>Jumps over 3 instructions/words (= 6 bytes)
+		</ul>
+	</ul>
+<ul><pre>
+LD R1, R6, 3
+</pre></ul>
+	<ul>
+		<ul>
+			<li>Loads the 3rd word (= 6 bytes) after base R6.
+		</ul>
+	</ul>
+<ul><pre>
+TRAP 32
+</pre></ul>
+	<ul>
+		<ul>
+			<li>Calls the 32nd trap vector (address 64)
+		</ul>
+	</ul>
+<a name="byte">
+	<li>Byte-aligned means it has any address 
+	<li>Symbols used as parameters to byte-aligned instructions can resolve to any address.
+	<ul>
+		<li>LDb, STb
+	</ul>
+	<li>If a Number (instead of a symbol) is used in a byte-aligned instruction, it is assumed to be a byte address or offset.
+<ul><pre>
+LDb R1, R6, 3
+</pre></ul>
+	<ul>
+		<ul>
+			<li>Loads the 3rd byte after base R6
+		</ul>
+	</ul>
+	<li>Symbols used as parameters to ALU instructions or DATA can resolve to any address.
+	<ul>
+		<li>ADD, AND, xSHFx, NOT, DATAx, REALx
+	</ul>
+	<li>If a Number (instead of a symbol) is used in an ALU instruction or DATA, it is used as-is.
+<ul><pre>
+ADD R1, R2, 3
+</pre></ul>
+	<ul>
+		<ul>
+			<li>Adds 3 to the contents of R2
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_align">
+<a name="align">
+<table cellpadding=10><tr><td><h3>Data Alignment</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Data alignment syntax
+<ul><pre>
+ALIGN <i>Number</i>
+</pre></ul>
+	<ul>
+		<li>Causes the next element to be aligned on the specified Number of bytes boundary. The boundary does not need to be a power of two.
+		<li>If the ALIGN directive is specified inside a structure definition, the alignment will be relative to the beginning of the structure.
+	</ul>
+</ul>
+
+<a name="index_relative">
+<table cellpadding=10><tr><td><h3>Relative Addresses</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="absolute">
+	<li>Absolute addresses
+	<ul>
+		<li>Symbols used as parameters to absolute instructions will resolve to absolute addresses (relative to address zero).
+		<li>Numbers used as parameters to absolute instructions are assumed to be absolute addresses.
+		<li>TRAP, ADD, AND, xSHFx, NOT, DATAx, REALx
+	</ul>
+<a name="baseregister">
+	<li>Base-register addresses.
+	<ul>
+		<li>Symbols used as parameters to base-relative instructions will resolve to segment-relative offsets. (I.e., address of the label minus the address of the segment the label is in).
+		<li>Numbers used as parameters to base-relative instructions are assumed to be offsets relative to the base register.
+		<li>(LC-3) LDR, STR
+		<li>(LC-3b) LD, LDb, LDI, ST, STb, STI
+	</ul>
+<a name="pcrelative">
+	<li>PC-relative addresses
+	<ul>
+		<li>Symbols used as parameters to PC-relative instructions will resolve to PC-relative offsets.
+		<li>Numbers used as parameters to PC-relative instructions are assumed to be PC-relative offsets.
+		<li>(LC-3) BRx, JSR, LEA, LD, LDI, ST, STI
+		<li>(LC-3b) BRx, JSR, LEA
+		<li>The PC for PC-relative instructions is actually the incremented PC.
+		<ul>
+			<li>Using -1 addresses the current instruction, since PC points to the <b>next</b> instruction.
+		</ul>
+	</ul>
+	<li>See the <a href="#index_attributes">Symbol Attributes</a> section for ways to force a different address resolution.
+</ul>
+
+<a name="index_structures">
+<table cellpadding=10><tr><td><h3>Structures</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="structdef">
+	<li>Structure definition syntax:
+<ul><pre>
+STRUCTDEF <i>Symbol</i>	;Structure name
+...	;Labels, Data, Instructions
+END
+</pre></ul>
+	<ul>
+		<li>A structure definition can be located anywhere in the code file, except inside another structure definition, and can be used before it is defined.
+		<li>The elements declared inside the structure follow the same syntax as elements declared inside segments.
+		<li>Initial values for data and for instruction parameters declared inside the structure definition will be the default initial data for all instances of this structure.
+		<li>Labels declared inside a structure definition have scope local to the structure, and can only be used as symbols as part of a structure member access.
+	</ul>
+<a name="struct">
+	<li>Structure instance syntax:
+<ul><pre>
+STRUCT <i>Symbol</i> {<i>Value</i>, <i>Value</i>, etc.}
+</pre></ul>
+	<ul>
+		<li>The initialization list for a single structure instance is the same format as for data arrays, except that it is contained within braces.
+		<li>The '?' operator can be used instead of {...} to declare an uninitialized structure instance.
+		<li>The initialization data will be used to initialize the structure's data and instruction Values in the order they are declared in the structure definition.
+		<li>Values can be symbolic or numeric.
+		<li>Initialization data is not used by nested structure instances.
+		<li>If initialization data uses the '?' operator, or if initialization data is not provided, the default data (from the definition) will be used.
+	</ul>
+	<li>Structure instances can be declared inside of other structures just like other data elements, allowing any type of complex data structure to be created.
+	<li>Structures can be used before they are defined in the file.
+<a name="structarray">
+	<li>Structure array syntax:
+<ul><pre>
+STRUCT <i>Symbol</i>[<i>Number</i>] {...}, {...}, etc.
+</pre></ul>
+	<ul>
+		<li>Follows the same format as regular data arrays, except that each structure instance's initial data is enclosed in braces.
+		<li>The '?' operator can be used in place of {...} to declare an uninitialized instance.
+		<li>If Number is not provide, the array length is automatically determined from the initialization list.
+	</ul>
+<a name="structexample">
+	<li>Example:
+<ul><pre>
+STRUCTDEF Inner
+	First: DATA1[2] ?
+END
+...
+STRUCTDEF Outer
+	First: DATA2 100
+	Second: STRUCT Inner[2] {<b><i>'h'</i></b>, <b><i>'w'</i></b>}
+	Third: ADD R1, R2, 10
+END
+...
+MyStruct:
+STRUCT Outer[] {<b><i>5</i></b>, <b><i>2</i></b>}, ?
+</pre></ul>
+	<li>Data created:
+	<ul>
+		<li>MyStruct[0] instance:
+<ul><pre>
+DATA2 <b><i>5</i></b>
+DATA1[2] <b><i>'h'</i></b>, <b><i>'w'</i></b>
+DATA1[2] ?
+ADD R1, R2, <b><i>2</i></b>
+</pre></ul>
+		<li>MyStruct[1] instance:
+<ul><pre>
+DATA2 100
+DATA1[2] <b><i>'h'</i></b>, <b><i>'w'</i></b>
+DATA1[2] ?
+ADD R1, R2, 10
+</pre></ul>
+	</ul>
+</ul>
+
+<a name="index_access">
+<table cellpadding=10><tr><td><h3>Structure and Array Access</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>This section and the next reference the <a href="#structexample">example</a> from the last slide in the <a href="#index_structures">Structures</a> section.
+	<li>If a symbol references a structure instance, then member labels in the structure can be accessed using the '.' operator.
+	<li>If the structure instance label is used as the base symbol, then the full symbol resolves the the address of the instance's data member:
+<ul><pre>
+<b><i>MyStruct</i></b>.Second.First
+</pre></ul>
+	<li>If the structure definition name is used as the base symbol, then the full symbol resolves to the offset of the data member within the structure definition:
+<ul><pre>
+<b><i>Outer</i></b>.Second.First
+</pre></ul>
+	<li>If the symbol points to an element (data, instruction, or struct instance), then an array of that element can be indexed using the [] syntax:
+<ul><pre>
+MyStruct[1].Second[1].First
+Outer[1].Second[1].First
+</pre></ul>
+	<li>It is not necessary for the element to be declared as an array to use an array index.
+	<li>Symbols can be used for the index Number.
+</ul>
+
+<a name="index_multi">
+<table cellpadding=10><tr><td><h3>Multi-Dimensional Arrays</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Multi-dimensional arrays are not supported via the [][]...[] syntax.
+	<li>You can create multi-dimensional arrays by creating an array of structures, where nested structures define the other dimensions of the array.
+<ul><pre>
+STRUCTDEF Row    X: DATA1[16] ?		END
+STRUCTDEF Frame  Y: STRUCT Row[16] ?	END
+Z: STRUCT Frame[16] ?
+</pre></ul>
+	<ul>
+		<li>This creates a 16x16x16 cube.
+		<li>Access the center of the cube:
+<ul><pre>
+Z[8].Y[8].X[8]
+</pre></ul>
+	</ul>
+</ul>
+
+
+<a name="index_attributes">
+<table cellpadding=10><tr><td><h3>Symbol Attributes</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Attributes are applied to a symbol using the '$' operator.
+	<li>Relative addresses
+	<ul>
+<a name="abs">
+		<li>You can force an address to be absolute by using the ABS attribute.
+<ul><pre>
+MyStruct[1].First[1].Second$ABS
+</pre></ul>
+		<ul>
+			<ul>
+				<li>(MyStruct absolute address) + 1*(size of Outer) + (First offset) + 1*(size of Inner) + (Second offset)
+			</ul>
+		</ul>
+<a name="segrel">
+		<li>You can force an address to be segment-relative by using the SEGREL attribute
+<ul><pre>
+MyStruct[1].First[1].Second$SEGREL
+</pre></ul>
+		<ul>
+			<ul>
+				<li>(MyStruct absolute address) - (address of segment MyStruct is in) + 1*(size of Outer) + (First offset) + 1*(size of Inner) + (Second offset)
+			</ul>
+		</ul>
+<a name="baserel">
+		<li>You can force an address to be base-relative by using the BASEREL attribute. The base is considered to be the base symbol in a structure/array access.
+<ul><pre>
+MyStruct[1].First[1].Second$BASEREL
+</pre></ul>
+		<ul>
+			<ul>
+				<li>1*(size of Outer) + (First offset) + 1*(size of Inner) + (Second offset)
+			</ul>
+		</ul>
+		<li>Base-relative is useful if you load the base address of the array or structure into a register and then use a base-relative instruction:
+<ul><pre>
+LEA R6, MyArray
+LDR R1, R6, MyArray[5]$BASEREL
+</pre></ul>
+		<li>If the base symbol is a structure definition name, the address is always base-relative, and these attributes have no effect (see the <a href="#index_access">Structure and Array Access</a> section for the difference between a structure definition name and a structure instance label).
+	</ul>
+<a name="seg">
+	<li>Segment addresses
+	<ul>
+		<li>You can get the address of the segment a label is in by using the SEG attribute.
+		<li>This is useful for the LEA instruction prior to a base-relative instruction.
+<ul><pre>
+LEA R6, MyData$SEG
+LDR R1, R6, MyData	;SEGREL by default
+</pre></ul>
+		<li>Structure definitions do not exist in a segment, so the SEG attribute cannot be used if the base symbol is a structure name.
+	</ul>
+<a name="len">
+	<li>Length
+	<ul>
+		<li>You can get the length of an array by using the LEN attribute.
+<ul><pre>
+MyStruct$LEN
+MyStruct[1].First$LEN
+</pre></ul>
+		<li>When the LEN attribute is used, the symbol resolves to a Number instead of an address or offset. It will be treated like a Number.
+	</ul>
+<a name="size">
+	<li>Size
+	<ul>
+		<li>You can get the total size of a segment, element, structure, or array by using the SIZE attribute.
+		<li>The size of the final member in a structure and array access is used.
+		<li>Size is treated like an address.
+		<li>If the element is an array, it returns the total size of the array, unless you index into the array first.
+<pre>
+MyArray: DATA2[5] ?	   ;      (LC-3)  (LC-3b)
+DATA2 MyArray$Size	   ;Stores 5*1=5   5*2=10
+DATA2 MyArray[0]$Size	   ;Stores 1       2
+DATA2 MyStruct.Second$Size ;Stores 2*1=2   2*2=4
+DATA2 Inner$Size	   ;Stores 1       2
+</pre>
+	</ul>
+</ul>
+
+<a name="index_precompiler">
+<table cellpadding=10><tr><td><h3>Pre-Compiler Directives</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="include">
+	<li>File include syntax:
+<ul><pre>
+INCLUDE "<i>String</i>"
+</pre></ul>
+	<ul>
+		<li>String is the filename enclosed in quotes.
+		<ul>
+			<li>Filename must use “/” instead of “\” as folder delimiter
+		</ul>
+		<li>The file is relative to the path of the including program.
+		<li>Everything in the included file is copied into this program at the location of the INCLUDE directive.
+		<li>Recursive includes (when a file directly or indirectly includes itself) are detected and ignored.
+		<li>If an Error or Warning message comes from an included file, it will show where this file was included back up to the original file.
+	</ul>
+<a name="define">
+	<li>Define syntax:
+<ul><pre>
+DEFINE <i>Symbol</i> <i>Token</i>
+</pre></ul>
+	<ul>
+		<li>Token can be anything (a keyword, number, symbol, string, operator, etc.) except for a pre-compiler directive.
+		<li>All uses of the Symbol elsewhere in the file (both before and after the definition) are replaced with the specified Token.
+		<li>Define statements can be located anywhere in the file.
+		<li>Defined symbols can reference other defined symbols and macros.
+		<ul>
+			<li>Recursive defines are detected by the Assembler.
+		</ul>
+		<li>A symbol can be defined globally for all input files from the command-line arguments.
+	</ul>
+	<li>The following symbols are pre-defined by the Assembler:
+<ul><pre>
+DEFINE __version__ 3.00
+DEFINE __version_3__ 3.00
+DEFINE __file__ "filename"
+</pre></ul>
+	<ul>
+		<ul>
+			<li>String which holds the name of the file being assembled.
+		</ul>
+	</ul>
+<ul><pre>
+DEFINE __line__ (Current Line Number)
+</pre></ul>
+	<ul>
+		<ul>
+			<li>The current line number in the file (dynamically determined).
+		</ul>
+	</ul>
+<ul><pre>
+DEFINE __time__ "HH:MM:SS"
+DEFINE __date__ "MMM DD YYYY"
+</pre></ul>
+	<ul>
+		<ul>
+			<li>The time (24-hour) and date of compilation.
+		</ul>
+	</ul>
+<a name="comditional">
+<a name="ifdef">
+<a name="ifndef">
+<a name="else">
+	<li>Conditional compilation syntax:
+<ul><pre>
+IFDEF <i>Symbol</i>	;Or IFNDEF
+...
+ELSE		;Else is optional
+...
+END
+</pre></ul>
+	<ul>
+		<li>If the symbol was defined (via DEFINE directive) prior to the IFDEF statement (this includes if the symbol is defined in an include file which is included prior to the IFDEF), then everything in-between IFDEF and ELSE (or END if there is no ELSE) remains in the program, and everything in-between ELSE and END (if there is an else) is removed.
+		<li>The opposite happens for IFNDEF
+		<li>IFDEF and IFNDEF statements can be nested, and any Tokens, including pre-compiler directives, can be located inside.
+	</ul>
+<a name="macro">
+	<li>Function macro definition syntax:
+<ul><pre>
+MACRO <i>Symbol</i> (<i>Symbol</i>, <i>Symbol</i>, etc...)
+...	;Any number of Tokens
+END
+</pre></ul>
+	<ul>
+		<li>The first Symbol is the name of the function macro.
+		<li>Inside the parenthesis is a comma separated list of parameter names (any number of parameters allowed). 
+		<li>The parameter names have scope local to the macro definition, and cannot be accessed anywhere else.
+		<li>Tokens can be anything (a keyword, number, symbol, operator, etc.) except for a pre-compiler directive.
+		<li>Macro definitions can be located anywhere in the file.
+		<li>Macros can be used before they are defined in the file.
+	</ul>
+	<li>Function macro usage syntax:
+<ul><pre>
+<i>Symbol</i> (<i>Token</i>, <i>Token</i>, etc...)
+</pre></ul>
+	<ul>
+		<li>Symbol is the name of the macro.
+		<li>The Token parameters are separated by commas and can be anything (keywords, numbers, symbols, operators, etc...). You must provide exactly as many parameters as the macro defines.
+		<li>Even if there are no parameters, the parenthesis must be present.
+		<li>All instances of the parameter name within the macro definition's body are replaced with the specified token.
+		<li>The macro body can contain or create calls to other macros and use other defined symbols.
+		<ul>
+			<li>Recursive macro expansions are detected by the Assembler.
+		</ul>
+	</ul>
+<a name="macroexample">
+	<li>Function macro example:
+<ul><pre>
+MACRO Inc(Reg)
+ADD Reg, Reg, 1
+END
+...
+Inc(R1)
+Inc(R2)
+...
+DEFINE One Two
+DEFINE Four RET
+MACRO Two(A, B) A B END
+MACRO Three(A) A END
+One(Three,()Four)
+</pre></ul>
+	<li>Result:
+<ul><pre>
+ADD R1, R1, 1
+ADD R2, R2, 1
+...
+RET
+</pre></ul>
+</ul>
+
+<a name="index_disassembling">
+<table cellpadding=10><tr><td><h3>Disassembling</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>All input files with the extension ".obj" or ".bin" are disassembled. All input files with other (or no) extensions are assembled.
+	<ul>
+		<li>The format of the binary object file is the following:
+		<ul>
+			<li>The first 8 bytes are a little-endian 64-bit starting address of the memory image. The second 8 bytes are little-endian 64-bit length of the memory image.
+			<li>The subsequent "length" number of bytes are the raw, sequential memory image bytes. Any bytes past "length" are ignored.
+		</ul>
+		<li>The disassembler creates a program with a single segment whose origin is the starting address.
+	</ul>
+	<li>If the extension is ".obj", the bytes are interpreted as little-endian instructions. If the bytes create an invalid instruction, they are interpreted as word data.
+	<ul>
+		<li>Labels and symbols are automatically created for (LC-3) BRx, JSR, LD, LDI, LEA, ST, STI, and TRAP instructions and (LC-3b) LEA, JSR, BRx, and TRAP instructions.
+	</ul>
+	<li>If the extension is ".bin", the bytes are interpreted as a single byte data array.
+	<li>If a corresponding FileName.Symbols.csv file exists, the symbol table from that file is loaded into the disassembled program so that other programs can link with it.
+	<ul>
+		<li>Only absolute addresses are used for labels; there are no segment-relative addresses.
+	</ul>
+	<li>The disassembled program can be output using the '-a' option and then used as an assembly file.
+</ul>
+
+<a name="index_external">
+<a name="extern">
+<table cellpadding=10><tr><td><h3>Multiple File and External Linking</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Multiple files/programs can be input to the assembler, and then will be linked together into a single memory image.
+	<li>Origin addresses can be used to specify where each program goes in the full memory image.
+	<li>Programs without an origin address will be placed at the lowest available location in memory starting in the order they are provided in the command line arguments.
+	<li>Programs can reference labels defined in other files.
+	<li>Extern syntax:
+<ul><pre>
+EXTERN <i>Symbol</i>
+</pre></ul>
+	<ul>
+		<li>Symbol can be used in this file, and will refer to a label in another file/program.
+		<li>Symbol can be used before the EXTERN statement.
+		<li>The external symbol can only be a label; it cannot be a define, macro, structure name, or a structure member name.
+		<li>Only one of the input files can define Symbol as a label.
+		<li>The EXTERN statement can be in the same file the Symbol is defined in
+		<ul>
+			<li>Allows for standard header file usage.
+		</ul>
+	</ul>
+</ul>
+
+<a name="index_optimizations">
+<table cellpadding=10><tr><td><h3>Optimizations and New Instructions</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>While actual optimizations are not implemented, the Assembler includes an optimization framework, allowing you to easily add your own enhancements and optimizations.
+	<ul>
+		<li>Built-in optimization function template which runs through all of the instruction in a program.
+		<li>Built-in functions which return sources and destinations for instructions, as well as telling you of the instruction is a branch or accesses memory.
+	</ul>
+	<li>Easy to add new instructions.
+	<li>Contact Ashley for the source code and developer-level documentation.
+</ul>
+
+<i>
+&copy; <a href="mailto:%61%77%69%73%65%40%63%72%68%63%2e%75%69%75%63%2e%65%64%75">Ashley Wise</a> 2003<br>
+</i>
+</body>
+</html>

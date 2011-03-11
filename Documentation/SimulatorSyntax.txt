@@ -1,0 +1,95 @@
+<pre>
+//  Copyright 2003 Ashley Wise
+//  University Of Illinois Urbana-Champaign
+//	awise@crhc.uiuc.edu
+
+SIMULATOR SYNTAX QUICK REFERENCE
+
+Everything is case-insensitive (except character/string constants).
+
+Grammar specification key:
+()                      =   Precedence
+[]                      =   Optional
+'[', ']', '(', ')'      =   Bracket/Parenthesis operator
+
+Simulator commands:
+
+Help                    =>  HELP
+SetConsole              =>  CONSOLE Number
+SetPrintICount		=>  PRINTI Number Number
+Reset                   =>  RESET
+Quit                    =>  (QUIT | EXIT)
+SaveState               =>  SAVES String
+LoadState               =>  LOADS String
+SaveData                =>  SAVED String Value Value [[-] DataType]
+LoadData                =>  LOADD String Value Value [[-] DataType]
+SaveObject              =>  SAVEO String Value Value
+LoadObject              =>  LOADO String
+TraceOn                 =>  TRACEON String [RegisterSetList]
+TraceOff                =>  TRACEOFF
+CheckOn                 =>  CHECKON
+CheckOff                =>  CHECKOFF
+Go                      =>  GO
+GoCycle                 =>  GO Number
+GoInstruction           =>  GOI Number
+GoIn                    =>  GOIN
+GoOver                  =>  GOOVER
+GoOut                   =>  GOOUT
+GotoLine                =>  GOTOL [ProgramNumber] Number
+GotoInstruction         =>  GOTOI Value
+BreakpointLine          =>  BPL [ProgramNumber] Number [NoEvent]
+BreakpointInstruction   =>  BPI Value [NoEvent]
+BreakpointInstrClear    =>  BPIC
+BreakpointData          =>  BPD Value [DataType] EventList
+BreakpointDataClear     =>  BPDC
+BreakpointMemory        =>  BPM Symbol Value [DataType] EventList
+BreakpointMemoryClear   =>  BPMC
+BreakpointRegister      =>  BPR Symbol . (Symbol | Register) EventList
+BreakpointRegisterClear =>  BPRC
+DisplayInstructionLine  =>  DIL [ProgramNumber] Number
+DisplayInstruction      =>  DI Value [Number]
+DisplayLine             =>  DL [ProgramNumber] Number [[-] DataType] [Number]
+DisplayData             =>  DD Value [[-] DataType] [Number]
+DisplayLineArray        =>  DLA [ProgramNumber] Number [Number]
+DisplayDataArray        =>  DDA Value [Number]
+DisplayMemoryNames      =>  DM
+DisplayMemory           =>  DM Symbol Value [[-] DataType] [Number]
+DisplayMemoryArray      =>  DMA Symbol Value [Number]
+DisplayRegisterSetNames =>  DRS
+DisplayRegisterSet      =>  DRS [Symbol]
+DisplayRegister         =>  DR Symbol . (Symbol | Register)
+DisplayPipeline         =>  DPL
+DisplayCycle            =>  DC
+DisplayCallStack        =>  DCS
+DisplayProgram          =>  DP
+DisplayBreakpoint       =>  DBP
+WriteLine               =>  WL [ProgramNumber] Number ElementList
+WriteData               =>  WD Value ElementList
+WriteMemory             =>  WM Symbol Value ElementList
+WriteRegister           =>  WR Symbol . (Symbol | Register) Value
+Interrupt               =>  INT Value
+
+RegisterSetList         =>  Symbol [RegisterSetList]
+EventList               =>  Event [EventList]
+Event                   =>  (NOEVENT | READEVENT | WRITEEVENT | CHANGEEVENT | VALUEEVENT)
+ValueEvent              =>  VALUEEVENT Value
+Value                   =>  [ProgramNumber] (SuperSymbol | Number)
+DataType                =>  DATA1 | DATA2 | DATA4 | DATA8 | REAL1 | REAL2 | REAL4 | REAL8
+ProgramNumber           =>  { Number }
+ElementList             =>  (See Assembler ElementList, sans Labels)
+SuperSymbol             =>  (See Assembler SuperSymbol)
+Symbol                  =>  (See Assembler Symbol)
+Number                  =>  (See Assembler Number)
+Register                =>  (See Assembler Register)
+
+The optional ProgramNumber prior to a Line Number or Symbol specifies the program number of the program used to resolve the symbol, and must be enclosed in {braces}.
+
+
+
+TODO:
+Deferred to version 2:
+1. Memory of different size locations.
+2. More intelligently display structs and arrays.
+4. Support breakpoint to mutliple bytes within a data
+5. Display registers in signed/unsigned?
+</pre>

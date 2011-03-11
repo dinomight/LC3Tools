@@ -1,0 +1,81 @@
+;	Ash LC-3b Operating System 1.00
+;	(c) Ashley Wise, 2003
+;	awise@crhc.uiuc.edu
+;
+;	This file contains the extern symbols for the OS functions.
+;
+;	AshOS_LC3b.asm must be linked with the user code.
+;	AsmOS_LC3b.ah should be be included in the user code.
+;	R0 is used for passing values to/from OS functions.
+;	R6 is expected to be the User Stack Pointer (USP).
+;	R7 is overwritten by the TRAP instruction (return address).
+;	All other registers are preserved.
+;	Remember to NULL-terminate strings.
+
+DEFINE KBSR 4xfe00
+DEFINE KBDR 4xfe02
+DEFINE DSR 4xfe04
+DEFINE DDR 4xfe06
+DEFINE MCR 4xfffe
+
+; Vector tables
+; All of the functions below are vectors in these tables.
+; They are addresses of function pointers
+EXTERN TrapVectorTable
+EXTERN ExceptionVectorTable
+EXTERN InterruptVectorTable
+
+; Note that in order for the trap functions to work correctly,
+; the user code must have preserved R6 as the User Stack Pointer
+; (USP). R6 is initialized to this value when the simulator boots.
+; If you clobber R6, trap functions might not work.
+; You can define NO_USP (as a global define, not in your code)
+; which will tell the OS to use local storage rather than the USP.
+; However, due to a limitation of the LC-3b ISA, the TRAP functions
+; will clobber any value in R5 to achieve this. So if you define
+; NO_USP, don't expect R5 to be preserved.
+MACRO Push(Reg)
+	add r6, r6, -2
+	str reg, r6, 0
+END
+MACRO Pop(Reg)
+	ldr reg, r6, 0
+	add r6, r6, 2
+END
+
+; GETC function
+; Reads a single character from the keyboard. The character is not echoed
+; onto the console. Its ASCII code is copied into R0. The high eight bits
+; of R0 are cleared.
+EXTERN GETC
+
+; OUT function
+; Write the character in R0[7:0] to the console.
+EXTERN OUT
+
+; PUTS function
+; Write the string pointed to by R0 to the console.
+; Make sure the string is NULL-terminated!
+EXTERN PUTS
+
+; IN function
+; Print a prompt to the screen and read a single character from the keyboard.
+; The character is echoed onto the console along with a newline, and its
+; ASCII code is copied into R0. The high eight bits of R0 are cleared.
+EXTERN IN
+
+; HALT function
+; Halt execution and print a message to the console.
+EXTERN HALT
+
+; The start of the user code space
+EXTERN _MAIN
+
+; Privilege exception function
+EXTERN Privilege
+
+; Illegal Instruction exception function
+EXTERN IllegalInstr
+
+; Keyboard interrupt function
+EXTERN Keyboard

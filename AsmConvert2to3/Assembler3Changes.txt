@@ -1,0 +1,51 @@
+Just a reminder to read the Assembler Tutorial.
+
+For the most part, there are only few minor changes to the
+Assembler syntax that will break old code.
+
+A program, AsmConvert2to3, is provided, and takes as an input an
+assembly file written for Assembler 2, and will make any
+necessary syntax changes to the file to make it compatible with
+Assembler 3, and output the new file to Filename_v3.asm (where
+Filename.asm was the input file).
+
+AsmConvert2to3 makes the following changes, due to updated
+Assembler syntax:
+
+1. The '#' operator is removed. It was too ambiguous whether '#'
+   should signify a decimal or hexadecimal number.
+2. The '.' is removed from directives. This was done because '.'
+   is now an operator used to access structure members, and also
+   is part of floating-point numbers.
+	A. '.DEFINE' is changed to 'DEFINE'
+	B. '.ORIG' is changed to 'ORIGIN'
+	C. '.SEGMENT' is changed to 'SEGMENT'
+3. The following are new keywords. In order to prevent conflicts
+   with old symbols that already used these words,
+   AsmConvert2to3 appends a '_m' to every instance of these
+   identifiers.
+abs, align, baserel, data4, data8, define, else, end, extern,
+ifdef, ifndef, include, len, macro, nop, origin, real1, real4,
+real8, seg, segment, segrel, size, struct, structdef
+
+The behavoir of the following (rare) code snippet has changed
+(and is not detected by the Convert program):
+SEGMENT
+SegLabel:	;*NO* data or instructions inbetween the segment
+directives
+SEGMENT 16
+In Assembler2, Seg1 was the address of the first segment.
+In Assembler3, Seg1 references the second segment, and will give
+the address of the second segment.
+
+Also, LEA and TRAP now take the correct immediate values (a bug
+in Assembler 2.x). This bug is irrelavent if a symbol/label is
+used.
+
+I no longer have easy newsgroup access, so any posts about using
+the assembler (or requests for code) should be copied to my
+e-mail.
+
+Ashley Wise
+Eternal ECE312 GURU
+awise@crhc.uiuc.edu

@@ -1,0 +1,328 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AshIDE - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP94.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/AshIDE.pch" /YX /Fo"Release/" /Fd"Release/" /FD /Zm200 /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\MainWindow.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\Project.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP94.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP95.tmp" with contents
+[
+../fltk-1.1.6/lib/Windows_x86/fltk.lib ../fltk-1.1.6/lib/Windows_x86/fltkimages.lib wsock32.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/AshIDE.pdb" /machine:I386 /nodefaultlib:"libc" /out:"Release/AshIDE.exe" 
+.\Release\BreakpointWindow.obj
+.\Release\CallStackWindow.obj
+.\Release\ConsoleWindow.obj
+.\Release\DataValuesWindow.obj
+.\Release\DisassemblyWindow.obj
+.\Release\FilesWindow.obj
+.\Release\FileWindow.obj
+.\Release\InstructionsWindow.obj
+.\Release\LC3bFileWindow.obj
+.\Release\LC3FileWindow.obj
+.\Release\main.obj
+.\Release\MainWindow.obj
+.\Release\MemoryBytesWindow.obj
+.\Release\MessageWindow.obj
+.\Release\ProgramsWindow.obj
+.\Release\Project.obj
+.\Release\ProjectLexer.obj
+.\Release\ProjectParser.obj
+.\Release\ProjectToken.obj
+.\Release\ReadOnlyEditor.obj
+.\Release\RegistersWindow.obj
+.\Release\SettingsWindow.obj
+.\Release\SimulatorWindow.obj
+.\Release\TextEditor.obj
+.\Release\WriteDataWindow.obj
+.\Release\WriteRegisterWindow.obj
+.\Release\AsmLexer.obj
+.\Release\AsmParser.obj
+.\Release\AsmToken.obj
+.\Release\Base.obj
+.\Release\Data.obj
+.\Release\Disassembler.obj
+.\Release\Element.obj
+.\Release\HighlightLexer.obj
+.\Release\Label.obj
+.\Release\Lexer.obj
+.\Release\Number.obj
+.\Release\Program.obj
+.\Release\Segment.obj
+.\Release\Symbol.obj
+.\Release\SymbolTable.obj
+.\Release\Token.obj
+.\Release\AsmConvertLC3.obj
+.\Release\LC3Arch.obj
+.\Release\LC3ISA.obj
+.\Release\LC3bArch.obj
+.\Release\LC3bISA.obj
+.\Release\Architecture.obj
+.\Release\Memory.obj
+.\Release\Pipeline.obj
+.\Release\Register.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP95.tmp"
+<h3>Output Window</h3>
+Compiling...
+MainWindow.cpp
+Project.cpp
+Linking...
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP97.bat" with contents
+[
+@echo off
+copy Release\*.exe ..\Release\Windows_x86\.
+]
+Creating command line "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP97.bat"
+Copying EXE...
+Release\AshIDE.exe
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+AshIDE.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: AshIDE - Win32 LC3 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP98.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "DEFAULT_LANG_LC3" /Fp"AshIDE___Win32_LC3_Release/AshIDE.pch" /YX /Fo"AshIDE___Win32_LC3_Release/" /Fd"AshIDE___Win32_LC3_Release/" /FD /Zm200 /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\MainWindow.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\Project.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP98.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP99.tmp" with contents
+[
+../fltk-1.1.6/lib/Windows_x86/fltk.lib ../fltk-1.1.6/lib/Windows_x86/fltkimages.lib wsock32.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"AshIDE___Win32_LC3_Release/LC3IDE.pdb" /machine:I386 /nodefaultlib:"libc" /out:"AshIDE___Win32_LC3_Release/LC3IDE.exe" 
+.\AshIDE___Win32_LC3_Release\BreakpointWindow.obj
+.\AshIDE___Win32_LC3_Release\CallStackWindow.obj
+.\AshIDE___Win32_LC3_Release\ConsoleWindow.obj
+.\AshIDE___Win32_LC3_Release\DataValuesWindow.obj
+.\AshIDE___Win32_LC3_Release\DisassemblyWindow.obj
+.\AshIDE___Win32_LC3_Release\FilesWindow.obj
+.\AshIDE___Win32_LC3_Release\FileWindow.obj
+.\AshIDE___Win32_LC3_Release\InstructionsWindow.obj
+.\AshIDE___Win32_LC3_Release\LC3bFileWindow.obj
+.\AshIDE___Win32_LC3_Release\LC3FileWindow.obj
+.\AshIDE___Win32_LC3_Release\main.obj
+.\AshIDE___Win32_LC3_Release\MainWindow.obj
+.\AshIDE___Win32_LC3_Release\MemoryBytesWindow.obj
+.\AshIDE___Win32_LC3_Release\MessageWindow.obj
+.\AshIDE___Win32_LC3_Release\ProgramsWindow.obj
+.\AshIDE___Win32_LC3_Release\Project.obj
+.\AshIDE___Win32_LC3_Release\ProjectLexer.obj
+.\AshIDE___Win32_LC3_Release\ProjectParser.obj
+.\AshIDE___Win32_LC3_Release\ProjectToken.obj
+.\AshIDE___Win32_LC3_Release\ReadOnlyEditor.obj
+.\AshIDE___Win32_LC3_Release\RegistersWindow.obj
+.\AshIDE___Win32_LC3_Release\SettingsWindow.obj
+.\AshIDE___Win32_LC3_Release\SimulatorWindow.obj
+.\AshIDE___Win32_LC3_Release\TextEditor.obj
+.\AshIDE___Win32_LC3_Release\WriteDataWindow.obj
+.\AshIDE___Win32_LC3_Release\WriteRegisterWindow.obj
+.\AshIDE___Win32_LC3_Release\AsmLexer.obj
+.\AshIDE___Win32_LC3_Release\AsmParser.obj
+.\AshIDE___Win32_LC3_Release\AsmToken.obj
+.\AshIDE___Win32_LC3_Release\Base.obj
+.\AshIDE___Win32_LC3_Release\Data.obj
+.\AshIDE___Win32_LC3_Release\Disassembler.obj
+.\AshIDE___Win32_LC3_Release\Element.obj
+.\AshIDE___Win32_LC3_Release\HighlightLexer.obj
+.\AshIDE___Win32_LC3_Release\Label.obj
+.\AshIDE___Win32_LC3_Release\Lexer.obj
+.\AshIDE___Win32_LC3_Release\Number.obj
+.\AshIDE___Win32_LC3_Release\Program.obj
+.\AshIDE___Win32_LC3_Release\Segment.obj
+.\AshIDE___Win32_LC3_Release\Symbol.obj
+.\AshIDE___Win32_LC3_Release\SymbolTable.obj
+.\AshIDE___Win32_LC3_Release\Token.obj
+.\AshIDE___Win32_LC3_Release\AsmConvertLC3.obj
+.\AshIDE___Win32_LC3_Release\LC3Arch.obj
+.\AshIDE___Win32_LC3_Release\LC3ISA.obj
+.\AshIDE___Win32_LC3_Release\LC3bArch.obj
+.\AshIDE___Win32_LC3_Release\LC3bISA.obj
+.\AshIDE___Win32_LC3_Release\Architecture.obj
+.\AshIDE___Win32_LC3_Release\Memory.obj
+.\AshIDE___Win32_LC3_Release\Pipeline.obj
+.\AshIDE___Win32_LC3_Release\Register.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP99.tmp"
+<h3>Output Window</h3>
+Compiling...
+MainWindow.cpp
+Project.cpp
+Linking...
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9B.bat" with contents
+[
+@echo off
+copy AshIDE___Win32_LC3_Release\*.exe ..\Release\Windows_x86\.
+]
+Creating command line "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9B.bat"
+Copying EXE...
+AshIDE___Win32_LC3_Release\LC3IDE.exe
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+LC3IDE.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: AshIDE - Win32 LC3b Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9C.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "DEFAULT_LANG_LC3B" /Fp"AshIDE___Win32_LC3b_Release/AshIDE.pch" /YX /Fo"AshIDE___Win32_LC3b_Release/" /Fd"AshIDE___Win32_LC3b_Release/" /FD /Zm200 /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\MainWindow.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\AshIDE\Project.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9C.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9D.tmp" with contents
+[
+../fltk-1.1.6/lib/Windows_x86/fltk.lib ../fltk-1.1.6/lib/Windows_x86/fltkimages.lib wsock32.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"AshIDE___Win32_LC3b_Release/LC3bIDE.pdb" /machine:I386 /nodefaultlib:"libc" /out:"AshIDE___Win32_LC3b_Release/LC3bIDE.exe" 
+.\AshIDE___Win32_LC3b_Release\BreakpointWindow.obj
+.\AshIDE___Win32_LC3b_Release\CallStackWindow.obj
+.\AshIDE___Win32_LC3b_Release\ConsoleWindow.obj
+.\AshIDE___Win32_LC3b_Release\DataValuesWindow.obj
+.\AshIDE___Win32_LC3b_Release\DisassemblyWindow.obj
+.\AshIDE___Win32_LC3b_Release\FilesWindow.obj
+.\AshIDE___Win32_LC3b_Release\FileWindow.obj
+.\AshIDE___Win32_LC3b_Release\InstructionsWindow.obj
+.\AshIDE___Win32_LC3b_Release\LC3bFileWindow.obj
+.\AshIDE___Win32_LC3b_Release\LC3FileWindow.obj
+.\AshIDE___Win32_LC3b_Release\main.obj
+.\AshIDE___Win32_LC3b_Release\MainWindow.obj
+.\AshIDE___Win32_LC3b_Release\MemoryBytesWindow.obj
+.\AshIDE___Win32_LC3b_Release\MessageWindow.obj
+.\AshIDE___Win32_LC3b_Release\ProgramsWindow.obj
+.\AshIDE___Win32_LC3b_Release\Project.obj
+.\AshIDE___Win32_LC3b_Release\ProjectLexer.obj
+.\AshIDE___Win32_LC3b_Release\ProjectParser.obj
+.\AshIDE___Win32_LC3b_Release\ProjectToken.obj
+.\AshIDE___Win32_LC3b_Release\ReadOnlyEditor.obj
+.\AshIDE___Win32_LC3b_Release\RegistersWindow.obj
+.\AshIDE___Win32_LC3b_Release\SettingsWindow.obj
+.\AshIDE___Win32_LC3b_Release\SimulatorWindow.obj
+.\AshIDE___Win32_LC3b_Release\TextEditor.obj
+.\AshIDE___Win32_LC3b_Release\WriteDataWindow.obj
+.\AshIDE___Win32_LC3b_Release\WriteRegisterWindow.obj
+.\AshIDE___Win32_LC3b_Release\AsmLexer.obj
+.\AshIDE___Win32_LC3b_Release\AsmParser.obj
+.\AshIDE___Win32_LC3b_Release\AsmToken.obj
+.\AshIDE___Win32_LC3b_Release\Base.obj
+.\AshIDE___Win32_LC3b_Release\Data.obj
+.\AshIDE___Win32_LC3b_Release\Disassembler.obj
+.\AshIDE___Win32_LC3b_Release\Element.obj
+.\AshIDE___Win32_LC3b_Release\HighlightLexer.obj
+.\AshIDE___Win32_LC3b_Release\Label.obj
+.\AshIDE___Win32_LC3b_Release\Lexer.obj
+.\AshIDE___Win32_LC3b_Release\Number.obj
+.\AshIDE___Win32_LC3b_Release\Program.obj
+.\AshIDE___Win32_LC3b_Release\Segment.obj
+.\AshIDE___Win32_LC3b_Release\Symbol.obj
+.\AshIDE___Win32_LC3b_Release\SymbolTable.obj
+.\AshIDE___Win32_LC3b_Release\Token.obj
+.\AshIDE___Win32_LC3b_Release\AsmConvertLC3.obj
+.\AshIDE___Win32_LC3b_Release\LC3Arch.obj
+.\AshIDE___Win32_LC3b_Release\LC3ISA.obj
+.\AshIDE___Win32_LC3b_Release\LC3bArch.obj
+.\AshIDE___Win32_LC3b_Release\LC3bISA.obj
+.\AshIDE___Win32_LC3b_Release\Architecture.obj
+.\AshIDE___Win32_LC3b_Release\Memory.obj
+.\AshIDE___Win32_LC3b_Release\Pipeline.obj
+.\AshIDE___Win32_LC3b_Release\Register.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9D.tmp"
+<h3>Output Window</h3>
+Compiling...
+MainWindow.cpp
+Project.cpp
+Linking...
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9F.bat" with contents
+[
+@echo off
+copy AshIDE___Win32_LC3b_Release\*.exe ..\Release\Windows_x86\.
+]
+Creating command line "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP9F.bat"
+Copying EXE...
+AshIDE___Win32_LC3b_Release\LC3bIDE.exe
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+LC3bIDE.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: AsmConvert2to3 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+AsmConvert2to3.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: AsmConvertLC3 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+AsmConvertLC3.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: EndianCheck - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+EndianCheck.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: LC3Assembler - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+LC3Assembler.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: LC3Simulator - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+LC3Simulator.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: LC3bAssembler - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+LC3bAssembler.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: LC3bSimulator - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+LC3bSimulator.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

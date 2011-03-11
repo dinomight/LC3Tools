@@ -1,0 +1,873 @@
+<html>
+<head>
+<title>AshIDE Usage Guide</title>
+</head>
+<body>
+<center><h1>LC-3 and LC-3b Integrated Development Environment and Visual Debugger - Ashley Wise</h1></center>
+<center><i>Return to <a href="LC3Tools.htm">Main Page</a>, <a href="LC3ToolsHelp.htm">Help Contents</a></i></center>
+<p>
+<ul>
+	<li>The LC-3/LC-3b toolset is open to enhancements.
+	<ul>
+		<li>Please send any bug reports, suggestions, or comments to Ashley.
+		<li>Put "LC-3, LC-3b, or AshIDE" in the subject so it doesn't get filtered as spam.
+		<li>Nit-picking is good.
+	</ul>
+	<li>This tutorial is for AshIDE version 1. AshIDE version 1 uses Assembler versions 3 and Simulator version 1.
+</ul>
+
+<a name="index">
+<center><h3>AshIDE Index</h3></center>
+
+<ul>
+	<li><a href="#index_running">Running The IDE</a>
+	<li><a href="#index_translator">LC-3 Translator</a>
+	<li><a href="#index_quick">Quick Start Guide</a>
+	<ul>
+		<li><a href="#index_quickopen">Edit an Assembly File</a>
+		<li><a href="#index_quickcompile">Compile</a>
+		<li><a href="#index_quicksimulate">Simulate</a>
+	</ul>
+	<li><a href="#index_project">Project Management</a>
+	<li><a href="#index_ide">IDE Window</a>
+	<ul>
+		<li><a href="#index_filelist">File List Frame</a>
+		<li><a href="#index_projectsettings">Project Settings Frame</a>
+		<li><a href="#index_filesettings">File Settings Frame</a>
+		<li><a href="#index_messages">Messages Frame</a>
+	</ul>
+	<li><a href="#index_file">File Window</a>
+	<li><a href="#index_simulator">Simulator Window</a>
+	<li><a href="#index_breakpoints">Setting Breakpoints</a>
+	<li><a href="#index_console">Console Window</a>
+	<li><a href="#index_disassembly">Viewing Disassembly</a>
+	<li><a href="#index_callstack">Viewing the Call Stack</a>
+	<li><a href="#index_instructions">Viewing Instructions
+	<li><a href="#index_datavalues">Viewing Data Values</a>
+	<li><a href="#index_memorybytes">Viewing Memory Bytes</a>
+	<li><a href="#index_registers">Viewing Registers</a>
+	<li><a href="#index_pipelines">Viewing Pipelines</a>
+	<li><a href="#index_programs">Viewing Programs</a>
+	<li><a href="#index_editing">Editing Instructions, Data, and Memory</a>
+	<li><a href="#index_editingregisters">Editing Registers</a>
+	<li><a href="#index_multiple">Multiple Program Simulating</a>
+	<li><a href="#index_memorymapped">Memory-Mapped I/O</a>
+	<li><a href="#index_ashos">Ash Operating System</a>
+</ul>
+
+<a name="index_running">
+<a name="gzip">
+<a name="gunzip">
+<a name="chmod">
+<table cellpadding=10><tr><td><h3>Running The IDE</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>Download the archive
+	<ul>
+		<li>LC3[b]IDE.zip
+	</ul>
+	<li>Extract the archive
+	<ul>
+		<li>Use WinZip, etc., on Windows
+		<li>And on Unix:
+<ul><pre>
+> unzip LC3[b]IDE.zip
+</pre></ul>
+	</ul>
+	<li>Set execute permissions for Unix
+<ul><pre>
+> chmod u+x LC3[b]IDE
+</pre></ul>
+	<li>Execute at the command line by entering the name of the extracted IDE followed by a list of assembly file names.
+<ul><pre>
+> LC3[b]IDE Sample.asm OS.asm
+</pre></ul>
+	<li>Or just double-click the executable.
+	<li>AshIDE Simultaneously supports both LC-3 and LC-3b languages. Since the ".asm" extension is thus ambiguous, there are three versions of the IDE:
+	<ul>
+		<li>AshIDE requires you to manually specify the language for ambiguous input files. ".lc3", ".lc3b", (source files) and ".lc3h", ".lc3bh" (header files) can be used as unambiguous extensions.
+		<li>LC3IDE is the same as running AshIDE with the -lc3 option. ".asm", ".ah", ".obj", and ".bin" files are assumed to be LC-3 files by default.
+		<li>LC3bIDE is the same as running AshIDE with the -lc3b option. ".asm", ".ah", ".obj", and ".bin" files are assumed to be LC-3b files by default.
+	</ul>
+</ul>
+
+<a name="index_translator">
+<table cellpadding=10><tr><td><h3>LC-3 Translator</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>In order to support older LC-3 assembler syntax, a translator is run on the input LC-3 language assembly files before compilation.
+	<li>The translation is <b><i>completely transparent</i></b> to the user. The user can use and edit older LC-3 syntax files in the IDE without knowledge of the internal translation.
+	<li>The translation does not apply to LC-3b language files.
+	<li>The LC-3 translator is also applied to simulator input fields. This allows the use of the "x", "b", "#" syntax for numbers, as well as the use of .FILL, .BLKW, and .STRINGZ in instruction/data edit commands.
+	<li>See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_translator">LC-3 translator</a> section for more information.
+</ul>
+
+<a name="index_quick">
+<table cellpadding=10><tr><td><h3>Quick Start Guide</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<a name="index_quickopen">
+	<li>If you launch the IDE with one or more assembly files as inputs, an auto-project is created for you. The name of the project is the name of the first input file with a ".aprj" extension.
+	<li>If you launch the IDE with no files, you'll get an empty IDE window. Choose Open File/New File from the Project menu. Again, an auto-project is created for you.
+	<li>The assembly file will open in its own window, which is a syntax-highlighting text editor. The window has standard File, Edit, and Search menus.
+	<li>You can place your cursor on a keyword in your file, and hit the F1 shortcut key, and a window with HTML help will pop-up and tell you about that keyword.
+	<a name="index_quickcompile">
+	<li>From the Project menu, you can select Assemble File (F2 shortcut key). Assembling (or compiling) is the stage where the syntax and semantics or your program are analyzed.
+	<ul>
+		<li>If there are any warning or error messages, they will appear in the message display at the bottom of the IDE window.
+		<li>You can double-click on messages, and the assembly file will pop-up and highlight the line that caused the message.
+	</ul>
+	<li>The Build command (F3 shortcut key) assembles all files and links them together. Linking is the stage where addresses are assigned for segments, labels, and instructions.
+	<a name="index_quicksimulate">
+	<li>The Start Simulator command  (F4 shortcut key) assembles, builds, and then opens up the simulator window. From here you can begin simulation, and take advantage of visual debugging features.
+	<li>If you want to start simulating right away, you can do the following instead of F4:
+	<ul>
+		<li>Go (F5 shortcut key).
+		<li>Go One Instruction (F6 shortcut key).
+		<li>You can also place your cursor on any line of code, and select Run To Cursor (F7 shortcut key, or use the right-click pop-up menu).
+		<li>All three of these will automatically start the simulator.
+	</ul>
+	<li>Once simulation is running, you can:
+	<ul>
+		<li>Break or Halt the simulation (F10 shortcut key).
+		<li>Exit the simulator (CTRL-Q).
+	</ul>
+	<li>When the simulation is halted, the line of code with the <b>next</b> instruction to be executed will be highlighted, and its file will pop-up.
+	<ul>
+		<li>If the Disassembly window is open, it will also be highlighted in there.
+	</ul>
+	<li>The current instruction count and the address of the next instruction are displayed in the status bar of every simulator window.
+	<li>You can set breakpoints, view and edit instructions, data, and registers, and step through simulation using the commands in the simulator window's menus, and also in the Simulate menu in other windows.
+	<li>You can right-click on lines, variables and registers in your assembly file and view and edit their current values and set breakpoints.
+	<li>You can double-click on lines in the Disassembly window and CallStack window to go directly to the referenced line in your assembly code.
+	<li>Hit the F1 shortcut key in any simulator window to pop-up HTML help about that window.
+</ul>
+
+<a name="index_project">
+<table cellpadding=10><tr><td><h3>Project Management</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+<a name="autoproject">
+	<li>If you begin the IDE by opening an assembly file (either as a command-line parameter or using Open File/New File), an auto-project is created for you.
+	<ul>
+		<li>The name of the project is the name of the assembly file with a ".aprj" extension.
+		<li>If the project file by that name already exists, it is loaded.
+		<li>When you open new files, they are automatically added to the project without prompting.
+		<li>The project is automatically saved whenever files are assembled or built, or when then IDE is closed.
+	</ul>
+	<li>If you begin the IDE by opening a project file (a file with a ".aprj" extension, either as a command-line parameter or using Open Project/New Project) that project is loaded.
+	<ul>
+		<li>The only difference between this and an auto-project is that when you open a new file that isn't already in the project, you are prompted to add it to the project.
+	</ul>
+	<li>When a project is loaded:
+	<ul>
+		<li>All the files which were open in file windows when the project was closed are re-opened.
+		<li>The <a href="#index_filelist">file list</a> (left frame of the IDE window) is updated with a list of all files in the project.
+		<li>The <a href="#index_projectsettings">project settings</a> (upper right frame of the IDE window) is updated with the project settings.
+	</ul>
+	<li>Details of how to manage a project using these windows are covered under the <a href="#index_ide">IDE Window</a> section.
+	<li>The project keeps track of changes to settings and input files, and will do conditional compilation. That is, it only reassembles and rebuilds the necessary files.
+	<li>Both LC-3 and LC-3b programs can be in the same project.
+</ul>
+
+<a name="index_ide">
+<a name="idewindow">
+<table cellpadding=10><tr><td><h3>IDE Window</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The IDE window is composed of four frames, the <a href="#index_filelist">File List</a>, <a href="#index_projectsettings">Project Settings</a>, <a href="#index_filesettings">File Settings</a>, and <a href="#index_messages">Messages</a>.
+	<ul>
+		<li>These frames and most of the menu items only become visible once a file or project is opened, or when the simulator is running. Some of the settings and menu items become disabled or invisible when the simulator is running.
+	</ul>
+	<li>Project Menu
+	<ul>
+		<li>New File: Open a new file. If a project is not yet loaded, an <a href="#autoproject">auto-project</a> is created. If an auto-project is already loaded, the new file is automatically added to the project. If a regular project is already loaded, you are prompted to add it to the project.
+		<li>Open File: Open an existing file. See New File.
+		<li>Add File To Project: Adds an existing file to the project, but does not open it. Useful for adding object (".obj") and binary (".bin") files to the project, which can't be viewed in the editor.
+		<li>New Project: Open a new project. If a project is currently loaded, it is unloaded first. Projects end in a ".aprj" extension.
+		<li>Open Project: Open an existing project. See New Project. All project settings are loaded into the IDE window, and all files that were open when the project was last closed are re-opened.
+		<li>Save Project: Saves the current project. The project is automatically saved when you compile, build or close a project.
+		<li>Save Project As: Save the current project to a different file name.
+		<li>Close Project: Closes the current project. You are prompted to save any open files that have been modified. The project is automatically saved.
+		<li>Exit: Quit the IDE.
+	</ul>
+<a name="ide_messages">
+	<li>Messages Menu
+	<ul>
+		<li>Save: Saves the contents of the <a href="#index_messages">Message frame</a> to a file.
+		<li>Copy: Copies the currently selected text in the Message frame to the clipboard.
+		<li>Find: Displays a standard Find dialog for searching the Message frame.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+<a name="ide_build">
+	<li>Build Menu
+	<ul>
+		<li>Remove From Project: This menu item is only available when a file is selected in the <a href="#index_filelist">File List frame</a>. It removes the selected file from the project.
+		<li>Assemble File: This menu item is only available when a file is selected in the <a href="#index_filelist">File List frame</a>. It assembles this single file.
+		<li>Add Global Define: Displays a dialog where you can add global defines to the project. These defines are Symbol, Value pairs, where every instance of Symbol in any of the input files is replaced with Value, which could be any assembler token (identifier, number, operator, keyword, etc).
+		<li>Assemble Project: Assembles all files in the project, including files of different languages. Any error or warning messages are displayed in the <a href="#index_messages">Message frame</a>. Uses conditional compilation to only reassemble the files that have been modified.
+		<li>Build Project: Assembles all files in the project and then links them into a single memory image. Uses conditional compilation to only reassemble or rebuild files that have been modified.
+		<li>Rebuild All: Bypass conditional compilation and force all files to be reassembled and rebuilt (may be necessary if you modify a file included by another file).
+		<li>Start Simulator: Assembles, builds, and then starts up the simulator. If both LC-3 and LC-3b programs are present in the project, you will be asked which one you want to simulate. The <a href="#index_simulator">Simulator window</a> will open, and the line of the first instruction to be executed will be highlighted and its file popped-up. See the <a href="#index_simulator">Simulator Window</a> section.
+	</ul>
+<a name="ide_simulate">
+	<li>Simulate Menu
+	<ul>
+		<li>Go: Starts up the simulator and immediately begins simulation of the program.
+		<li>Go One Instruction: Starts up the simulator and immediately simulates just one instruction.
+		<li>Step X Function: Starts up the simulator and immediately begins simulation until it encounters the next subroutine call (Into) or return (Over, Out).
+		<li>Others: Other Simulate menu items only appear when the simulator is running. See the <a href="#index_simulator">Simulator Window</a> section.
+	</ul>
+	<li>Help Menu
+	<ul>
+		<li>Contents: Opens up the HTML help in an browser window. The help files are located in LC3Tools.htm. If this is not found in the current directory, a dialog box prompts you to locate the help files. The location is stored with the project settings so you only have to enter it once unless you move the help files.
+		<li>About: Displays a dialog listing version numbers and basic information about the IDE and its author.
+	</ul>
+<a name="index_filelist">
+	<li>File List Frame
+	<ul>
+		<li>The File List frame lists all files currently in the project. The files are categorized into the following Source Types: LC3 Source Files, LC3 Header Files, LC3b Source Files, LC3b Header Files, Resource Files, and Dependencies.
+		<li>Only Source files are assembled and built.
+		<li>Resource files are any file that is not a source or header file.
+		<li>Dependencies are files that are included by other source or header files (using the <a href="AssemblerTutorial.htm#include">INCLUDE directive</a>) that are not otherwise in the project. These are automatically updated every time the project is rebuilt.
+		<li>When you add a file to the project, it automatically assigns it to the appropriate Source Type and Language. You can change both using the <a href="#index_filesettings">File Settings frame</a>.
+		<li>You can double-click on a Source Type heading to expand or collapse the list of files.
+		<li>You can double-click on a file to open the file in a syntax-highlighting text editor. If the syntax is not highlighted for the right language, you can change the language in the <a href="#index_filesettings">File Settings frame</a>.
+		<li>You can select a file and hit the Delete key to remove it from the project.
+		<li>When you select a file, the Remove From Project and Assemble File menu items appear under the Build menu.
+	</ul>
+<a name="index_projectsettings">
+	<li>Project Settings Frame
+	<ul>
+		<li>Print Tokens: Outputs the file Filename.Tokens.txt whenever a file is assembled. This contains a list of all the tokens passed to the syntax analyzer, and the file and line number the token originated from. It shows how all the defines, macros, and includes were processed by the compiler's pre-processor. It is useful for debugging your function macros.
+		<li>Print AST: Outputs the file Filename.AST.txt whenever a file is assembled. This file is what the compiler thinks your assembly program looks like, including all pre-processor expansions. It is also useful for debugging macros. It is itself a valid assembly file, and can be in turn assembled and will produce the same program. If you generate the AST for an object file (".obj" or ".bin" file), you will get the assembly program that builds to that image, making it a useful disassembler.
+		<li>Print Symbols: Outputs the file Filename.Symbols.csv whenever a file is built (not when assembled, since addresses are only assigned during the linking process). It is a comma-delimited spreadsheet that can be viewed in Excel or a text editor. The Symbols file can be used with an object file to allow programs to link with it. It also gives you a quick reference to the addresses of your variables and functions.
+		<ul>
+			<li>Format: Symbol Name, Symbol Type, Absolute Word (LC-3)/Byte (LC-3b) Memory Address, Segment-Relative Word (LC-3)/Byte (LC-3b) Memory Address.
+		</ul>
+		<li>Output Image: Outputs the file Filename.obj whenever a file is built (not when assembled). It is a binary file. An object file can in turn be used as input, and the disassembler will be run on it, and you can output disassembly with the Print AST option. If the Symbols.csv file for the object file is present, the symbols will be used for linking with other files.
+		<ul>
+			<li>Format: 8-byte little-endian starting address, 8-byte little-endian length, raw little-endian memory bytes.
+			<li>See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_disassembling">Disassembling</a> section.
+		</ul>
+		<li>Output VHDL: Outputs the file Filename.vhd whenever the project is built. This file contains VHDL ram initialization vectors that can be copied into a VHDL file to load the program into a VHDL simulator.
+		<li>Use Optimizations: Passes the program through the optimization procedures. None currently exist, but the can be plugged into the code easily. See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_disassembling">Optimization</a> section.
+		<li>Use Ash Operating System: Automatically adds the AshOS files to the project. The AshOS files are located in AshOS_LC3[b].asm[.ah]. If this is not found in the current directory, a dialog box prompts you to locate the AshOS files. The location is stored with the project settings so you only have to enter it once unless you move the AshOS files. See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_ashos">Ash Operating System</a> section.
+		<li>Support Old LC3 Syntax: Assembly files written in older LC-3 syntax are supported, as well as assembly files written in newer Asm3 syntax. See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_translator">LC-3 Translator</a> section.
+		<li>Global Defines: Click the Add button to display the add global defines dialog (See the <a href="#ide_build">Build menu</a>'s Add Global Defines item). All defines are displayed in the pull-down list. Click the Remove button to remove the currently selected global define.
+		<li>Assemble, Build, Simulate: See the <a href="#ide_build">Build menu</a>'s Assemble Project, Build Project, and Start Simulator items).
+		<li>Dis + Reg: If selected, when the simulator opens, the disassembly view and regfile register window will automatically open.
+	</ul>
+<a name="index_filesettings">
+	<li>File Settings Frame
+	<ul>
+		<li>The file settings are only visible when you click on a file in the <a href="#index_filelist">File List frame</a>.
+		<li>Exclude From Build: Force a source file to be excluded from the build. It will not be assembled. Headers, Resources, and Dependencies are always excluded from the build.
+		<li>Assemble: See the <a href="#ide_build">Build menu</a>'s Assemble File item.
+		<li>Language: Change the language of the file. This affects whether the LC-3 or LC-3b assembler is run on the file. It also affects the syntax-highlighting of the file. You will need to close and re-open the window for syntax-highlighting changes to take effect.
+		<li>Source Type: Change the source type of the file. This affects whether or not it is included in the build, and which sub-list in the <a href="#index_filelist">File List frame</a> it goes into.
+	</ul>
+<a name="index_messages">
+	<li>Message Frame
+	<ul>
+		<li>All messages from the Compiler, Linker, and Project Loader go here.
+		<li>All error and warning messages will have a file and line number associated with them, as well as a detailed description of the error or warning.
+		<li>If the message is from a file included by another file, the include stack is displayed so you can see where this file came from.
+		<li>You can double-click on messages and the referenced file will pop-up and highlight the referenced line.
+		<li>You can perform standard mouse and keyboard selection and copy commands on the messages. See the <a href="#ide_messages">Messages menu</a>.
+	</ul>
+</ul>
+
+<a name="index_file">
+<a name="filewindow">
+<table cellpadding=10><tr><td><h3>File Window</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>All files are viewed using the syntax-highlighting File Window.
+	<ul>
+		<li>Syntax-highlighting is based on the Language setting which you can adjust in the <a href="#index_ide">IDE window</a>'s <a href="#index_filesettings">File Settings frame</a>.
+	</ul>
+	<li>Files are also simulated using the File Window.
+	<ul>
+		<li>The line of the next instruction to execute is highlighted.
+		<li>There are multiple commands for debugging the instruction, variable, or register at the cursor location in the file.
+	</ul>
+	<li>File Menu
+	<ul>
+		<li>New File: Opens a new file. The file is opened in a new File Window, it does not replace the file in the current File Window.
+		<li>Open File: Opens an existing file. See New File.
+		<li>Save File: Saves the file. The file is automatically saved whenever it is assembled. If the file has been modified, you are prompted to save when you close the file or the project.
+		<li>Save File As: Saves the file to a new file name.
+		<li>Close File: Closes the file and its File Window.
+		<li>Help: If the cursor is on an assembler keyword in the file, the HTML help will pop-up in a browser window and go directly to help about that assembler keyword. Otherwise it takes you to help about assembly programming.
+		<li>Quit: Exits the IDE.
+	</ul>
+	<li>Edit Menu
+	<ul>
+		<li>Cut/Copy/Paste/Delete: Standard text editing commands.
+	</ul>
+	<li>Search Menu
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the file text.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+		<li>Replace: Displays a standard Find/Replace dialog for searching and replacing the file text.
+		<li>Replace Again: Repeats the replace query used in the previous Replace dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Project Menu
+	<ul>
+		<li>Add To Project: This option is only available if the file is not already in the project. It will add the file to the project. You will need to close and re-open the file for syntax-highlighting changes to take effect.
+		<li>The rest of the Project menu items are only available if the file is in the project. 
+		<li>Remove From Project: Removes the file from the project.
+		<li>Assemble File/Assemble Project/Build Project/Rebuild All/Start Simulator: See the <a href="#index_ide">IDE window</a>'s <a href="#ide_build">Build menu</a>.
+	</ul>
+	<li>Simulate Menu
+	<ul>
+		<li>Go/Go One Instruction/Step X Function: See the <a href="#index_ide">IDE window</a>'s <a href="#ide_simulate">Simulate menu</a>.
+		<li>Run to Cursor: Starts up the simulator and immediately begins simulation of the project. Simulation will break when it reaches the instruction at the cursor.
+		<li>Others: Other Simulate menu items only appear when the simulator is running. See the <a href="#index_simulator">Simulator Window</a> section.
+	</ul>
+	<li>Popup Menu
+	<ul>
+		<li>When you right-click within the text frame, a pop-up menu will show.
+		<li>Run To This Line: See Run To Cursor.
+		<li>The rest of the right-click options only appear when the simulator is running.
+		<li>Instruction Breakpoint At This Line: Sets an instruction breakpoint for the instruction on this line. If this line doesn't have an instruction, it will use the first instruction below this line.
+		<li>Data Breakpoint At This Variable: Sets a data breakpoint for the variable at the cursor. You will be prompted with a dialog box where you can set some properties for the breakpoint. See the <a href="#breakpointwindow">Breakpoint Window</a> section for information on these properties.
+		<li>Register Breakpoint At This Register: Sets a register breakpoint for the register at the cursor. You will be prompted with a dialog box where you can set some properties for the breakpoint. See the <a href="#breakpointwindow">Breakpoint Window</a> section for information on these properties.
+		<li>View Instructions At This Line: Opens up an Instructions Window to view a list of disassembled instructions at this line. See the <a href="#instructionswindow">Instructions Window</a> section.
+		<li>View Value Of This Variable: Opens up a DataValues Window to view the current value of the variable at the cursor. See the <a href="#datavalueswindow">DataValues Window</a> section.
+		<li>View Memory Bytes At This Variable: Opens up a MemoryBytes Window to view the array of memory bytes start at this variable's location. See the <a href="#memorybyteswindow">MemoryBytes Window</a> section.
+		<li>View Value Of This Register: Opens up a Registers Window to view the current value of this register. See the <a href="#registerswindow">Registers Window</a> section.
+		<li>Edit Instructions/Data At This Line: Opens up a WriteData Window to edit the current value of the instructions or data at this line. See the <a href="#writedatawindow">WriteData Window</a> section.
+		<li>Edit This Variable: Opens up a WriteData Window to edit the current value of the variable at the cursor. See the <a href="#writedatawindow">WriteData Window</a> section.
+		<li>Edit This Register: Opens up a WriteRegister Window to edit the current value of the register at the cursor. See the <a href="#writeregisterwindow">WriteRegister Window</a> section.
+	</ul>
+	<li>Text Frame
+	<ul>
+		<li>You can edit text in here. Standard CTRL-C/X/V commands will copy/cut/paste to and from the clipboard. CTRL-Z can be used for one-level of undo.
+		<li>If the cursor is on an assembler keyword, you can hit F1 to open up the HTML help and display information about that keyword.
+		<li>If there are errors when you assemble/build, an alert will pop-up and will direct you to the messages in the <a href="#index_ide">IDE window</a>'s <a href="#index_messages">Message frame</a>. You can double-click on these messages and they will highlight the line in your file.
+	</ul>
+	<li>Status Bar
+	<ul>
+		<li>Displays the line number and character number at the cursor.
+	</ul>
+</ul>
+
+<a name="index_simulator">
+<a name="simulatorwindow">
+<table cellpadding=10><tr><td><h3>Simulator Window</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Simulator Window is the main window you use while simulating.
+	<li>All of the commands under the Simulate, Breakpoints, View, and Edit & Continue menus are also available under the Simulate menu in all other windows while the simulator is running. So you can use all the necessary simulator functionality from whatever window you are working in.
+	<li>The underlying simulation engine has a command-line interface. If you wish, you can do command-line simulation from the Simulator Window. However, all of the simulator commands are exposed via user-friendly GUI dialogs and menu options, so you never have to touch the command line if you don't want to.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a> for more information on all the available simulator commands.
+	<li>Simulator Menu
+	<ul>
+		<li>Update Status Every Cycle: This is a toggle setting. When checked, the status bars of all the simulation windows will update every cycle with the current cycle and instruction counts and the address of the <b>next</b> instruction. Having the next instruction address updated dynamically can let you see where you are currently simulating in your code. However, turning it off will increase the speed of simulation by a factor of 3.
+		<li>Enable Runtime Checks: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_checking">Runtime Error Checking</a> section.
+		<li>Enable Execution Trace: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_tracing">Tracing Instruction Execution and Registers</a>. When you turn tracing on, you will be prompted with a dialog where you can select the file to store the trace, and select register sets to add to the trace.
+		<li>Load/Save State: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_state">Simulation State - Saving/Loading</a> section. You will be prompted with a dialog where you can select the file from which to save or load. Several files are used as part of the state save, and all the files begin with the given filename.
+		<li>Load/Save Data: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_images">Memory Images - Saving/Loading</a> section. You will first be prompted with a dialog where you can select the file from which to save or load. Then you will be prompted with a dialog where you can specify the starting address and length of the memory image. You can specify the datatype and endian-ness if you want to create or view the image in an external program (the ISA endian-ness for LC-3 and LC-3b is little-endian, so opposite endian would be big-endian).
+		<li>Load/Save Program Object: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_obj">Program Objects - Saving/Loading</a> section. You will first be prompted with a dialog where you can select the file from which to save or load. Then you will be prompted with a dialog where you can specify the starting address and length of the program image (Save only). See the <a href="AssemblerTutorial.htm">Assembler Tutorial</a>'s <a href="AssemblerTutorial.htm#index_disassembling">Disassembling section</a>.
+		<li>Help: Opens up HTML help about the Simulator Window.
+		<li>End Simulation: Exits the simulator. The IDE remains open. While the simulator is running, doing CTRL-Q from any window will exit the simulator first. Do CTRL-Q a second time to exit the IDE.
+	</ul>
+	<li>Messages Menu
+	<ul>
+		<li>Save: Saves the contents of the <a href="#simulator_messages">Message frame</a> to a file.
+		<li>Copy: Copies the currently selected text in the Message frame to the clipboard.
+		<li>Clear: Clears all the text in the Message frame.
+		<li>Find: Displays a standard Find dialog for searching the Message frame.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu
+	<ul>
+		<li>Go: Simulates the program until a break or exception is encountered.
+		<li>Go One Instruction: Simulates just one instruction.
+		<li>Step X Function: Simulates until it encounters the next subroutine call (Into) or return (Over, Out).
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_stepping">Stepping Through</a> section for more info on the Go, Goi, GoInto, GoOver, and GoOut commands.
+		<li>Signal Interrupt: See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#interrupt">Interrupt</a> section. Displays a dialog where you can enter the interrupt vector (label or number) of an interrupt to signal.
+		<li>Break: Halts simulation.
+		<li>Reset: Resets the program and architecture under simulation. All memory and registers are reinitialized.
+	</ul>
+	<li>Breakpoints Menu
+	<ul>
+		<li>Breakpoints: Displays the Breakpoint Window.
+	</ul>
+	<li>View Menu
+	<ul>
+		<li>Console I/O: Displays the <a href="#consolewindow">Console Window</a>.
+		<li>Disassembly: Displays the <a href="#disassemblywindow">Disassembly Window</a>.
+		<li>Call Stack: Displays the <a href="#callstackwindow">CallStack Window</a>.
+		<li>Instructions: Displays a new <a href="#instructionswindow">Instructions Window</a>.
+		<li>Data Values: Displays a new <a href="#datavalueswindow">DataValues Window</a>.
+		<li>Memory Bytes: Displays a new <a href="#memorybyteswindow">MemoryBytes Window</a>.
+		<li>Registers: Displays a new <a href="#registerswindow">Registers Window</a>.
+		<li>Pipelines: Displays a dialog that lists all the datapaths and pipeline stages in the architecture under simulation.
+		<li>Programs: Displays the <a href="#programswindow">Programs Window</a>.
+	</ul>
+	<li>Edit & Continue Menu
+	<ul>
+		<li>Edit Instruction/Data/Memory: Displays the <a href="#writedatawindow">WriteData Window</a>.
+		<li>Edit Register: Displays the <a href="#writeregisterwindow">WriteRegister Window</a>.
+	</ul>
+	<li>Step Through Buttons:
+	<ul>
+		<li>The top half of the Simulator Window displays a collection of buttons that are used to control simulation.
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_stepping">Stepping Through</a> section for more information on these commands.
+		<li>Stop: Quits the simulator.
+		<li>Reset: Resets the simulation.
+		<li>Break: Halts simulation.
+		<li>Go: Begins simulation.
+		<li>Step In: Simulates until a function call.
+		<li>Step Over: Simulates until a function is called and then returns.
+		<li>Step Out: Simulates until the current function returns.
+		<li>Go # Cycles: Simulates just the number of cycles specified in the input field.
+		<li>Go # Instructions: Simulates just the number of instructions specified in the input field.
+		<li>Goto Line Number: Simulates until it reaches the instruction at the specified line number.
+		<li>Goto Instruction: Simulates until it reaches the instruction at the specified label or address.
+	</ul>
+<a name="simulator_messages">
+	<li>Message Frame
+	<ul>
+		<li>All the information, warning, error, breakpoint, exception, and check messages from the simulator are displayed here.
+		<li>Every time you perform a simulator command through the GUI, its corresponding command-line command is echoed to this message display, preceded by the sim> prompt.
+	</ul>
+	<li>Command Input
+	<ul>
+		<li>You can manually enter simulator commands via the input field and the Enter button.
+	</ul>
+	<li>Status Bar
+	<ul>
+		<li>Displays the current number of cycles and instructions executed, and the address of the next instruction to be executed.
+	</ul>
+	<li>You can view and edit data and registers at any time while the program is simulating; it is not limited to just when the simulation is halted (break).
+</ul>
+
+<a name="index_breakpoints">
+<a name="breakpointwindow">
+<table cellpadding=10><tr><td><h3>Setting Breakpoints</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Breakpoint Window can be accessed using CTRL-B from any window during simulation
+	<li>Breakpoints Menu
+	<ul>
+		<li>Help: Opens up HTML help about the Beakpoint Window.
+		<li>Close: Closes the Breakpoint Window. The breakpoints themselves remain enabled.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>The Breakpoint Window contains four tabs for each of the four types of breakpoints you can set: <a href="#breakpoint_instruction">Instruction</a>, <a href="#breakpoint_data">Data</a>, <a href="#breakpoint_memory">Memory</a>, and <a href="#breakpoint_register">Register</a>.
+<a name="breakpoint_instruction">
+	<li>Instruction Breakpoints Tab
+	<ul>
+		<li>You can add instruction breakpoints either via a code file line number, or via a label or address.
+		<li>Instruction breakpoints are triggered when that instruction is the <b>next</b> instruction to be executed.
+		<li>Click Remove to remove the selected breakpoint.
+		<li>Click Clear to remove all instruction breakpoints.
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#bpi">Instruction Breakpoints</a> section for more information.
+	</ul>
+<a name="breakpoint_data">
+	<li>Data Breakpoints Tab
+	<ul>
+		<li>You can add a data breakpoint for any variable name or address.
+		<li>You can specify the datatype of the variable. Auto will use the program to determine the datatype.
+		<li>You can specify the event that will trigger the breakpoint:
+		<ul>
+			<li>Read: Breaks after the data is read by an instruction.
+			<li>Write: Breaks after the data is written by an instruction.
+			<li>Change: Breaks after the data value is changed by an instruction.
+			<li>Value: Breaks when the data attains the value specified in the input field.
+		</ul>
+		<li>You can set breakpoints for multiple events, including multiple value events, for the same data address.
+		<li>Click Remove to remove the selected breakpoint.
+		<li>Click Clear to remove all data breakpoints.
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#bpd">Data Breakpoints</a> section for more information.
+	</ul>
+<a name="breakpoint_memory">
+	<li>Memory Breakpoints Tab
+	<ul>
+		<li>You can add a memory breakpoint for any variable name or address for any of the physical memories.
+		<li>You can specify the datatype of the variable. Auto will use the program to determine the datatype.
+		<li>You can specify the event that will trigger the breakpoint:
+		<ul>
+			<li>Read: Breaks after the memory is read by an instruction.
+			<li>Write: Breaks after the memory is written by an instruction.
+			<li>Change: Breaks after the memory value is changed by an instruction.
+			<li>Value: Breaks when the memory attains the value specified in the input field.
+		</ul>
+		<li>You can set breakpoints for multiple events, including multiple value events, for the same memory address.
+		<li>Click Remove to remove the selected breakpoint.
+		<li>Click Clear to remove all memory breakpoints.
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#bpm">Memory Breakpoints</a> section for more information.
+	</ul>
+<a name="breakpoint_register">
+	<li>Register Breakpoints Tab
+	<ul>
+		<li>You can add a register breakpoint for any register in any register set.
+		<li>You can specify the event that will trigger the breakpoint:
+		<ul>
+			<li>Read: Breaks after the register is read by an instruction.
+			<li>Write: Breaks after the register is written by an instruction.
+			<li>Change: Breaks after the register value is changed by an instruction.
+			<li>Value: Breaks when the register attains the value specified in the input field.
+		</ul>
+		<li>You can set breakpoints for multiple events, including multiple value events, for the same register.
+		<li>Click Remove to remove the selected breakpoint.
+		<li>Click Clear to remove all register breakpoints.
+		<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#bpr">Register Breakpoints</a> section for more information.
+	</ul>
+</ul>
+
+<a name="index_console">
+<a name="consolewindow">
+<table cellpadding=10><tr><td><h3>Console Window</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Console Window is where the user can interact with the program under simulation using console I/O (keyboard input and text output).
+	<li>The Console Window will automatically pop-up when the program under simulation performs a console I/O operation.
+	<li>Console Menu
+	<ul>
+		<li>Save: Saves the contents of the console display to a file.
+		<li>Copy: Copies the currently selected text in the console display to the clipboard.
+		<li>Clear: Clears all the text in the console display.
+		<li>Help: Opens up HTML help about the Console Window.
+		<li>Close: Hides the Console Window. The console buffer text is retained for the next time it opens.
+	</ul>
+	<li>Search Menu
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Console display.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>Keyboard Interrupt
+	<ul>
+		<li>An LC-3 (LC-3b) keyboard interrupt 0x80 (0x40) is generated every time you enter a character/string/ascii code. One interrupt is generated per character in the input string.
+	</ul>
+	<li>Console Input:
+	<ul>
+		<li>You can enter console text input using the input field and the Enter button. The console buffers input text, so that you can enter a whole string, even if the program is only reading one character at a time.
+		<li>You can enter characters via the ASCII Code field and the Enter Code button. You can only enter one ASCII code at a time. The code input is a number, using Assembler syntax to denote base.
+		<li>The Console is non-blocking, so if no input is ready, it returns 0 status in the KBSR, and allows the program under simulation to keep running. You can also enter text into the console input buffer even when the program isn't accessing the console I/O. 
+		<li>This behaves different and easier than the limited command-line console I/O described in the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>.
+	</ul>
+	<li>See the <a href="#index_memorymapped">Memory-Mapped I/O</a> and <a href="#index_ashos">Ash Operating System</a> sections for information on how to program Console I/O.
+</ul>
+
+<a name="index_disassembly">
+<a name="disassemblywindow">
+<table cellpadding=10><tr><td><h3>Viewing Disassembly</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The disassembly window views the address-by-address disassembled instructions and data as they were declared in the input program. They do not reflect changes incurred during simulation. This is basically an alternative way to view the assembly code.
+	<li>The filename and line number where each instruction or data originated from is given first, followed by the address of the instruction or data, and then the disassembled instruction or data.
+	<li>The line that contains the next instruction to be executed is highlighted.
+	<li>You can double-click on any line and it will open up that file and highlight the original line of assembly.
+	<li>Disassembly Menu
+	<ul>
+		<li>Show Binary Values: When checked, the value of the (assembled) instruction or data is displayed to the right of the address. The address is enclosed in [brackets] while the value is enclosed in (parentheses).
+		<li>Save: Saves the contents of the Disassembly view to a file.
+		<li>Copy: Copies the currently selected text in the Disassembly view to the clipboard.
+		<li>Help: Opens up HTML help about the Disassembly Window.
+		<li>Close: Closes the Disassembly Window.
+	</ul>
+	<li>Search Menu
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Disassembly view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+</ul>
+
+<a name="index_callstack">
+<a name="callstackwindow">
+<table cellpadding=10><tr><td><h3>Viewing the Call Stack</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Call Stack window displays a list of all the subroutines that were called (jumped to) to get to the current instruction, as well as the subroutine of the current instruction.
+	<li>The topmost entry in the Call Stack is always the location of the next instruction to be executed. The entries then descend in order, giving the location of the previous call instruction.
+	<li>Each entry gives the file, line number, and address of the call instruction, and the name of the subroutine that contained the call instruction (if a label was provided).
+	<li>You can double-click on any call stack entry to open up the file and highlight the line.
+	<li>Call Stack Menu:
+	<ul>
+		<li>Save: Saves the contents of the Call Stack view to a file.
+		<li>Copy: Copies the currently selected text in the Call Stack view to the clipboard.
+		<li>Help: Opens up HTML help about the Call Stack Window.
+		<li>Close: Closes the Call Stack Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Call Stack view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#dcs">Call Stack</a> section for more information.
+</ul>
+
+<a name="index_instructions">
+<a name="instructionswindow">
+<table cellpadding=10><tr><td><h3>Viewing Instructions</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Instructions Window displays disassembled instructions. This differs from the <a href="#index_disassembly">Disassembly Window</a> in three ways:
+	<ul>
+		<li>The instructions are disassembled from the current memory values, so you can see the affects of run-time editing or self-modifying code.
+		<li>There is no file or label information.
+		<li>All memory values, even plain data, are interpreted as instructions and disassembled.
+	</ul>
+	<li>You can specify the location either via a code file line number, or via a label or address.
+	<li>You can use the Length to specify the number of consecutive instructions to disassemble.
+	<li>Instructions Menu:
+	<ul>
+		<li>Save: Saves the contents of the Instructions view to a file.
+		<li>Copy: Copies the currently selected text in the Instructions view to the clipboard.
+		<li>Help: Opens up HTML help about the Instructions Window.
+		<li>Close: Closes the Instructions Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Instructions view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#di">Viewing Instructions</a> section for more information.
+</ul>
+
+<a name="index_datavalues">
+<a name="datavalueswindow">
+<table cellpadding=10><tr><td><h3>Viewing Data Values</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The DataValues Window displays the current addresses and values of data.
+	<ul>
+		<li>Data is by default displayed as the datatype it was declared as in the input assembly file (or as a disassembled instruction). You can specify a datatype from the pull-down list, and whether to interpret it as signed or unsigned.
+	</ul>
+	<li>You can specify the location either via a code file line number, or via a label or address.
+	<ul>
+		<li>If your architecture has multiple memories (for instance, in a cache hierarchy), you can specify a memory name as well. In the default architecture, the DRAM memory is identically the full logical memory space.
+	</ul>
+	<li>You can use the Length to specify the number of consecutive data values to display.
+	<li>DataValues Menu:
+	<ul>
+		<li>Save: Saves the contents of the DataValues view to a file.
+		<li>Copy: Copies the currently selected text in the DataValues view to the clipboard.
+		<li>Help: Opens up HTML help about the DataValues Window.
+		<li>Close: Closes the DataValues Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the DataValues view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#dd">Viewing Data</a>/<a href="SimulatorTutorial.htm#dm">Memory</a> section for more information.
+</ul>
+
+<a name="index_memorybytes">
+<a name="memorybyteswindow">
+<table cellpadding=10><tr><td><h3>Viewing Memory Bytes</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The MemoryBytes Window displays the addresses and current values of data as an array of bytes and corresponding characters (similar to the MSVC memory window).
+	<li>You can specify the location either via a code file line number, or via a label or address.
+	<ul>
+		<li>If your architecture has multiple memories (for instance, in a cache hierarchy), you can specify a memory name as well. In the default architecture, the DRAM memory is identically the full logical memory space.
+	</ul>
+	<li>You can use the Length to specify the number of consecutive bytes to display.
+	<li>MemoryBytes Menu:
+	<ul>
+		<li>Save: Saves the contents of the MemoryBytes view to a file.
+		<li>Copy: Copies the currently selected text in the MemoryBytes view to the clipboard.
+		<li>Help: Opens up HTML help about the MemoryBytes Window.
+		<li>Close: Closes the MemoryBytes Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the MemoryBytes view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#dda">Viewing Byte Arrays</a> section for more information.
+</ul>
+
+<a name="index_registers">
+<a name="registerswindow">
+<table cellpadding=10><tr><td><h3>Viewing Registers</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Registers Window displays the current values of registers.
+	<li>You can choose one of the register sets, and one or all of the registers to view at a time.
+	<ul>
+		<li>The default architecture has three register sets:
+		<ul>
+			<li>Control contains registers such as the program counter and status.
+			<li>MMIO contrains the memory-mapped IO registers for the keyboard and console.
+			<li>RegFile contains the general purpose registers.
+		</ul>
+	</ul>
+	<li>Registers Menu:
+	<ul>
+		<li>List All Registers: Displays a dialog box that lists all the register sets and all the registers available within each set. No values are displayed.
+		<li>Save: Saves the contents of the Registers view to a file.
+		<li>Copy: Copies the currently selected text in the Registers view to the clipboard.
+		<li>Help: Opens up HTML help about the Registers Window.
+		<li>Close: Closes the Registers Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Registers view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#drs">View Registers</a> section for more information.
+</ul>
+
+<a name="index_pipelines">
+<table cellpadding=10><tr><td><h3>Viewing Pipelines</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Pipelines Window displays a dialog box that lists all the pipelines in the architecture, and all the pipeline stages within each pipeline.
+	<ul>
+		<li>The default architecture has only one pipeline with one stage.
+	</ul>
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#dpl">Display Pipelines</a> section for more information.
+</ul>
+
+<a name="index_programs">
+<a name="programswindow">
+<table cellpadding=10><tr><td><h3>Viewing Programs</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The Programs window displays a list of all the programs that were built into the currently simulating memory space.
+	<ul>
+		<li>Each input assembly file is considered one program. When you link multiple files together, the programs are linked into a single memory image for simulation.
+	</ul>
+	<li>The program number, file name, address, and size are displayed
+	<li>You can double-click on any call program entry to open up the file.
+	<li>Programs Menu:
+	<ul>
+		<li>Save: Saves the contents of the Programs view to a file.
+		<li>Copy: Copies the currently selected text in the Programs view to the clipboard.
+		<li>Help: Opens up HTML help about the Programs Window.
+		<li>Close: Closes the Programs Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the Programs view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="#index_multiple">Multiple Program Linking</a> section for infromation on what program numbers are used for.
+</ul>
+
+<a name="index_editing">
+<a name="writedatawindow">
+<table cellpadding=10><tr><td><h3>Editing Instructions, Data, and Memory</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The WriteData Window allows you to edit the values of data or instructions during simulation.
+	<li>You can specify the location either via a code file line number, or via a label or address.
+	<ul>
+		<li>If your architecture has multiple memories (for instance, in a cache hierarchy), you can specify a memory name as well. In the default architecture, the DRAM memory is identically the full logical memory space.
+	</ul>
+	<li>You can enter any number of assembler syntax data and instructions into the text frame to specify the new values.
+	<ul>
+		<li>You can reference symbols and labels declared in the input programs, and you can use symbol attributes.
+		<li>For example, to change the value of "Result" to "5" at runtime, put "Result" in the address field, and put "DATA2 5" in the text frame (or .FILL #5 for older LC-3 syntax).
+		<li>To fix a bug in your code (e.g., "add r1, r2, <b><i><u>r2</u></i></b>") during simulation, put the code line number in the LineNumber input, and put "add r1, r2, <b><i><u>r3</u></i></b>" in the text frame.
+		<li>If multiple data or instructions are specified, they are added sequentially beginning at the starting address or label, and overwrite any data that already existed at those addresses.
+	</ul>
+	<li>WriteData Menu:
+	<ul>
+		<li>Save: Saves the contents of the WriteData text frame to a file.
+		<li>Load: Loads the contents of a file into the WriteData text frame.
+		<li>Copy: Copies the currently selected text in the WriteData text frame to the clipboard.
+		<li>Help: Opens up HTML help about the WriteData Window.
+		<li>Close: Closes the WriteData Window.
+	</ul>
+	<li>Search Menu:
+	<ul>
+		<li>Find: Displays a standard Find dialog for searching the WriteData view.
+		<li>Find Again: Repeats the find query used in the previous Find dialog. The dialog is only redisplayed if there is no search string.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_editing">Editing Instructions, Data, and Memory</a> section for more information.
+</ul>
+
+<a name="index_editingregisters">
+<a name="writeregisterwindow">
+<table cellpadding=10><tr><td><h3>Editing Registers</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The WriteRegisters Window allows you to edit the values or registers during simulation.
+	<li>You can choose one of the register sets, and one of the registers to edit.
+	<ul>
+		<li>The default architecture has three register sets:
+		<ul>
+			<li>Control contains registers such as the program counter and status.
+			<li>MMIO contrains the memory-mapped IO registers for the keyboard and console.
+			<li>RegFile contains the general purpose registers.
+		</ul>
+	</ul>
+	<li>Enter the new value into the input field.
+	<ul>
+		<li>You can reference symbols and labels declared in the input programs, and you can use <a href="AssemblerTutorial.htm#index_attributes">symbol attributes</a>.
+	</ul>
+	<li>Registers Menu:
+	<ul>
+		<li>Help: Opens up HTML help about the Registers Window.
+		<li>Close: Closes the Registers Window.
+	</ul>
+	<li>Simulate Menu: Contains all the menu items from the <a href="#index_simulator">Simulator window</a>.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#wr">Editing Registers</a> section for more information.
+</ul>
+
+<a name="index_multiple">
+<table cellpadding=10><tr><td><h3>Multiple Program Simulating</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>If multiple programs (assembly or disassembled files) were linked together to create the simulated memory image, then line numbers and symbols used in simulator commands can be ambiguous.
+	<li>The simulator will guess which program to use for line numbers and symbols. (For instance, the first program which defines the symbol will be used to resolve it.)
+	<li>A program number can be specified in Line Number and Symbol simulator input fields to explicitly tell the simulator which program to use for the command's line numbers and symbols.
+	<li>You can use the <a href="#programswindow">View Programs</a> command to get a list of all the programs and their program numbers.
+	<li>You can specify the program number in braces before a line number or symbol:
+	<ul>
+		<li>Line Number: {0} 15
+		<ul>
+			<li>Use the instruction or data at line 15 in program "0"s code file.
+		</ul>
+		<li>Symbol Or Numeric Address: {1} Result
+		<ul>
+			<li>Use the variable Result declared in program "1"s code file.
+		</ul>
+	</ul>
+	<li>In the case of the <a href="#writedatawindow">WriteData window</a>, a program number specified in the Symbol Or Numeric Address or Line Number field will be used for all symbols in the text frame. Do not specify a program number inside the text frame.
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_multiple">Multiple Program Linking</a> section.
+</ul>
+
+<a name="index_memorymapped">
+<table cellpadding=10><tr><td><h3>Memory-Mapped I/O</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_console">Memory-Mapped I/O</a> section.
+</ul>
+
+<a name="index_ashos">
+<table cellpadding=10><tr><td><h3>Ash Operating System</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>The OS files are located in the Release folder.
+	<li>To use the Ash Operating System, add "AshOS_LC3[b].asm" to the project as a source file.
+	<li>To use the OS function labels (GETC, etc.), and the MMIO register defines (KBSR, etc.), include the "AshOS_LC3[b].ah" header at the top of your source files (using the <a href="AssemblerTutorial.htm#include">INCLUDE directive</a>).
+	<li>See the <a href="SimulatorTutorial.htm">Simulator Tutorial</a>'s <a href="SimulatorTutorial.htm#index_ashos">Ash Operating System</a> section.
+	<ul>
+		<li>Where it references using the -d option to add a global define, instead use the Add Global Define command from the <a href="#index_ide">IDE window</a>'s <a href="#ide_build">Build menu</a>, or from the <a href="#index_projectsettings">Project Settings</a> frame.
+	</ul>
+</ul>
+
+<i>
+&copy; <a href="mailto:%61%77%69%73%65%40%63%72%68%63%2e%75%69%75%63%2e%65%64%75">Ashley Wise</a> 2003<br>
+</i>
+</body>
+</html>

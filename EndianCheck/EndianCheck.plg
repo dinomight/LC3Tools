@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: EndianCheck - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66C.tmp" with contents
+[
+/nologo /G6 /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/EndianCheck.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Base.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\EndianCheck\main.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66C.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66D.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/EndianCheck.pdb" /machine:I386 /out:"Release/EndianCheck.exe" 
+.\Release\Base.obj
+.\Release\main.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66D.tmp"
+<h3>Output Window</h3>
+Compiling...
+Base.cpp
+main.cpp
+Linking...
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66F.bat" with contents
+[
+@echo off
+move Release\*.exe ..\Release\Windows_x86\
+del Release\*.* /Q
+del Debug\*.* /Q
+]
+Creating command line "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP66F.bat"
+
+F:\AshFiles\Classes\ECE312\LC3Tools\EndianCheck\Release\EndianCheck.exe
+The system cannot find the file specified.
+Error executing f:\windows\system32\cmd.exe.
+
+
+
+<h3>Results</h3>
+EndianCheck.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

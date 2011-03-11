@@ -1,0 +1,21 @@
+__date__, Define
+__file__, Define
+__line__, Define
+__time__, Define
+__version_3__, Define
+__version__, Define
+char, Label, 4x3022, 4xE
+datasegment, Label, 4x3014, 4x14
+ddr, Define
+dsr, Define
+kbdr, Define
+kbsr, Define
+mcr, Define
+string, Label, 4x3014, 4x0
+text, Label, 4x3024, 4x10
+_main, Extern, 4x3000, 4x2E00
+getc, Extern, 4x40, 4x0
+halt, Extern, 4x48, 4x8
+in, Extern, 4x46, 4x6
+out, Extern, 4x42, 4x2
+puts, Extern, 4x44, 4x4

@@ -1,0 +1,2 @@
+chmod 777 LC3bSimulator
+LC3bSimulator -s $*

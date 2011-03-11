@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>Assembler Tutorial</title>
+</head>
+<body>
+
+<a name="index_lc3binstructions">
+<table cellpadding=10><tr><td><h3>LC-3b Instructions</h3></td><td>(<i><a href="AssemblerTutorial.htm#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+
+<ul>
+	<li>For exact details of what each instruction does and how the fields are used, see the LC-3b ISA documentation.
+	<li>This section is only intended to show you how to program LC-3b for the Assembler syntax and constructs.
+<a name="add">
+<a name="and">
+<a name="not">
+<a name="lshf">
+<a name="rshfl">
+<a name="rshfa">
+	<li>ALU operations
+	<ul>
+		<li>Add/And syntax:
+<ul><pre>
+ADD R2, R2, R1		;R2 = R2 + R1
+AND R2, R2, R1		;R2 = R2 & R1
+</pre></ul>
+		<li>Add/And immediate syntax:
+<ul><pre>
+ADD R2, R1, <i>Imm</i>		;R2 = R1 + Imm
+AND R2, R1, <i>Imm</i>		;R2 = R1 & Imm
+</pre></ul>
+		<li>Not syntax:
+<ul><pre>
+NOT R2, R1		;R2 = ~R1
+</pre></ul>
+		<li>Shift syntax:
+<ul><pre>
+LSHF  R2, R1, <i>Shamt</i>	;R2 = R1 << Shamt
+RSHFL R2, R1, <i>Shamt</i>	;R2 = R1 >> Shamt
+RSHFA R2, R1, <i>Shamt</i>	;R2 = R1 >> Shamt
+</pre></ul>
+		<ul>
+			<li>RHSHFA preserves sign
+		</ul>
+	</ul>
+<a name="lea">
+	<li>Load effective address syntax:
+<ul><pre>
+LEA R6, Base		;R6 &lt;- Base address
+...
+Base:
+</pre></ul>
+	<ul>
+		<li>Use this to initialize a base register.
+		<li>Usually, Base points to the segment which contains the data or instruction target for a subsequent base-register instruction.
+		<ul>
+			<li>See the <a href="AssemblerTutorial.htm#seg">$Seg attribute</a> for an alternate method (<a href="AssemblerTutorial.htm#index_attributes">Symbol Attributes</a> section).
+		</ul>
+	</ul>
+<a name="jsr">
+<a name="jsrr">
+	<li>Subroutine syntax:
+<ul><pre>
+JSR Foo		;R7 &lt;- PC
+LEA R6 Foo	;R6 &lt;- address of Foo
+JSRR R6		;R7 &lt;- PC
+...			;PC is address of <b>next</b> instruction
+Foo:		;Function label
+...
+RET		;PC &lt;- R7
+</pre></ul>
+<a name="br">
+<a name="brn">
+<a name="brz">
+<a name="brp">
+<a name="brnz">
+<a name="brnp">
+<a name="brzp">
+<a name="brnzp">
+	<li>Branch syntax:
+<ul><pre>
+ADD...		;Instruction that sets condition codes
+BRnz Here	;BR followed by
+...		;   (none),n,z,p,nz,np,zp,nzp
+Here:		;Branch target label
+</pre></ul>
+	<ul>
+		<li>BR is the same as BRnzp (always jump).
+		<li>The NZP condition codes are undefined at reset.
+	</ul>
+<a name="jmp">
+	<li>Jump syntax
+<ul><pre>
+LEA R6, Here	;R6 &lt;- address of Here
+JMP R6
+...
+Here:		;Jump target label</pre></ul>
+	<li>By default, R6 is assumed to contain the address of the segment Here is in (see the <a href="#lea">LEA instruction</a>). You can explicitly tell the assembler what R6 contains using Symbol Attributes (see the <a href="AssemblerTutorial.htm#index_attributes">Symbol Attributes</a> section).
+<a name="ret">
+	<li>Subroutine return syntax:
+<ul><pre>
+RET	;This is an alias for JMP R7
+</pre></ul>
+<a name="rti">
+	<li>Return from interrupt syntax:
+<ul><pre>
+RTI
+</pre></ul>
+<a name="nop">
+	<li>No-op syntax:
+<ul><pre>
+NOP
+</pre></ul>
+<a name="trap">
+	<li>Trap syntax (indirect subroutine):
+<ul><pre>
+TRAP TrapVec		;R7 &lt;- PC
+...			;PC is address of <b>next</b> instruction
+TrapVec: Data2 TrapFoo	;Function pointer
+...
+TrapFoo:		;Trap function label
+...
+RET			;PC &lt;- R7
+</pre></ul>
+<a name="ldr">
+<a name="str">
+<a name="ldb">
+<a name="stb">
+<a name="ldi">
+<a name="sti">
+	<li>Base register instructions:
+	<ul>
+		<li>Load syntax:
+<ul><pre>
+LDR R1, R6, MyData
+... 		;R1 &lt;- MEM[MyData address] = 1234
+MyData: DATA2 1234
+</pre></ul>
+		<li>Store syntax:
+<ul><pre>
+STR R1, R6, MyData
+... 		;MEM[MyData address] &lt;- R1
+MyData: DATA2 ?
+</pre></ul>
+		<li>By default, R6 is assumed to contain the address of the segment MyData is in (see the <a href="#lea">LEA instruction</a>). You can explicitly tell the assembler what R6 contains using Symbol Attributes (see the <a href="AssemblerTutorial.htm#index_attributes">Symbol Attributes</a> section).
+		<li>The data word is transferred little-endian:
+		<ul>
+			<li>R1(0:7) &lt;-> MEM[MyData]
+			<li>R1(8:15) &lt;-> MEM[MyData+1]
+		</ul>
+		<li>Load byte syntax
+<ul><pre>
+LDb R1, R6, MyData
+... 		;R1 &lt;- MEM[MyData address] = 12
+MyData: DATA1 12
+</pre></ul>
+		<li>Store byte syntax
+<ul><pre>
+STb R1, R6, MyData
+... 		;MEM[MyData address] &lt;- R1
+MyData: DATA1 ?
+</pre></ul>
+		<li>By default, R6 is assumed to contain the address of the segment MyData is in (see the <a href="#lea">LEA instruction</a>). You can explicitly tell the assembler what R6 contains using Symbol Attributes (see the <a href="AssemblerTutorial.htm#index_attributes">Symbol Attributes</a> section).
+		<li>The lower byte of the register is used:
+		<ul>
+			<li>R1(0:7) &lt;-> MEM[MyData]
+			<li>R1(8:15) &lt;- 0
+		</ul>
+		<li>Load indirect syntax
+<ul><pre>
+LDI R1, R6, MyPointer
+... 		;R1 &lt;- MEM[MEM[MyPointer]] = 1234
+MyPointer: DATA2 MyData
+MyData: DATA2 1234
+</pre></ul>
+		<li>Store indirect syntax
+<ul><pre>
+STI R1, R6, MyPointer
+... 		;MEM[MEM[MyPointer]] &lt;- R1
+MyPointer: DATA2 MyData
+MyData: DATA2 ?
+</pre></ul>
+		<li>By default, R6 is assumed to contain the address of the segment MyPointer is in (see the <a href="#lea">LEA instruction</a>). You can explicitly tell the assembler what R6 contains using Symbol Attributes (see the <a href="AssemblerTutorial.htm#index_attributes">Symbol Attributes</a> section).
+	</ul>
+</ul>
+
+<i>
+&copy; <a href="mailto:%61%77%69%73%65%40%63%72%68%63%2e%75%69%75%63%2e%65%64%75">Ashley Wise</a> 2003<br>
+</i>
+</body>
+</html>

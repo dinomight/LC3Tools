@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>LC-3 and LC-3b Tools Features</title>
+</head>
+<body>
+<center><h1>LC-3 and LC-3b Tools Features - Ashley Wise</h1></center>
+<center><i>Return to <a href="LC3Tools.htm">Main Page</a>, <a href="LC3ToolsHelp.htm">Help Contents</a></i></center>
+<p>
+<ul>
+	<li>All of these tools build and run on any platform.
+	<ul>
+		<li>Executables for Windows, Redhat Linux, and Solaris are provided.
+	</ul>
+	<li>A new assembler syntax is provided to allow for a plethora of useful and advanced pre-compiler, language, and assembler features.
+	<ul>
+		<li>The tools are still 100% compatible with the older LC-3 syntax used in the book.
+		<li>You can even mix in new features with the old syntax if you desire.
+	</ul>
+	<li>Creator Ashley Wise provides full and prompt support of these tools.
+</ul>
+
+<a name="index">
+<center><h3>Features Index</h3></center>
+
+<ul>
+	<li><a href="#index_ashide">AshIDE 1 Features</a>
+	<li><a href="#index_assembler">Assembler 3 Features</a>
+	<li><a href="#index_simulator">Simulator 1 Features</a>
+</ul>
+
+
+<a name="index_ashide">
+<table cellpadding=10><tr><td><h3>AshIDE 1 Features</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+<ul>
+	<li>Supports all the advanced professional-level features of the Assembler and Simulator in an easy to use visual GUI.
+	<li>As easy to use as a text editor with a compile button.
+	<li>Syntax-highlighting text editor built in.
+	<li>Multi-file project management.
+	<li>Supports simultaneous LC-3 and LC-3b code in a project (only simulate one at a time).
+	<li>Double-click on compile and build error messages to open the file and highlight the line.
+	<li>Powerful, easy to use Visual debugger.
+	<li>Steps through source code, highlighting the next line to execute in the file.
+	<li>Steps through disassembly, highlighting the next address to execute in the disassembly.
+	<li>Run to cursor supported in source and disassembly.
+	<li>Non-blocking console I/O for simulating programs.
+	<li>Visually edit data and register values during simulation.
+	<li>View data, instructions, memory, and registers in multiple formats during execution.
+	<li>Right-click anywhere in a file or disassembly to run to cursor or view the value of the variable and register at the cursor.
+	<li>Double-click on the visual call stack to go open the file and highlight the call.
+	<li>Additions to the architecture and ISA are automatically reflected in the GUI.
+</ul>
+
+<a name="index_assembler">
+<table cellpadding=10><tr><td><h3>Assembler 3 Features</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+<ul>
+	<li>Supports advanced professional-level features including:
+	<ul>
+		<li>Nested structures and arrays
+		<li>Recursive function macros
+		<li>Conditional compilation
+		<li>Multi-file linking
+		<li>8- to 64-bit integral and floating point data
+		<li>Powerful symbol usage and symbolic addressing capabilities
+	</ul>
+	<li>New segmented architecture allows greater addressing flexibility
+	<ul>
+		<li>Labels and Symbols can be used for everything now
+		<ul>
+			<li>Anywhere a number is used
+			<li>Can be forward referenced
+			<li>Use with base-register instructions
+			<li>Base-register functions use segment-relative symbolic addressing by default for easier coding
+		</ul>
+		<li>Never have to hard code an address or offset again
+		<ul>
+			<li>Can modify assembly without having to update hardcoded addresses and offsets
+			<li>Allows you to add compiler optimizations that move code and data around
+			<ul>
+				<li>Source code supports a template for adding in optimization algorithms
+			</ul>
+		</ul>
+		<li>Dynamic program origin and segment placements, so you don't even have to hardcode addresses for those
+		<li>Still supports flat single-segment model of the original language.
+	</ul>
+	<li>Built-in disassembler works with object and binary files and optional symbol tables
+	<ul>
+		<li>Supports dynamic label generation.
+	</ul>
+	<li>Supports output to object file, symbol table (comma-delimited spreadsheet can be sorted in Excel), assembly file, and VHDL vectors.
+	<li>No dependence on newlines or case in assembly code allows for flexible coding styles.
+	<li>Intelligent error and warning system
+	<ul>
+		<li>Provides detailed messages, including filename and line number, about nearly all possible problems
+		<li>Also provides info that points you to other places in the code that are related to the error.
+	</ul>
+	<li>Powerful and flexible symbol attributes allow a symbol to resolve to:
+	<ul>
+		<li>An absolute address
+		<li>Segment-relative offset
+		<li>Structure and array base-relative index
+		<li>The address of the segment a label is in
+		<li>Size of data or segments the label references.
+		<li>Length of the array the label references.
+	</ul>
+	<li>Support for 8-, 16-, 32-, and 64-bit integral and floating point data.
+	<ul>
+		<li>Floating point data allows explicit declaration of infinity and not-a-number.
+		<li>Support for binary, octal, decimal, and hexadecimal integers and floats (radix is the same base as the number).
+		<li>Support for uninitialized data locations.
+	</ul>
+	<li>Support for all C-style character escape sequences in character and string constants.
+	<li>Support for data arrays. Array length can be dynamically determined from the initialization list if not provided.
+	<ul>
+		<li>Strings can be mixed with other data in the comma-delimited array initialization list.
+		<li>Symbols can reference array elements using the [] syntax.
+	</ul>
+	<li>Support for C-style structures
+	<ul>
+		<li>Structures can have instructions, data arrays and other structure instances in them as well as labels and data
+		<li>Permits any complex data or code structure to be defined
+		<li>Support for structure arrays and structure initialization lists
+		<li>Any "Value" in a structure member can be initialized, including instruction operands
+		<li>Symbols can reference structure members using the StructName.MemberLabel syntax.
+	</ul>
+	<li>Symbolic array index and structure member access can be combined to access any element in a complex data structure.
+	<li>Powerful pre-compiler directives including
+	<ul>
+		<li>Align directive allows program elements (labels, instructions, and data) to be aligned on an arbitrary number-of-bytes boundary
+		<ul>
+			<li>Not limited to powers of 2
+		</ul>
+		<li>Include directive allows header or code files to be inserted into the program.
+		<ul>
+			<li>Multiple files/programs can be linked together into a single memory image.
+			<li>Error and warning messages will show the include stack.
+		</ul>
+		<li>Define directive allows a symbol to represent any Token (keyword, number, symbol, string, operator, etc.).
+		<li>Global defines (applied to every input file) can be specified in the command-line arguments or IDE.
+		<li>Standard C pre-defines are included, including version, filename, current line number, time, and date.
+		<li>Conditional compilation supported with IFDEF/IFNDEF/ELSE/END directives.
+		<li>Support for function macros and recursive expansion.
+		<li>Extern directive allows external linkage with symbols in other files/programs.
+	</ul>
+	<li>Source-code has built-in optimization framework and a code infrastructure that allows easy modifications.
+</ul>
+
+<a name="index_simulator">
+<table cellpadding=10><tr><td><h3>Simulator 1 Features</h3></td><td>(<i><a href="#index">Index</a>,<a href="LC3ToolsHelp.htm">Contents</a></i>)</td></tr></table>
+<ul>
+	<li>Supports advanced professional-level features including
+	<ul>
+		<li>File-, line number-, and code-level simulation of input assembly files
+		<li>Step-through- and breakpoint-based debugging methodologies
+		<li>Cycle-level microarchitecture simulation
+		<li>Full read/write access to all registers and memory arrays
+		<li>Supports edit-and-continue
+		<li>Saving/loading the simulator state
+		<li>Saving/loading memory images to/from file
+	</ul>
+	<li>Supports both a "logical" data view and a "physical" memory view.
+	<li>CTRL-C can be used to break or pause simulation and enter the command mode.
+	<li>The command mode is customizable.
+	<li>Full-featured help system gives syntax and usage information on all simulator commands.
+	<li>Command-line version features (corresponding graphical IDE features listed in next section)
+	<ul>
+		<li>Displays the file, line number, address, and possible label along with the instruction (including correct symbol usage) in the current execution list.
+		<li>"GO" can simulate indefinitely or for a specific number of instructions or clock cycles.
+		<li>GOTO can simulate to a line number in a source file or an instruction label or address.
+		<li>Supports a call-stack display, as well as GOIN, GOOVER, and GOOUT commands for simulating into, over, and out of functions.
+	</ul>
+	<li>Labels and Symbols from the source files can be used in any simulator command that uses an address.
+	<li>Displays all possible information and data
+	<ul>
+		<li>Can display a list disassembled instructions.
+		<li>Can automatically display a list of data as the datatype it was declared as in the source file, or the display can be forced to a specific datatype.
+		<li>Supports data array display similar to the MSVC memory window, including a character view.
+		<li>Supports display of data from any architectural memory.
+		<li>Can display entire register sets as well as individual registers. Supports all architectural registers.
+	</ul>
+	<li>Full-spectrum of breakpoint options
+	<ul>
+		<li>Instruction breakpoints can be set based on line numbers in a source file, or on instruction labels or addresses.
+		<li>Data, memory, and register breakpoints can break on any data event, including read, write, change, and value.
+		<li>Multiple values can be specified for a VALUEEVENT data, memory, or register breakpoint.
+	</ul>
+	<li>Supports limited edit and continue.
+	<ul>
+		<li>A list of elements (instructions, data, and structure instances in assembler syntax) can be written into any source file line number or data address. These elements can reference symbols from the other programs.
+		<li>You can write values to any register.
+	</ul>
+	<li>Supports full instruction and customizable register tracing during simulation. Outputs in a tab-delimited spreadsheet format that can be sorted in Excel.
+	<li>Runtime error checking dynamically checks for possible problems during execution and breaks to warn you about them
+	<ul>
+		<li>Executing instructions that weren't defined in the source files
+		<li>infinite subroutine recursion
+		<li>Unmatched subroutine returns
+		<li>These checks can be disabled
+	</ul>
+	<li>The microarchitecture can generate exceptions which will break execution.
+	<li>Interrupts
+	<ul>
+		<li>The user can manually signal interrupts to the processor.
+		<li>Keyboard interrupt automatically supported
+	</ul>
+	<li>Supports saving and loading the simulation state to and from a file.
+	<li>Supports saving and loading memory images to and from a file.
+	<li>A program number can be specified before symbols and line numbers in order to remove ambiguity if the symbol is defined in multiple input files/programs.
+	<li>Supports memory-mapped I/O. Specifically, console input and output.
+	<li>AshOS operating system is provided.
+	<li>Source code infrastructure that allows easy modifications.
+</ul>
+
+<i>
+&copy; <a href="mailto:%61%77%69%73%65%40%63%72%68%63%2e%75%69%75%63%2e%65%64%75">Ashley Wise</a> 2003<br>
+</i>
+</body>
+</html>

@@ -1,0 +1,59 @@
+New Assembler 3.0!
+
+There are many new useful additions to this version of the
+assembler. All of them are explained in detail in the newly
+updated Assembler Tutorial. These new features should make it
+much easier to write the rigorous test code you'll need to
+debug your MP3 designs.
+
+All of the files are available at:
+http://www.ews.uiuc.edu/~awise/ece312.html
+
+Please read the new Assembler Tutorial first, as it likely
+answers most questions. I'm happy to give more explaination or
+assembly code examples. (The LC-3b ISA documentation never has
+been a reference for Assembler syntax.)
+
+1. Complex data structures can be defined and used similar to C
+   'struct's, but with more options, such as default data which
+   can make defining large blocks of data and code much easier,
+   and the ability to put instructions in a structure.
+2. DEFINE can use any token, not just a number.
+3. Function MACROs are implemented, making it easy to create
+   repetitive code or data.
+4. Conditional compilation via IFDEF, IFNDEF, ELSE directives
+   similar to C/C++.
+5. Symbols can be used to index arrays and access struct members
+   (I.e., MyData[2].Member[3].First)
+6. New symbol attributes can be used to get the segment a label
+   is in, the size and length of a structure or array a label
+   points to, and to specify address relativity.
+7. Multiple files can be linked together into a larger memory
+   image, and can access each others' symbols through EXTERN
+   symbols, similar to C/C++ externs.
+8. Files can be INCLUDED into other files similar to C/C++
+   #include.
+9. A disassembler is built in, which can convert a binary memory
+   image into an assembly program with labels.
+10. New command line options and new names for output files.
+11. New data types, including integers up to 64-bits, and 1-,
+    2-, 4-, and 8-byte floating point formats. Useful for seeing
+    how FP numbers are encoded.
+12. Uninitialized data is not output to VHDL, so you have less
+    code to copy/paste, and also will help discover bugs since
+    the data will be an 'X' instead of '0'.
+13. Data alignment can be specified via a compiler directive.
+
+I've rigorously tested Assembler 3, but there may still be a bug
+or two. E-mail me any bugs, comments, or suggestions. I have
+verified that all previous MP handin and competition code
+produces identical VHDL output (after being run through the
+converter).
+
+I no longer have easy newsgroup access, so any posts about using
+the assembler (or requests for code) should be copied to my
+e-mail.
+
+Ashley Wise
+Eternal ECE312 GURU
+awise@crhc.uiuc.edu

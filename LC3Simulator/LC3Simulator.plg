@@ -1,0 +1,60 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: LC3Simulator - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP1B40.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/LC3Simulator.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\LC3Assembler\AsmUI.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\LC3Simulator\SimUI.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP1B40.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP1B41.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/LC3Simulator.pdb" /debug /machine:I386 /out:"Debug/LC3Simulator.exe" /pdbtype:sept 
+.\Debug\AsmConvertLC3.obj
+.\Debug\AsmUI.obj
+.\Debug\LC3Arch.obj
+.\Debug\LC3ISA.obj
+.\Debug\main.obj
+.\Debug\SimUI.obj
+.\Debug\Architecture.obj
+.\Debug\Memory.obj
+.\Debug\Pipeline.obj
+.\Debug\Register.obj
+.\Debug\AsmLexer.obj
+.\Debug\AsmToken.obj
+.\Debug\Base.obj
+.\Debug\Data.obj
+.\Debug\Disassembler.obj
+.\Debug\Element.obj
+.\Debug\Label.obj
+.\Debug\Lexer.obj
+.\Debug\Number.obj
+.\Debug\Program.obj
+.\Debug\Segment.obj
+.\Debug\Symbol.obj
+.\Debug\SymbolTable.obj
+.\Debug\Token.obj
+.\Debug\HighlightLexer.obj
+.\Debug\HighlightAsmLexer.obj
+.\Debug\AsmParser.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP1B41.tmp"
+<h3>Output Window</h3>
+Compiling...
+AsmUI.cpp
+SimUI.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+LC3Simulator.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

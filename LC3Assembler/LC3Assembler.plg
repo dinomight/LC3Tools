@@ -1,0 +1,92 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: LC3Assembler - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP714.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/LC3Assembler.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\AsmConvertLC3\AsmConvertLC3.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\LC3Assembler\AsmUI.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\LC3Assembler\LC3ISA.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\LC3Assembler\main.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\AsmLexer.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\AsmParser.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\AsmToken.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Base.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Data.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Disassembler.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Element.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Label.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Number.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Program.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Segment.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\Symbol.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\Assembler\SymbolTable.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\HighlightLexer.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\JMTLib.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\Lexer.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\Token.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP714.tmp" 
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP715.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/LC3Assembler.pdb" /debug /machine:I386 /out:"Debug/LC3Assembler.exe" /pdbtype:sept 
+.\Debug\AsmConvertLC3.obj
+.\Debug\AsmUI.obj
+.\Debug\LC3ISA.obj
+.\Debug\main.obj
+.\Debug\AsmLexer.obj
+.\Debug\AsmParser.obj
+.\Debug\AsmToken.obj
+.\Debug\Base.obj
+.\Debug\Data.obj
+.\Debug\Disassembler.obj
+.\Debug\Element.obj
+.\Debug\Label.obj
+.\Debug\Number.obj
+.\Debug\Program.obj
+.\Debug\Segment.obj
+.\Debug\Symbol.obj
+.\Debug\SymbolTable.obj
+.\Debug\HighlightLexer.obj
+.\Debug\JMTLib.obj
+.\Debug\Lexer.obj
+.\Debug\Token.obj
+]
+Creating command line "link.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP715.tmp"
+<h3>Output Window</h3>
+Compiling...
+AsmConvertLC3.cpp
+AsmUI.cpp
+LC3ISA.cpp
+main.cpp
+AsmLexer.cpp
+AsmParser.cpp
+AsmToken.cpp
+Base.cpp
+Data.cpp
+Disassembler.cpp
+Element.cpp
+Label.cpp
+Number.cpp
+Program.cpp
+Segment.cpp
+Symbol.cpp
+SymbolTable.cpp
+HighlightLexer.cpp
+JMTLib.cpp
+Lexer.cpp
+Token.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+LC3Assembler.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

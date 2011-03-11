@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: JMTLib - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP713.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /Fp"JMTLib___Win32_Debug/JMTLib.pch" /YX /Fo"JMTLib___Win32_Debug/" /Fd"JMTLib___Win32_Debug/" /FD /GZ  /c 
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\HighlightLexer.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\JMTLib.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\Lexer.cpp"
+"F:\AshFiles\Classes\ECE312\LC3Tools\JMTLib\Token.cpp"
+]
+Creating command line "cl.exe @F:\DOCUME~1\JEDIMA~1\LOCALS~1\Temp\RSP713.tmp" 
+Creating command line "link.exe -lib /nologo /out:"JMTLib___Win32_Debug\JMTLib.lib"  .\JMTLib___Win32_Debug\HighlightLexer.obj .\JMTLib___Win32_Debug\JMTLib.obj .\JMTLib___Win32_Debug\Lexer.obj .\JMTLib___Win32_Debug\Token.obj "
+<h3>Output Window</h3>
+Compiling...
+HighlightLexer.cpp
+JMTLib.cpp
+Lexer.cpp
+Token.cpp
+Creating library...
+
+
+
+<h3>Results</h3>
+JMTLib.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

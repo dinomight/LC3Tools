@@ -1,0 +1,17 @@
+unknown
+bad
+;comment
+\n
+'c'
+"string"
+123
+12.3
+identifier
+[.]
+ORIGIN
+SEGREL
+expand
+DATA2
+ISA
+trap
+r6

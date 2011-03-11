@@ -1,0 +1,301 @@
+//	Copyright 2003 Ashley Wise
+//	University Of Illinois Urbana-Champaign
+//	awise@crhc.uiuc.edu
+
+typedef union LC3bInstruction_t
+{
+	Word Binary;
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR		: 3;
+		Word Other	: 6;
+	} Base;
+#else
+	struct
+	{
+		Word Other	: 6;
+		Word SR		: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Base;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR1	: 3;
+		Word UseImm	: 1;
+		Word Zeros	: 2;
+		Word SR2	: 3;
+	} Add;
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR1	: 3;
+		Word UseImm	: 1;
+		Word Imm5	: 5;
+	} AddImm;
+#else
+	struct
+	{
+		Word SR2	: 3;
+		Word Zeros	: 2;
+		Word UseImm	: 1;
+		Word SR1	: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Add;
+	struct
+	{
+		Word Imm5	: 5;
+		Word UseImm	: 1;
+		Word SR1	: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} AddImm;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR1	: 3;
+		Word UseImm	: 1;
+		Word Zeros	: 2;
+		Word SR2	: 3;
+	} And;
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR1	: 3;
+		Word UseImm	: 1;
+		Word Imm5	: 5;
+	} AndImm;
+#else
+	struct
+	{
+		Word SR2	: 3;
+		Word Zeros	: 2;
+		Word UseImm	: 1;
+		Word SR1	: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} And;
+	struct
+	{
+		Word Imm5	: 5;
+		Word UseImm	: 1;
+		Word SR1	: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} AndImm;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word N		: 1;
+		Word Z		: 1;
+		Word P		: 1;
+		Word Offset9	: 9;
+	} Br;
+#else
+	struct
+	{
+		Word Offset9	: 9;
+		Word P		: 1;
+		Word Z		: 1;
+		Word N		: 1;
+		Word Opcode	: 4;
+	} Br;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word JsrType	: 1;
+		Word Offset11	: 11;
+	} Jsr;
+#else
+	struct
+	{
+		Word Offset11	: 11;
+		Word JsrType	: 1;
+		Word Opcode	: 4;
+	} Jsr;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word JsrType	: 1;
+		Word Zero2	: 2;
+		Word BaseR	: 3;
+		Word Zero6	: 6;
+	} Jsrr;
+#else
+	struct
+	{
+		Word Zero6	: 6;
+		Word BaseR	: 3;
+		Word Zero2	: 2;
+		Word JsrType	: 1;
+		Word Opcode	: 4;
+	} Jsrr;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word Zeros	: 4;
+		Word TrapVect8	: 8;
+	} Trap;
+#else
+	struct
+	{
+		Word TrapVect8	: 8;
+		Word Zeros	: 4;
+		Word Opcode	: 4;
+	} Trap;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word Zero3	: 3;
+		Word BaseR	: 3;
+		Word Zero6	: 6;
+	} Jmp;
+#else
+	struct
+	{
+		Word Zero6	: 6;
+		Word BaseR	: 3;
+		Word Zero3	: 3;
+		Word Opcode	: 4;
+	} Jmp;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word Offset9	: 9;
+	} Lea;
+#else
+	struct
+	{
+		Word Offset9	: 9;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Lea;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word BaseR	: 3;
+		Word Offset6	: 6;
+	} Ld;
+#else
+	struct
+	{
+		Word Offset6	: 6;
+		Word BaseR	: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Ld;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word SR		: 3;
+		Word BaseR	: 3;
+		Word Offset6	: 6;
+	} St;
+#else
+	struct
+	{
+		Word Offset6	: 6;
+		Word BaseR	: 3;
+		Word SR		: 3;
+		Word Opcode	: 4;
+	} St;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR		: 3;
+		Word A		: 1;
+		Word D		: 1;
+		Word Imm4	: 4;
+	} Shf;
+#else
+	struct
+	{
+		Word Imm4	: 4;
+		Word D		: 1;
+		Word A		: 1;
+		Word SR		: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Shf;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word DR		: 3;
+		Word SR		: 3;
+		Word Ones	: 6;
+	} Not;
+#else
+	struct
+	{
+		Word Ones	: 6;
+		Word SR		: 3;
+		Word DR		: 3;
+		Word Opcode	: 4;
+	} Not;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word Zero3	: 3;
+		Word BaseR	: 3;
+		Word Zero6	: 6;
+	} Ret;
+#else
+	struct
+	{
+		Word Zero6	: 6;
+		Word BaseR	: 3;
+		Word Zero3	: 3;
+		Word Opcode	: 4;
+	} Ret;
+#endif
+#ifdef BIG_ENDIAN_BUILD
+	struct
+	{
+		Word Opcode	: 4;
+		Word Zeros	: 12;
+	} Rti;
+#else
+	struct
+	{
+		Word Zeros	: 12;
+		Word Opcode	: 4;
+	} Rti;
+#endif
+} LC3bInstruction;

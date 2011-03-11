@@ -1,0 +1,148 @@
+<pre>
+//  Copyright 2003 Ashley Wise
+//  University Of Illinois Urbana-Champaign
+//	awise@crhc.uiuc.edu
+
+Give assembly file names as parameters
+   -3            Disable support for older LC-3 syntax (LC-3 version only)
+   -a            Prints AST to Filename.AST.asm
+   -b            Dumps memory image to Filename.obj
+   -c            Prints VHDL to stdout
+   -d SymbolName Token\n";
+                 Define a symbol and its value for all input files.
+   -h or -?      Prints this help
+   -o            Turns on optimizations
+   -s            Prints symbol table Filename.Symbols.csv
+   -t            Prints tokens to Filename.Tokens.txt
+   -v Filename   Specifies VHDL output file name
+   -w width      Specify width of console text
+
+ASSEMBLER LANGUAGE QUICK REFERENCE
+
+To make it easy to write quick, simple programs, both the origin
+and segment directives can be ommited and it will create a default
+segment starting at address 0.
+
+Comments (;) are ignored.
+
+Everything is case-insensitive (except character/string constants).
+
+Grammar specification key:
+()                  =   Precedence
+[]                  =   Optional
+'[', ']', '(', ')'  =   Bracket/Parenthesis operator
+*                   =   Any number of instances, including zero
++                   =   Any number of instances, excluding zero
+|                   =   Or
+-                   =   Through
+
+It recognizes a generic pre-compiler language in the following grammar:
+
+Include         ->  INCLUDE String
+DefineDef       ->  DEFINE Symbol SubToken
+DefineUse       ->  Symbol
+MacroDef        ->  MACRO Symbol '(' [ParamList] ')' SubToken* END
+MacroUse        ->  Symbol '(' [UseParamList] ')'
+ParamList       ->  Symbol [, ParamList]
+UseParamList    ->  Token [, UseParamList]
+IfDef           ->  IFDEF Symbol Token* [ELSE Token*] END
+IfNDef          ->  IFNDEF Symbol Token* [ELSE Token*] END
+SubToken        ->  (Anything except pre-compiler directives)
+Token           ->  (Anything)
+
+It recognizes a generic assembly language in the following grammar:
+
+Program         ->  [Definition] [Origin] SegmentList [Definition] 
+Origin          ->  ORIGIN [Number]
+SegmentList     ->  [Definition] SEGMENT [Number] [ElementList] [SegmentList]
+ElementList     ->  [Definition] Element [ElementList]
+Definition      ->  (Extern | StructDef)
+Extern          ->  EXTERN Symbol
+StructDef       ->  STRUCT Symbol [ElementList] END
+Element         ->  Label | Instruction | Data | Align
+
+Label           ->  Symbol :
+Instruction     ->  (Defined by ISA)
+Data            ->  Data1 | Data1a | Data2 | Data2a | Data4 | Data4a | Data8 | Data8a
+                | Real1 | Real1a | Real2 | Real2a | Real4 | Real4a | Real8 | Real8a
+                | Struct | Structa
+Align           ->  ALIGN Number
+DataX           ->  DATAX DataValue
+DataXa          ->  DATAX '[' [Number] ']' DataList
+RealX           ->  REALX DataValue
+RealXa          ->  REALX '[' [Number] ']' DataList
+Struct          ->  Symbol StructValue
+Structa         ->  Symbol '[' [Number] ']' StructList
+DataList        ->  (DataValue | String) [, DataList]
+DataValue       ->  (Number | SuperSymbol | ?)
+StructList      ->  StructValue [, StructList]
+StructValue     ->  (? | { DataList } )
+SuperSymbol     ->  Symbol [AccessList] [$ Attribute]
+AccessList      ->  ArrayAccess | MemberAccess [AccessList]
+ArrayAccess     ->  '[' Number ']'
+MemberAccess    ->  . Symbol
+Attribute       ->  Abs | SegRel | Size | Len | Seg
+
+String          ->  "(Same as C/C++ strings and constants, except that null-terminator is not implied)"
+Character       ->  '(Same as C/C++ characters and constants)'
+Symbol          ->  (_a-zA-Z)(_a-zA-Z0-9)* (Same as C/C++ identifiers)
+Number          ->  (Integer | Real | Character)
+Integer         ->  (Binary | Octal | Decimal | Hex)
+Real            ->  (BinaryR | OctalR | DecimalR | HexR)
+Binary          ->  [+|-] 1x(0|1)+
+Octal           ->  [+|-] 3x(0-7)+
+Decimal         ->  [+|-] (0-9)+
+Hex             ->  [+|-] 4x(0-9a-f)+
+BinaryR         ->  [+|-] 1x( (0|1)*.(0|1)+ | (0|1)+[.(0|1)*] ) [ (e|g)[+|-]( (0|1)+|INF|NAN ) ]
+OctalR          ->  [+|-] 3x( (0-7)*.(0-7)+ | (0-7)+[.(0-7)*] ) [ (e|g)[+|-]( (0-7)+|INF|NAN ) ]
+DecimalR        ->  [+|-] ( (0-9)*.(0-9)+ | (0-9)+[.(0-9)*] ) [ (e|g)[+|-]( (0-9)+|INF|NAN ) ]
+HexR            ->  [+|-] 4x( (0-9a-f)*.(0-9a-f)+ | (0-9a-f)+[.(0-9a-f)*] ) [ g[+|-]( (0-9a-f)+|INF|NAN ) ]
+
+
+LC3bInstruction ->
+    ADD Register, Register, (Register | Number | SuperSymbol)
+    AND Register, Register, (Register | Number | SuperSymbol)
+    BR[|p|z|zp|n|np|nz|nzp] (Number | SuperSymbol)
+    JSR (Number | SuperSymbol)
+    JSRR Register
+    TRAP (Number | SuperSymbol)
+    JMP Register
+    LEA Register, (Number | SuperSymbol)
+    LD[R|b|I] Register, Register, (Number | SuperSymbol)
+    ST[R|b|I] Register, Register, (Number | SuperSymbol)
+    NOT Register, Register
+    (LSHF | RSHFL | RSHFA) Register, Register, (Number | SuperSymbol)
+    RET
+    NOP
+    RTI
+
+LC3Instruction ->
+    ADD Register, Register, (Register | Number | SuperSymbol)
+    AND Register, Register, (Register | Number | SuperSymbol)
+    BR[|p|z|zp|n|np|nz|nzp] (Number | SuperSymbol)
+    JSR (Number | SuperSymbol)
+    JSRR Register
+    TRAP (Number | SuperSymbol)
+    JMP Register
+    LEA Register, (Number | SuperSymbol)
+    LD[I] Register, (Number | SuperSymbol)
+    LDR Register, Register, (Number | SuperSymbol)
+    ST[I] Register, (Number | SuperSymbol)
+    STR Register, Register, (Number | SuperSymbol)
+    NOT Register, Register
+    RET
+    NOP
+    RTI
+
+Register        ->  R(0-9)
+
+
+
+TODO:
+Deferred to version 4:
+1. Separate address Word size and Instruction word size.
+2. Use more than regular labels from a symbol file when disassembling.
+3. Allow unresolved externs in .obj files for future linkage.
+4. PC-relative symbol attribute.
+5. Support segment addresses in object files.
+</pre>

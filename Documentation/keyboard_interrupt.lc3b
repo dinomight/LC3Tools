@@ -1,0 +1,44 @@
+;***************************************************
+;Sample program to install our own keyboard handler.
+;Simulate the program, and while the code is
+;spinning on the Halt, you can enter characters
+;and strings into the Console I/O Window and
+;the handler will get invoked once for each
+;character entered.
+;***************************************************
+
+INCLUDE "../AshOS/AshOS_LC3b.ah"
+ORIGIN
+SEGMENT
+
+Code: SEGMENT
+	;Load the address of the IVT into R2
+	lea r2, Data
+	ldr r2, r2, IVT
+	;Store the address of our handler function
+	;into the Keyboard vector of the IVT
+	lea r1, KeyboardHandler
+	str r1, r2, Keyboard
+Halt:
+	br Halt
+
+Data: SEGMENT
+IVT: DATA2 InterruptVectorTable
+KBmessage: DATA1[] "Keyboard received: \0"
+KBEnd: DATA1[] "\n\0"
+ALIGN 2
+
+;*************************************************
+;Keyboard interrupt handler
+;Simply gets the character from the keyboard
+;and outputs a message to show what it got.
+;***************************************************
+Handlers: SEGMENT
+KeyboardHandler:
+	lea r0, KBmessage
+	trap PUTS
+	trap GETC
+	trap OUT
+	lea r0, KBEnd
+	trap PUTS
+	rti

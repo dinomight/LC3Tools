@@ -1,0 +1,12 @@
+origin	segment
+origini	segmentn
+trap 4x23
+into
+in_
+in2
+trap 4x23 trap 4x21
+trap 4x23
+trap 4x21
+extern
+
+1000

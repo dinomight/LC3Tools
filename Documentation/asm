@@ -1,0 +1,2 @@
+chmod 777 LC3bAssembler
+LC3bAssembler -v -s $*
