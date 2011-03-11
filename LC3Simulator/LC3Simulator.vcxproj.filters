@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d4690dcb-3e40-45e5-aaca-4f7a51fc8acc}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6c9f4d2d-8901-429e-a10a-91a61872580d}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Sim Src Files">
+      <UniqueIdentifier>{a782f1ed-c613-4852-9ec8-0556dfa3a9db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sim Hdr Files">
+      <UniqueIdentifier>{a35f36b7-019f-4095-800f-e177e2b3b886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm Src Files">
+      <UniqueIdentifier>{54235c4b-dc0c-426f-9aaa-aeb668be85a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm Hdr Files">
+      <UniqueIdentifier>{234c43b1-d80a-4783-8625-5bfcfa34f63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b44fe41f-f8f3-4209-8cd9-3bc297d8c842}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="JMTLib">
+      <UniqueIdentifier>{9117c3ba-716f-4ccf-ac99-6cb387b52dbe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AsmConvertLC3\AsmConvertLC3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3Assembler\AsmUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LC3Arch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3Assembler\LC3ISA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Architecture.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Memory.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Pipeline.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Register.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Simulator.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmLexer.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmParser.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmToken.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Assembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Base.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Data.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Disassembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Element.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Expander.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Label.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Number.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Program.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Segment.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Symbol.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\SymbolTable.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\HighlightLexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\JMTLib.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Lexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Token.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AsmConvertLC3\AsmConvertLC3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3Assembler\AsmUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LC3Arch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3Assembler\LC3ISA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Architecture.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Memory.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Pipeline.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Register.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Simulator.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmLexer.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmParser.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmToken.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Assembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Base.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Data.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Disassembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Element.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Expander.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Label.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Number.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Program.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Segment.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Symbol.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\SymbolTable.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\HighlightLexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\JMTLib.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Lexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Token.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\LC3Assembler\LC3ISA.def">
+      <Filter>Source Files</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>

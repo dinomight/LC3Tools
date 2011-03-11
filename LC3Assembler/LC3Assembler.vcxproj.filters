@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ffd20bd5-67bc-4f02-83aa-cf3e04f443d7}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{f7ad047b-c5c8-4050-b3f5-95f6d4a4a066}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Asm Src Files">
+      <UniqueIdentifier>{43cea2de-bca8-4368-a1c4-07a301630088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm Hdr Files">
+      <UniqueIdentifier>{a9523df5-eccc-4fe2-9bd2-f8cf8756b05a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b1703f53-2b9e-475b-a98b-c9c824ac9b71}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="JMTLib">
+      <UniqueIdentifier>{289511ef-c111-4e90-8ce4-a6e0fc2dd7e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AsmConvertLC3\AsmConvertLC3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsmUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LC3ISA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmLexer.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmParser.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmToken.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Assembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Base.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Data.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Disassembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Element.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Expander.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Label.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Number.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Program.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Segment.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Symbol.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\SymbolTable.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\HighlightLexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\JMTLib.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Lexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Token.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AsmConvertLC3\AsmConvertLC3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsmUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LC3ISA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmLexer.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmParser.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmToken.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Assembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Base.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Data.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Disassembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Element.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Expander.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Label.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Number.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Program.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Segment.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Symbol.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\SymbolTable.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\HighlightLexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\JMTLib.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Lexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Token.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="LC3ISA.def">
+      <Filter>Source Files</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3b497991-9cfb-454a-9e13-1fa531e76935}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ec502575-ac98-4615-8a67-36e4a19be1f3}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Asm Src Files">
+      <UniqueIdentifier>{d58d4a8e-cfdc-408d-903b-50c059be667b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm Hdr Files">
+      <UniqueIdentifier>{0c57de52-1f1f-496a-90e4-c64cb971b9fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LC3 Src Files">
+      <UniqueIdentifier>{f57a95b4-f146-478b-895e-97c226883283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LC3 Hdr Files">
+      <UniqueIdentifier>{3f9b161a-fc8e-4bac-9b7f-150206bb11ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LC3b Src Files">
+      <UniqueIdentifier>{3ba9579a-d4a0-4c38-b7b8-28c5f09cec4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LC3b Hdr Files">
+      <UniqueIdentifier>{c09a5626-d2b0-4315-b08a-a308549b5396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sim Src Files">
+      <UniqueIdentifier>{87c2d4a7-6836-4e74-92f4-cf2f54897d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sim Hdr Files">
+      <UniqueIdentifier>{7835837e-1148-400d-ab5f-efe69c80049c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1a4b42e7-8d82-4e96-be83-6b610b1c1cfb}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="JMTLib">
+      <UniqueIdentifier>{0da29bb2-fca7-42fe-80b2-69820c21461c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BreakpointWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CallStackWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataValuesWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisassemblyWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FilesWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionsWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LC3bFileWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LC3FileWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryBytesWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramsWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectLexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectToken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadOnlyEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistersWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulatorWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteDataWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteRegisterWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmLexer.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmParser.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\AsmToken.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Assembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Base.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Data.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Disassembler.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Element.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Expander.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Label.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Number.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Program.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Segment.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\Symbol.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assembler\SymbolTable.cpp">
+      <Filter>Asm Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AsmConvertLC3\AsmConvertLC3.cpp">
+      <Filter>LC3 Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3Simulator\LC3Arch.cpp">
+      <Filter>LC3 Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3Assembler\LC3ISA.cpp">
+      <Filter>LC3 Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3bSimulator\LC3bArch.cpp">
+      <Filter>LC3b Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LC3bAssembler\LC3bISA.cpp">
+      <Filter>LC3b Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Architecture.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Memory.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Pipeline.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Register.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulator\Simulator.cpp">
+      <Filter>Sim Src Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\HighlightLexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\JMTLib.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Lexer.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JMTLib\Token.cpp">
+      <Filter>JMTLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BreakpointWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CallStackWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataValuesWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisassemblyWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilesWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionsWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LC3bFileWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LC3FileWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryBytesWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramsWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Project.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectLexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectToken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadOnlyEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistersWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulatorWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteDataWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteRegisterWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmLexer.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmParser.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\AsmToken.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Assembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Base.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Data.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Disassembler.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Element.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Expander.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Label.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Number.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Program.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Segment.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\Symbol.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assembler\SymbolTable.h">
+      <Filter>Asm Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AsmConvertLC3\AsmConvertLC3.h">
+      <Filter>LC3 Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3Simulator\LC3Arch.h">
+      <Filter>LC3 Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3Assembler\LC3ISA.h">
+      <Filter>LC3 Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3bSimulator\LC3bArch.h">
+      <Filter>LC3b Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LC3bAssembler\LC3bISA.h">
+      <Filter>LC3b Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Architecture.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Memory.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Pipeline.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Register.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Simulator\Simulator.h">
+      <Filter>Sim Hdr Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\HighlightLexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\JMTLib.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Lexer.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\SparseArray.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JMTLib\Token.h">
+      <Filter>JMTLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\LC3Assembler\LC3ISA.def">
+      <Filter>LC3 Src Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\LC3bAssembler\LC3bISA.def">
+      <Filter>LC3b Src Files</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>
