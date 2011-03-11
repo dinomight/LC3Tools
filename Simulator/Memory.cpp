@@ -34,13 +34,13 @@ MemoryLocation &MemoryLocation::operator=(unsigned char value)
 	return *this;
 }
 
-istream &Simulator::operator >>(istream &Input, MemoryLocation &TheMemLoc)
+istream &operator >>(istream &Input, MemoryLocation &TheMemLoc)
 {
 	TheMemLoc.Value = Input.get();
 	return Input;
 }
 
-ostream &Simulator::operator <<(ostream &Output, const MemoryLocation &TheMemLoc)
+ostream &operator <<(ostream &Output, const MemoryLocation &TheMemLoc)
 {
 	return Output.put(TheMemLoc.Value);
 }
@@ -140,12 +140,12 @@ MemoryLocation &Memory::operator[](uint64 Index)
 	return Array[Index];
 }
 
-istream &Simulator::operator >>(istream &Input, Memory &TheMem)
+istream &operator >>(istream &Input, Memory &TheMem)
 {
 	return Input >> TheMem.Array;
 }
 
-ostream &Simulator::operator <<(ostream &Output, const Memory &TheMem)
+ostream &operator <<(ostream &Output, const Memory &TheMem)
 {
 	//*NOTE: GCC incorrectly calls the non-const << function instead of the const version
 	return Output << TheMem.Array;

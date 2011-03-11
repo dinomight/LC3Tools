@@ -48,7 +48,7 @@ bool SimulatorUI(vector<Program *> &AsmPrograms, RamVector &MemoryImage)
 	return TheSim.CommandRun(TheArch, AsmPrograms, MemoryImage);
 }
 
-bool LC3b::SimCallBack(MessageEnum MessageType, const string &sMessage)
+bool SimCallBack(MessageEnum MessageType, const string &sMessage)
 {
 	unsigned int i, j, Length, PreLength, OrigPreLength, CutOff, Temp;
 	ostrstream sMsg;

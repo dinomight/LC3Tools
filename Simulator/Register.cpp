@@ -143,7 +143,7 @@ Register::operator const char *() const
 	return sRegister;
 }
 
-istream &Simulator::operator >>(istream &Input, Register &TheReg)
+istream &operator >>(istream &Input, Register &TheReg)
 {
 	JMT::ByteData ByteData;
 	for(int i = 0; i < sizeof(uint64); i++)
@@ -156,7 +156,7 @@ istream &Simulator::operator >>(istream &Input, Register &TheReg)
 	return Input;
 }
 
-ostream &Simulator::operator <<(ostream &Output, const Register &TheReg)
+ostream &operator <<(ostream &Output, const Register &TheReg)
 {
 	JMT::ByteData ByteData;
 	ByteData.UI64 = TheReg.Value;
@@ -264,14 +264,14 @@ RegisterSet::operator const char *() const
 	return sRegisterSet.c_str();
 }
 
-istream &Simulator::operator >>(istream &Input, RegisterSet &TheRegSet)
+istream &operator >>(istream &Input, RegisterSet &TheRegSet)
 {
 	for(RegisterSet::RegisterMap::iterator RegIter = TheRegSet.Registers.begin(); RegIter != TheRegSet.Registers.end(); RegIter++)
 		Input >> RegIter->second;
 	return Input;
 }
 
-ostream &Simulator::operator <<(ostream &Output, const RegisterSet &TheRegSet)
+ostream &operator <<(ostream &Output, const RegisterSet &TheRegSet)
 {
 	for(RegisterSet::RegisterMap::const_iterator RegIter = TheRegSet.Registers.begin(); RegIter != TheRegSet.Registers.end(); RegIter++)
 		Output << RegIter->second;

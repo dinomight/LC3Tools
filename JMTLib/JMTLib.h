@@ -644,7 +644,7 @@ namespace std	{
 
 	};
 
-	#if (_MSC_VER >= 1300)
+	#if (_MSC_VER >= 1300) || defined(__GNUG__)
 	template<class T1, class T2, class T3>
 	bool operator==(const triple<T1,T2,T3> &X, const triple<T1,T2,T3> &Y)
 	{	return (X.first == Y.first && X.second == Y.second && X.third == Y.third);	}
